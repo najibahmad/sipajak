@@ -14,4 +14,8 @@ class JenisPajak extends Model
         'jenis',
     ];
 
+    public function ketetapan_pajak(){
+      return $this->hasMany('App\KetetapanPajak','jenis_pajak_id','id');
+    }
+
 }

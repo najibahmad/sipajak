@@ -21,9 +21,11 @@ class AdminController extends Controller
 
       return view('admin/admin_rekening',$result);
     }
+
     public function tambahRekening(){
       return view('admin/admin_tambah_rekening');
     }
+
     public function insertRekening(){
       $request=Input::all();
 
@@ -34,9 +36,11 @@ class AdminController extends Controller
       // return $request;
       return redirect('admin/rekening');
     }
+
     public function editRekening(){
       return view('admin/admin_edit_rekening');
     }
+
     public function hapusRekening(){
       $request=Input::all();
 
@@ -44,17 +48,20 @@ class AdminController extends Controller
 
       return redirect('admin/rekening');
     }
+
     public function tarif(){
       $result['data']=StandarTarif::join('jenis_pajak','jenis_pajak.id','=','standar_tarif.jenis_pajak_id')->get();
 
       // return $result;
       return view('admin/admin_tarif',$result);
     }
+
     public function tambahTarifPajak(){
       $result['jenisPajak']=JenisPajak::get();
 
       return view('admin/admin_tambah_tarif_pajak',$result);
     }
+
     public function insertTarifPajak(){
       $request=Input::all();
 
@@ -67,9 +74,11 @@ class AdminController extends Controller
       ]);
       return redirect('admin/tarif');
     }
+
     public function editTarifPajak(){
       return view('admin/admin_edit_tarif_pajak');
     }
+    
     public function hapusTarifPajak(){
       $request=Input::all();
 

@@ -18,6 +18,7 @@ class CreateKecamatanTable extends Migration
             $table->increments('id');
             $table->string('kecamatan', 45)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

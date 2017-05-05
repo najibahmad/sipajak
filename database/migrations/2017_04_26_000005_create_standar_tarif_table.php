@@ -19,11 +19,12 @@ class CreateStandarTarifTable extends Migration
             $table->string('nama_item', 45)->nullable();
             $table->string('satuan', 45)->nullable();
             $table->double('tarif')->nullable();
-            $table->date('tahun')->nullable();
+            $table->double('tahun')->nullable();
             $table->integer('jenis_pajak_id')->unsigned();
 
             $table->foreign('jenis_pajak_id')->references('id')->on('jenis_pajak');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

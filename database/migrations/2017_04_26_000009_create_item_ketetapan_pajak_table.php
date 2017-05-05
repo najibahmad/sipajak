@@ -29,6 +29,7 @@ class CreateItemKetetapanPajakTable extends Migration
             $table->foreign('ketetapan_pajak_id')
                 ->references('id')->on('ketetapan_pajak');
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

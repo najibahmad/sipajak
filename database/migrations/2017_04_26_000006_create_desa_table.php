@@ -23,6 +23,7 @@ class CreateDesaTable extends Migration
             $table->foreign('kecamatan_id')
                 ->references('id')->on('kecamatan');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

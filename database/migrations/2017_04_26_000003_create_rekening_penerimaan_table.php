@@ -19,6 +19,7 @@ class CreateRekeningPenerimaanTable extends Migration
             $table->string('nomor_rekening', 45)->nullable();
             $table->string('uraian')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

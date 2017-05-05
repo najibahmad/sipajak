@@ -36,6 +36,7 @@ class CreateKetetapanPajakTable extends Migration
                 ->references('id')->on('jenis_pajak');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

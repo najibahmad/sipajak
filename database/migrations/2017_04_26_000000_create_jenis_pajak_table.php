@@ -18,6 +18,7 @@ class CreateJenisPajakTable extends Migration
             $table->increments('id');
             $table->string('jenis', 45)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

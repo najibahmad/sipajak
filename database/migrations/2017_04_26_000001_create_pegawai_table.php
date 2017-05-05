@@ -23,6 +23,7 @@ class CreatePegawaiTable extends Migration
             $table->string('status', 45)->nullable();
             $table->string('nomor_sk', 45)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

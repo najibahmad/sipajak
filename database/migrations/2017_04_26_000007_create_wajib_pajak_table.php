@@ -26,6 +26,7 @@ class CreateWajibPajakTable extends Migration
             $table->foreign('desa_id')
                 ->references('id')->on('desa');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

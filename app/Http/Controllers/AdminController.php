@@ -78,16 +78,29 @@ class AdminController extends Controller
       return redirect('admin/tarif');
     }
     public function pajak(){
-      return view('admin/admin_pajak');
+      $data['data']=JenisPajak::get();
+
+      return view('admin/admin_pajak',$data);
     }
     public function tambahJenisPajak(){
       return view('admin/admin_tambah_jenis_pajak');
+    }
+    public function insertJenisPajak(){
+      $request=Input::all();
+
+      $db=JenisPajak::create([
+        "jenis"=>$request['namaJenisPajak']
+      ]);
+      return redirect('admin/pajak');
+
     }
     public function editJenisPajak(){
       return view('admin/admin_edit_jenis_pajak');
     }
     public function hapusJenisPajak(){
-      return redirect('admin/admin_pajak');
+      $request=Input::all();
+      $db=JenisPajak::where('id','=',$request['id'])->delete();
+      return redirect('admin/pajak');
     }
     public function pwd(){
       return view('admin/admin_pwd');

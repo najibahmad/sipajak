@@ -68,6 +68,7 @@ Route::group(['prefix'=>'admin'],function(){
   Route::get('/pajak','AdminController@pajak');
     Route::group(['prefix'=>'/pajak'],function(){
       Route::post('tambahJenisPajak','AdminController@tambahJenisPajak');
+      Route::post('insertJenisPajak','AdminController@insertJenisPajak');
       Route::post('editJenisPajak','AdminController@editJenisPajak');
       Route::post('hapusJenisPajak','AdminController@hapusJenisPajak');
     });
@@ -77,7 +78,8 @@ Route::group(['prefix'=>'admin'],function(){
 //jika hak akses penanggung jawab
 Route::get('/penanggungJawab','PjController@index');
 Route::group(['prefix'=>'penanggungJawab'],function(){
-
+  Route::get('daftarPegawai','PjController@daftarPegawai');
+  Route::get('pwd','PjController@pwd');
 });
 
 //jika hak akses bendahara
@@ -89,11 +91,26 @@ Route::group(['prefix'=>'/bendahara'],function(){
 //jika hak akses operator
 Route::get('/operator','OperatorController@index');
 Route::group(['prefix'=>'/operator'],function(){
-
+  Route::get('wajibPajak','OperatorController@wajibPajak');
+    Route::group(['prefix'=>'/wajibPajak'],function(){
+      Route::post('tambahWajibPajak','OperatorController@tambahWajibPajak');
+      Route::post('insertWajibPajak','OperatorController@insertWajibPajak');
+      Route::post('editWajibPajak','OperatorController@editWajibPajak');
+      Route::post('hapusWajibPajak','OperatorController@hapusWajibPajak');
+    });
+  Route::get('ketetapanPajak','OperatorController@ketetapanPajak');
+    Route::group(['prefix'=>'ketetapanPajak'],function(){
+      Route::post('tambahKetetapanPajak','OperatorController@tambahKetetapanPajak');
+      Route::post('insertKetetapanPajak','OperatorController@insertKetetapanPajak');
+      Route::post('editKetetapanPajak','OperatorController@editKetetapanPajak');
+      Route::post('hapusKetetapanPajak','OperatorController@hapusKetetapanPajak');
+    });
+  Route::get('pwd','OperatorController@pwd');
 });
 
 //jika hak akses verifikator
 Route::get('/verifikator','VerifikatorController@index');
 Route::group(['prefix'=>'/verifikator'],function(){
-
+  Route::get('verifikasiKetetapanPajak','VerifikatorController@verifikasiKetetapanPajak');
+  Route::get('pwd','VerifikatorController@pwd');
 });

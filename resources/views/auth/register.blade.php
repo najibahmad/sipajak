@@ -42,10 +42,11 @@
                           <label for="jabatan" class="col-md-4 control-label">Jabatan</label>
                           <div class="col-md-6">
                               <select class="form-control" id="jabatan" name="jabatan">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Penanggung Jawab</option>
+                                <option value="3">Bendahara</option>
+                                <option value="4">Operator</option>
+                                <option value="5">Verifikator</option>
                               </select>
                           </div>
                         </div>

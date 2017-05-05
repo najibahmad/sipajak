@@ -22,11 +22,11 @@
     <a href="{{URL('admin/pajak')}}"><button type="button" class="btn btn-default" name="button">Back</button></a>
     <hr>
     <!-- /.row -->
-    <form class="form-horizontal" action="index.html" role="form" method="post">
+    <form class="form-horizontal" action="{{URL('admin/pajak/insertJenisPajak')}}" role="form" method="post">
       <div class="form-group">
-        <label class="control-label col-sm-2" for="nomorRekening">Nama Jenis Pajak</label>
+        <label class="control-label col-sm-2" for="namaJenisPajak">Nama Jenis Pajak</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="nomorRekening" placeholder="Nama Jenis Pajak">
+          <input type="text" class="form-control" name="namaJenisPajak" placeholder="Nama Jenis Pajak">
         </div>
       </div>
       <div class="form-group">

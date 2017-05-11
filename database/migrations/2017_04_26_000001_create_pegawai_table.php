@@ -16,6 +16,7 @@ class CreatePegawaiTable extends Migration
         Schema::create('pegawai', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->string('nama', 45)->nullable();
             $table->string('nip', 45)->nullable();
             $table->text('alamat')->nullable();
@@ -24,6 +25,8 @@ class CreatePegawaiTable extends Migration
             $table->string('nomor_sk', 45)->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

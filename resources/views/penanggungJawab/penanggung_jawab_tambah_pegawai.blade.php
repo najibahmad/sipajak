@@ -17,10 +17,10 @@
         </div>
     </div>
 
-    <a href="{{URL('operator/ketetapanPajak')}}"><button type="button" class="btn btn-default" name="button">Back</button></a>
+    <a href="{{URL('penanggungJawab/pegawai')}}"><button type="button" class="btn btn-default" name="button">Back</button></a>
     <hr>
     <!-- /.row -->
-    <form class="form-horizontal" action="{{URL('operator/ketetapanPajak/insertKetetapanPajak')}}" role="form" method="post">
+    <form class="form-horizontal" action="{{URL('penanggungJawab/pegawai/insertPegawai')}}" role="form" method="post">
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">Nama: </label>
         <div class="col-sm-10">
@@ -54,25 +54,26 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">Status: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Menikah atau Jomblo" name="status">
+          <select class="form-control" name="status">
+            <option value="aktif">Aktif</option>
+            <option value="tidak_aktif">Tidak aktif</option>
+          </select>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">Grup: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Hak Akses Anda" name="grup">
+          <select class="form-control" name="grup">
+            @foreach ($roles as $id => $ini)
+              <option value="{{$ini->id}}">{{$ini->description}}</option>
+            @endforeach
+          </select>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">Nomor SK: </label>
         <div class="col-sm-10">
           <input type="text" class="form-control" placeholder="Nomor SK" name="nomorSK">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="bulan">Photo: </label>
-        <div class="col-sm-10">
-          <input type="file" placeholder="Nama anda" name="choosenFile">
         </div>
       </div>
 

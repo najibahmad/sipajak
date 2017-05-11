@@ -27,7 +27,9 @@
                 <th>No.</th>
                 <th>Nip</th>
                 <th>Alamat</th>
+                <th>Email</th>
                 <th>Hp</th>
+                <th>Grup</th>
                 <th>Status</th>
                 <th>Nomor Sk</th>
                 <th>Action</th>
@@ -40,7 +42,9 @@
                   <td>{{$ini->nama}}</td>
                   <td>{{$ini->nip}}</td>
                   <td>{{$ini->alamat}}</td>
+                  <td>{{$ini->email}}</td>
                   <td>{{$ini->hp}}</td>
+                  <td>{{$ini->description}}</td>
                   <td>{{$ini->status}}</td>
                   <td>{{$ini->nomor_sk}}</td>
                   <td>

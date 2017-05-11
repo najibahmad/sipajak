@@ -81,6 +81,7 @@ Route::group(['prefix'=>'penanggungJawab'],function(){
   Route::get('pegawai','PjController@pegawai');
     Route::group(['prefix'=>'/pegawai'],function(){
       Route::post('tambahPegawai','PjController@tambahPegawai');
+      Route::post('insertPegawai','PjController@insertPegawai');
       Route::post('hapusPegawai','PjController@hapusPegawai');
       Route::post('editPegawai','PjController@editPegawai');
     });

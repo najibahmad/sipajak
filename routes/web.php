@@ -78,7 +78,12 @@ Route::group(['prefix'=>'admin'],function(){
 //jika hak akses penanggung jawab
 Route::get('/penanggungJawab','PjController@index');
 Route::group(['prefix'=>'penanggungJawab'],function(){
-  Route::get('daftarPegawai','PjController@daftarPegawai');
+  Route::get('pegawai','PjController@pegawai');
+    Route::group(['prefix'=>'/pegawai'],function(){
+      Route::post('tambahPegawai','PjController@tambahPegawai');
+      Route::post('hapusPegawai','PjController@hapusPegawai');
+      Route::post('editPegawai','PjController@editPegawai');
+    });
   Route::get('pwd','PjController@pwd');
 });
 

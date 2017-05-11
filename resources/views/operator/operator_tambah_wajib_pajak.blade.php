@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <a href="{{URL('admin/pajak')}}"><button type="button" class="btn btn-default" name="button">Back</button></a>
+    <a href="{{URL('operator/wajibPajak')}}"><button type="button" class="btn btn-default" name="button">Back</button></a>
     <hr>
     <!-- /.row -->
     <form class="form-horizontal" action="{{URL('operator/wajibPajak/insertWajibPajak')}}" role="form" method="post">

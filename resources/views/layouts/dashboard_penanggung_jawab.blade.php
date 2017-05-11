@@ -85,8 +85,14 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li class="active">
-                            <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <li @yield('dashboard-active')>
+                            <a href="{{URL('/penanggungJawab')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li @yield('pegawai-active')>
+                            <a href="{{URL('/penanggungJawab/pegawai')}}"><i class="fa fa-user fa-fw"></i> Pegawai</a>
+                        </li>
+                        <li @yield('pwd-active')>
+                            <a href="{{URL('/penanggungjawab/pwd')}}"><i class="fa fa-key fa-fw"></i> Ubah Password</a>
                         </li>
 
                     </ul>

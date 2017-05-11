@@ -25,6 +25,7 @@
             <thead>
               <tr>
                 <th>No.</th>
+                <th>Nama</th>
                 <th>Nip</th>
                 <th>Alamat</th>
                 <th>Email</th>
@@ -48,12 +49,12 @@
                   <td>{{$ini->status}}</td>
                   <td>{{$ini->nomor_sk}}</td>
                   <td>
-                    <form action="{{URL('operator/wajibPajak/editWajibPajak')}}" method="post">
-                        <input type="hidden" name="id" value="{{$ini->id}}">
+                    <form action="{{URL('penanggungJawab/pegawai/editPegawai')}}" method="post">
+                        <input type="hidden" name="id" value="{{$ini->user_id}}">
                         <button type="submit" name="button" class="btn btn-warning">Edit</button>
                     </form>
-                    <form action="{{URL('operator/wajibPajak/hapusWajibPajak')}}" method="post">
-                        <input type="hidden" name="id" value="{{$ini->id}}">
+                    <form action="{{URL('penanggungJawab/pegawai/hapusPegawai')}}" method="post">
+                        <input type="hidden" name="id" value="{{$ini->user_id}}">
                         <button type="submit" name="button" class="btn btn-danger">Delete</button>
                     </form>
                   </td>

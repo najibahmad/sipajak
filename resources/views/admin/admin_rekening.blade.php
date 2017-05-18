@@ -39,7 +39,7 @@
                   <td>{{$ini->nomor_rekening}}</td>
                   <td>{{$ini->uraian}}</td>
                   <td>
-                    <form class="" action="{{URL('admin/rekening/editRekening')}}" method="post">
+                    <form class="" action="{{URL('admin/rekening/editRekening/')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
                         <button type="submit" name="button" class="btn btn-warning">Edit</button>
                     </form>

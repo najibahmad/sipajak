@@ -29,7 +29,10 @@ class AdminController extends Controller
     public function insertRekening(){
       $request=Input::all();
 
-      $db=RekeningPenerimaan::create([
+      (!isset($request['id'])) ? RekeningPenerimaan::create([
+        "nomor_rekening"=>$request['nomorRekening'],
+        "uraian"=>$request['uraian']
+      ]) : RekeningPenerimaan::where("id",$request['id'])->update([
         "nomor_rekening"=>$request['nomorRekening'],
         "uraian"=>$request['uraian']
       ]);
@@ -38,7 +41,9 @@ class AdminController extends Controller
     }
 
     public function editRekening(){
-      return view('admin/admin_edit_rekening');
+      $request=Input::all();
+      $data['id']=$request['id'];
+      return view('admin/admin_tambah_rekening',$data);
     }
 
     public function hapusRekening(){
@@ -57,28 +62,33 @@ class AdminController extends Controller
     }
 
     public function tambahTarifPajak(){
-      $result['jenisPajak']=JenisPajak::get();
+      $data['jenisPajak']=JenisPajak::get();
 
-      return view('admin/admin_tambah_tarif_pajak',$result);
+      return view('admin/admin_tambah_tarif_pajak',$data);
     }
 
     public function insertTarifPajak(){
       $request=Input::all();
 
-      $db=StandarTarif::create([
+      $query=[
         "nama_item"=>$request['namaItem'],
         "jenis_pajak_id"=>$request['jenisPajakId'],
         "satuan"=>$request['satuan'],
         "tarif"=>$request['tarif'],
         "tahun"=>$request['tahun']
-      ]);
+      ];
+      (!isset($request['id'])) ? StandarTarif::create($query) : StandarTarif::where('id',$request['id'])->update($query);
+
       return redirect('admin/tarif');
     }
 
     public function editTarifPajak(){
-      return view('admin/admin_edit_tarif_pajak');
+      $request=Input::all();
+      $data['id']=$request['id'];
+      $data['jenisPajak']=JenisPajak::get();
+      return view('admin/admin_tambah_tarif_pajak',$data);
     }
-    
+
     public function hapusTarifPajak(){
       $request=Input::all();
 
@@ -96,15 +106,18 @@ class AdminController extends Controller
     }
     public function insertJenisPajak(){
       $request=Input::all();
-
-      $db=JenisPajak::create([
+      $query=[
         "jenis"=>$request['namaJenisPajak']
-      ]);
+      ];
+      (!isset($request['id'])) ? JenisPajak::create($query) : JenisPajak::where('id',$request['id'])->update($query);
+
       return redirect('admin/pajak');
 
     }
     public function editJenisPajak(){
-      return view('admin/admin_edit_jenis_pajak');
+      $request=Input::all();
+      $data['id']=$request['id'];
+      return view('admin/admin_tambah_jenis_pajak',$data);
     }
     public function hapusJenisPajak(){
       $request=Input::all();

@@ -56,10 +56,11 @@
                   <td>{{$ini->tarif}}</td>
                   <td>{{$ini->tahun}}</td>
                   <td>
-                    <form class="" action="{{URL('admin/tarif/editTarifPajak')}}" method="post">
+                    <form action="{{URL('admin/tarif/editTarifPajak')}}" method="post">
+                        <input type="hidden" name="id" value="{{$ini->id}}">
                         <button type="submit" name="button" class="btn btn-warning">Edit</button>
                     </form>
-                    <form class="" action="{{URL('admin/tarif/hapusTarifPajak')}}" method="post">
+                    <form action="{{URL('admin/tarif/hapusTarifPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
                         <button type="submit" name="button" class="btn btn-danger">Delete</button>
                     </form>

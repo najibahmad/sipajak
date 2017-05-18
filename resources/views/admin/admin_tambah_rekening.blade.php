@@ -37,6 +37,9 @@
       </div>
       <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
+        @if (isset($id))
+          <input type="hidden" name="id" value="{{$id}}" class="form-control">
+        @endif
         <button type="submit" class="btn btn-default">Submit</button>
       </div>
     </form>

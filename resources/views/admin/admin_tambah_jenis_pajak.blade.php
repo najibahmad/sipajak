@@ -29,6 +29,9 @@
           <input type="text" class="form-control" name="namaJenisPajak" placeholder="Nama Jenis Pajak">
         </div>
       </div>
+      @if (isset($id))
+        <input type="hidden" name="id" value="{{$id}}">
+      @endif
       <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-default">Submit</button>

@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Input;
 use App\RekeningPenerimaan;
 use App\StandarTarif;
 use App\JenisPajak;
+use Auth;
 
 class AdminController extends Controller
 {
+  
     public function index(){
       return view('admin/admin_dashboard');
     }

@@ -47,7 +47,9 @@ Route::post('checking',function(){
   }
 
 });
-
+Route::get('cekRole',function(){
+  return Auth::user()->role_id;
+});
 //jika hak akses admin
 Route::get('/admin','AdminController@index');
 Route::group(['prefix'=>'admin'],function(){

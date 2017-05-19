@@ -64,7 +64,7 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="kecamatan">Jatuh Tempo:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="jatuhTempo" placeholder="jatuh tempo">
+          <input type="text" class="datepicker form-control" data-provide="datepicker" name="jatuhTempo" placeholder="jatuh tempo">
         </div>
       </div>
       <div class="form-group">
@@ -74,4 +74,5 @@
     </form>
 
   </div>
+  
 @endsection

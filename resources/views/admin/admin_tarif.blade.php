@@ -20,11 +20,12 @@
     <form class="" action="index.html" method="post">
       <div class="form-group">
         <label for="sel1">Standar Tarif Pajak Tahun:</label>
-        <select class="form-control" id="sel1">
-          <option>2017</option>
-          <option>2016</option>
-          <option>2015</option>
-          <option>2014</option>
+        <select class="form-control" id="tahun">
+          <option value="">Select Year</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+          <option value="2014">2014</option>
         </select>
       </div>
     </form>
@@ -46,8 +47,8 @@
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
-              @foreach ($data as $no => $ini)
+            <tbody id="data">
+              {{-- @foreach ($data as $no => $ini)
                 <tr>
                   <td>{{$no+1}}</td>
                   <td>{{$ini->nama_item}}</td>
@@ -66,10 +67,48 @@
                     </form>
                   </td>
                 </tr>
-              @endforeach
+              @endforeach --}}
             </tbody>
           </table>
       </div>
     </div>
   </div>
+@endsection
+
+@section('script')
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#tahun').change(function(){
+        var data = $('#tahun').val();
+        console.log(data);
+        $.post("{{url('admin/tarif/getStandarTarif')}}",{tahun:data},function(data){
+          console.log(data);
+          $('#data').html("");
+          $.each(data,function(i,item){
+            i=i+1;
+            $('#data').append(
+              "<tr>\
+              <td>"+i+"</td>\
+              <td>"+this.nama_item+"</td>\
+              <td>"+this.jenis+"</td>\
+              <td>"+this.satuan+"</td>\
+              <td>"+this.tarif+"</td>\
+              <td>"+this.tahun+"</td>\
+              <td>\
+              <form action={{URL('admin/tarif/editTarifPajak')}} method=post>\
+              <input type=hidden name=id value="+this.id+">\
+              <button type=submit class='btn btn-warning'>Edit</button>\
+              </form>\
+              <form action={{URL('admin/tarif/hapusTarifPajak')}} method=post>\
+              <input type=hidden name=id value="+this.id+">\
+              <button type=submit class='btn btn-danger'>Delete</button>\
+              </form>\
+              </td>\
+              </tr>"
+            );
+          });
+        },"json");
+      });
+    });
+  </script>
 @endsection

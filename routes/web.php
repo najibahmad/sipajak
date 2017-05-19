@@ -66,6 +66,7 @@ Route::group(['prefix'=>'admin'],function(){
       Route::post('insertTarifPajak','AdminController@insertTarifPajak');
       Route::post('editTarifPajak','AdminController@editTarifPajak');
       Route::post('hapusTarifPajak','AdminController@hapusTarifPajak');
+      Route::post('getStandarTarif','AdminController@getStandarTarif');
     });
   Route::get('/pajak','AdminController@pajak');
     Route::group(['prefix'=>'/pajak'],function(){

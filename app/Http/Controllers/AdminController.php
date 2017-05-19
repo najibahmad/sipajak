@@ -14,7 +14,7 @@ use Auth;
 
 class AdminController extends Controller
 {
-  
+
     public function index(){
       return view('admin/admin_dashboard');
     }
@@ -61,6 +61,12 @@ class AdminController extends Controller
 
       // return $result;
       return view('admin/admin_tarif',$result);
+    }
+    public function getStandarTarif(){
+      $request=Input::all();
+      $data=StandarTarif::join('jenis_pajak','jenis_pajak.id','=','standar_tarif.jenis_pajak_id')->where('tahun',$request['tahun'])->get();
+
+      return Response::json($data);
     }
 
     public function tambahTarifPajak(){

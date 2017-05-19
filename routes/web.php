@@ -108,6 +108,8 @@ Route::group(['prefix'=>'/operator'],function(){
       Route::post('editWajibPajak','OperatorController@editWajibPajak');
       Route::post('hapusWajibPajak','OperatorController@hapusWajibPajak');
       Route::post('getDesa','OperatorController@getDesa');
+      Route::post('getNPWP','OperatorController@getNPWP');
+      Route::post('getDataWajibPajak','OperatorController@getDataWajibPajak');
     });
   Route::get('ketetapanPajak','OperatorController@ketetapanPajak');
     Route::group(['prefix'=>'ketetapanPajak'],function(){
@@ -115,6 +117,7 @@ Route::group(['prefix'=>'/operator'],function(){
       Route::post('insertKetetapanPajak','OperatorController@insertKetetapanPajak');
       Route::post('editKetetapanPajak','OperatorController@editKetetapanPajak');
       Route::post('hapusKetetapanPajak','OperatorController@hapusKetetapanPajak');
+      Route::post('statusVerifikasi','OperatorController@statusVerifikasi');
     });
   Route::get('pwd','OperatorController@pwd');
 });

@@ -45,26 +45,37 @@
               </tr>
             </thead>
             <tbody>
-              {{-- @foreach ($data as $no => $ini)
+              @foreach ($itemKetetapanPajak as $no => $ini)
+                <input type="hidden" name="jenisPajakId" value="{{$ini->jenis_pajak_id}}" id="jenisPajakId">
                 <tr>
                   <td>{{$no+1}}</td>
-                  <td>{{$ini->nama}}</td>
+                  <td>{{$ini->nama_item}}</td>
                   <td>{{$ini->npwp}}</td>
-                  <td>{{$ini->alamat}}</td>
-                  <td>{{$ini->jatuh_tempo}}</td>
-                  <td>{{$ini->desa_id}}</td>
+                  <td>{{$ini->jenis}}</td>
+                  <td>{{$ini->volume}}</td>
+                  <td>{{$ini->created_at}}</td>
                   <td>
-                    <form action="{{URL('operator/wajibPajak/editWajibPajak')}}" method="post">
-                        <input type="hidden" name="id" value="{{$ini->id}}">
+                    <form action="{{URL('operator/ketetapanPajak/editKetetapanPajak')}}" method="post">
+                        <input type="hidden" name="id" value="{{$ini->ketetapan_pajak_id}}">
                         <button type="submit" name="button" class="btn btn-warning">Edit</button>
                     </form>
-                    <form action="{{URL('operator/wajibPajak/hapusWajibPajak')}}" method="post">
-                        <input type="hidden" name="id" value="{{$ini->id}}">
+                    <form action="{{URL('operator/ketetapanPajak/hapusKetetapanPajak')}}" method="post">
+                        <input type="hidden" name="id" value="{{$ini->ketetapan_pajak_id}}">
                         <button type="submit" name="button" class="btn btn-danger">Delete</button>
                     </form>
                   </td>
+                  <td>
+                      @if ($ini->status_verifikasi==0)
+                        <form class="" action="{{url('operator/ketetapanPajak/statusVerifikasi')}}" method="post">
+                          <input type="hidden" name="id" value="{{$ini->ketetapan_pajak_id}}">
+                          <button type="submit" class="btn btn-success" name="button">Verify</button>
+                        </form>
+                      @else
+                        <h3>Verified</h3>
+                      @endif
+                  </td>
                 </tr>
-              @endforeach --}}
+              @endforeach
             </tbody>
           </table>
       </div>

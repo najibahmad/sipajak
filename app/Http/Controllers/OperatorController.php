@@ -13,6 +13,7 @@ use App\Kecamatan;
 use App\KetetapanPajak;
 use App\RekeningPenerimaan;
 use App\JenisPajak;
+use App\ItemKetetapanPajak;
 
 class OperatorController extends Controller
 {
@@ -62,7 +63,9 @@ class OperatorController extends Controller
       return redirect('operator/wajibPajak');
     }
     public function ketetapanPajak(){
-      $data['ketetapanPajak']=KetetapanPajak::get();
+      // $data['ketetapanPajak']=WajibPajak::join('ketetapan_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')->get();
+      $data['itemKetetapanPajak']=ItemKetetapanPajak::join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')->get();
+
       return view('operator/operator_ketetapan_pajak',$data);
     }
     public function tambahKetetapanPajak(){
@@ -74,20 +77,63 @@ class OperatorController extends Controller
       // return $data['rekening'];
       return view('operator/operator_tambah_ketetapan_pajak',$data);
     }
-    public function insertKetetapanPajak(){
+    public function editKetetapanPajak(){
       $request=Input::all();
 
-      // $db=KetetapanPajak::create([
-      //   "bulan"=>$request['bulan'],
-      //   "tahun"=>$request['tahun'],
-      //   "jatuh_tempo"=>$request['jatuhTempo'],
-      //   "nama_pekerjaan"=>$request['namaKegiatan'],
-      //   "keterangan"=>$request['keteranganKegiatan'],
-      //   "wajib_pajak_id"=>,
-      //   "rekening_penerimaan_id"=>$request['kodeRekening'],
-      //   "jenis_pajak_id"=>$request['jenisPajak']
-      //
-      // ]);
+      $data['id']=$request['id'];
+      $data['kecamatan']=Kecamatan::get();
+      $data['desa']=Desa::get();
+      $data['rekening']=RekeningPenerimaan::get();
+      $data['jenisPajak']=JenisPajak::get();
+
+      // return $data['rekening'];
+      return view('operator/operator_tambah_ketetapan_pajak',$data);
+    }
+    public function insertKetetapanPajak(){
+    $request=Input::all();
+
+      $query1=[
+        "bulan"=>$request['bulan'],
+        "tahun"=>$request['tahun'],
+        "jatuh_tempo"=>$request['jatuhTempo'],
+        "nama_pekerjaan"=>$request['namaKegiatan'],
+        "keterangan_pekerjaan"=>$request['keteranganKegiatan'],
+        "wajib_pajak_id"=>$request['wajibPajakId'],
+        "rekening_penerimaan_id"=>$request['kodeRekening'],
+        "jenis_pajak_id"=>$request['jenisPajak']
+      ];
+
+      (!isset($request['id'])) ? $ketetapanPajak=KetetapanPajak::create($query1) : $ketetapanPajak=KetetapanPajak::where('id',$request['id'])->update($query1);
+
+      (!isset($request['id'])) ? ItemKetetapanPajak::create([
+        "nama_item"=>$request['namaItem'],
+        "volume"=>$request['volume'],
+        "satuan"=>$request['satuan'],
+        "harga"=>$request['harga'],
+        "ketetapan_pajak_id"=> $ketetapanPajak->id
+      ]) : ItemKetetapanPajak::where('ketetapan_pajak_id',$request['id'])->update([
+        "nama_item"=>$request['namaItem'],
+        "volume"=>$request['volume'],
+        "satuan"=>$request['satuan'],
+        "harga"=>$request['harga'],
+        "ketetapan_pajak_id"=> $request['id']
+      ]);
+
+      return redirect('operator/ketetapanPajak');
+    }
+    public function hapusKetetapanPajak(){
+      $request=Input::all();
+
+      ItemKetetapanPajak::where('ketetapan_pajak_id',$request['id'])->delete();
+
+      return redirect('operator/ketetapanPajak');
+    }
+    public function statusVerifikasi(){
+      $request=Input::all();
+
+      ItemKetetapanPajak::where('ketetapan_pajak_id',$request['id'])->update([
+        "status_verifikasi"=>1
+      ]);
 
       return redirect('operator/ketetapanPajak');
     }
@@ -95,6 +141,20 @@ class OperatorController extends Controller
       $request=Input::all();
 
       $data=Desa::where('kecamatan_id',$request['id'])->get();
+
+      return Response::json($data);
+    }
+    public function getNPWP(){
+      $request=Input::all();
+
+      $data=WajibPajak::where('npwp','like','%'.$request['npwp'].'%')->get();
+
+      return Response::json($data);
+    }
+    public function getDataWajibPajak(){
+      $request=Input::all();
+
+      $data=WajibPajak::where('npwp',$request['npwp'])->first();
 
       return Response::json($data);
     }

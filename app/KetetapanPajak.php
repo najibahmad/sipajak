@@ -15,6 +15,7 @@ class KetetapanPajak extends Model
         'tahun',
         'jatuh_tempo',
         'nama_pekerjaan',
+        'keterangan_pekerjaan',
         'wajib_pajak_id',
         'rekening_penerimaan_id',
         'jenis_pajak_id',

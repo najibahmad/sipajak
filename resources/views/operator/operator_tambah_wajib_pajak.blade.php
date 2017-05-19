@@ -36,7 +36,7 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="kecamatan">Kecamatan</label>
         <div class="col-sm-10">
-          <select class="form-control" id="sel1" name="kecamatan">
+          <select class="form-control" id="kecamatan" name="kecamatan">
             <option>Silahkan pilih Kecamatan</option>
             @foreach ($kecamatan as $no => $ini)
               <option value="{{$ini->id}}">{{$ini->kecamatan}}</option>
@@ -47,11 +47,7 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="desa">Desa/Kelurahan:</label>
         <div class="col-sm-10">
-          <select class="form-control" id="sel1" name="desa">
-            <option>Silahkan pilih Desa/Kelurahan</option>
-            @foreach ($desa as $no => $ini)
-              <option value="{{$ini->id}}">{{$ini->desa}}</option>
-            @endforeach
+          <select class="form-control" id="desa" name="desa">
           </select>
         </div>
       </div>
@@ -67,6 +63,9 @@
           <input type="text" class="datepicker form-control" data-provide="datepicker" name="jatuhTempo" placeholder="jatuh tempo">
         </div>
       </div>
+      @if (isset($id))
+        <input type="hidden" name="id" value="{{$id}}">
+      @endif
       <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-default">Submit</button>
@@ -74,5 +73,24 @@
     </form>
 
   </div>
-  
+
+@endsection
+
+@section('script')
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#kecamatan').change(function(){
+        var kecamatan=$('#kecamatan').val();
+        $.post("{{url('operator/wajibPajak/getDesa')}}",{id:kecamatan},function(data){
+          console.log(data);
+          $('#desa').html("");
+          $.each(data,function(i,item){
+            $('#desa').append(
+              "<option value="+this.id+">"+this.desa+"</option>"
+            );
+          });
+        },"json");
+      });
+    });
+  </script>
 @endsection

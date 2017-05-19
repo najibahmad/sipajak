@@ -125,11 +125,12 @@
     <script>
         $(document).ready(function(){
           $('.datepicker').datepicker({
-              language: 'id'
+              language: 'id',
+              format:'yyyy-mm-dd'
           });
         });
     </script>
-
+    @yield('script')
 </body>
 
 </html>

@@ -30,16 +30,28 @@ class OperatorController extends Controller
       $data['desa']=Desa::get();
       return view('operator/operator_tambah_wajib_pajak',$data);
     }
+    public function editWajibPajak(){
+      $request=Input::all();
+
+      $data['id']=$request['id'];
+      $data['kecamatan']=Kecamatan::get();
+      $data['desa']=Desa::get();
+      return view('operator/operator_tambah_wajib_pajak',$data);
+    }
     public function insertWajibPajak(){
       $request=Input::all();
 
-      $db=WajibPajak::create([
+      $query=[
         "nama"=>$request['nama'],
         "npwp"=>$request['NPWP'],
         "alamat"=>$request['alamat'],
         "jatuh_tempo"=>$request['jatuhTempo'],
         "desa_id"=>$request['desa']
-      ]);
+      ];
+
+      (!isset($request['id'])) ? WajibPajak::create($query) : WajibPajak::where('id',$request['id'])->update($query);
+
+
 
       return redirect('operator/wajibPajak');
     }
@@ -78,6 +90,13 @@ class OperatorController extends Controller
       // ]);
 
       return redirect('operator/ketetapanPajak');
+    }
+    public function getDesa(){
+      $request=Input::all();
+
+      $data=Desa::where('kecamatan_id',$request['id'])->get();
+
+      return Response::json($data);
     }
     public function pwd(){
       return view('operator/operator_pwd');

@@ -106,6 +106,7 @@ Route::group(['prefix'=>'/operator'],function(){
       Route::post('insertWajibPajak','OperatorController@insertWajibPajak');
       Route::post('editWajibPajak','OperatorController@editWajibPajak');
       Route::post('hapusWajibPajak','OperatorController@hapusWajibPajak');
+      Route::post('getDesa','OperatorController@getDesa');
     });
   Route::get('ketetapanPajak','OperatorController@ketetapanPajak');
     Route::group(['prefix'=>'ketetapanPajak'],function(){

@@ -1,8 +1,6 @@
-@extends('layouts/dashboard_operator')
-@section('title','Control Panel')
-@section('dashboard-active',"class=active")
+@extends('layouts/dashboard_verifikator')
 @section('content')
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="row">
         <div class="col-lg-12">
@@ -16,9 +14,6 @@
             </ol>
         </div>
     </div>
-    <form action="{{URL('operator/ketetapanPajak/tambahKetetapanPajak')}}" method="post">
-      <button type="submit" class="btn btn-default">Tambah Ketetapan Pajak</button>
-    </form><hr>
       <div class="form-group">
         <label for="cariNPWP">Search NPWP</label>
           <input type="text" class="form-control" name="npwp" placeholder="Search NPWP" id="getDataKetetapanPajak">
@@ -35,8 +30,7 @@
                 <th>Jenis Pajak</th>
                 <th>Jumlah</th>
                 <th>Tanggal</th>
-                <th>Action</th>
-                <th>Kirim ke Verifikator</th>
+                <th>Verifikasi</th>
               </tr>
             </thead>
             <tbody id="dataKetetapanPajak">
@@ -50,23 +44,13 @@
                   <td>{{$ini->volume}}</td>
                   <td>{{$ini->created_at}}</td>
                   <td>
-                    <form action="{{URL('operator/ketetapanPajak/editKetetapanPajak')}}" method="post">
-                        <input type="hidden" name="id" value="{{$ini->ketetapan_pajak_id}}">
-                        <button type="submit" name="button" class="btn btn-warning">Edit</button>
-                    </form>
-                    <form action="{{URL('operator/ketetapanPajak/hapusKetetapanPajak')}}" method="post">
-                        <input type="hidden" name="id" value="{{$ini->ketetapan_pajak_id}}">
-                        <button type="submit" name="button" class="btn btn-danger">Delete</button>
-                    </form>
-                  </td>
-                  <td>
-                      @if ($ini->status_verifikasi==0)
-                        <form class="" action="{{url('operator/ketetapanPajak/statusVerifikasi')}}" method="post">
+                      @if ($ini->status_verifikasi==1)
+                        <form class="" action="{{url('verifikator/verifikasiKetetapanPajak/statusVerifikasi')}}" method="post">
                           <input type="hidden" name="id" value="{{$ini->ketetapan_pajak_id}}">
                           <button type="submit" class="btn btn-success" name="button">Verify</button>
                         </form>
-                      @elseif($ini->status_verifikasi==1)
-                        <h3>Request Sent</h3>
+                      @elseif($ini->status_verifikasi==2)
+                        <h3>Verified</h3>
                       @endif
                   </td>
                 </tr>
@@ -85,20 +69,20 @@
       $('#getDataKetetapanPajak').keyup(function(){
         var data = $(this).val();
         // console.log(data);
-        $.post("{{url('operator/ketetapanPajak/getDataKetetapanPajak')}}",{npwp:data},function(result){
+        $.post("{{url('verifikator/verifikasiKetetapanPajak/getDataKetetapanPajak')}}",{npwp:data},function(result){
         console.log(result);
         $('#dataKetetapanPajak').html("");
         $.each(result,function(i,item){
           i=i+1;
-          if (this.status_verifikasi==0) {
+          if (this.status_verifikasi==1) {
             var html =
-            "<form method=post action={{url('operator/ketetapanPajak/statusVerifikasi')}}>\
+            "<form method=post action={{url('verifikator/verifikasiKetetapanPajak/statusVerifikasi')}}>\
             <input type=hidden name=id value="+this.ketetapan_pajak_id+">\
             <button type=submit class='btn btn-success'>Verify</button>\
             </form>";
-          } else if(this.status_verifikasi==1) {
+          } else if(this.status_verifikasi==2) {
             var html =
-            "<h3>Request Sent</h3>";
+            "<h3>Verified</h3>";
           }
           console.log(html);
           $('#dataKetetapanPajak').append(
@@ -109,16 +93,6 @@
             <td>"+this.jenis+"</td>\
             <td>"+this.volume+"</td>\
             <td>"+this.created_at+"</td>\
-            <td>\
-            <form action={{url('operator/ketetapanPajak/editKetetapanPajak')}} method=post>\
-              <input type=hidden name=id value="+this.ketetapan_pajak_id+">\
-              <button type=submit class='btn btn-warning'>Edit</button>\
-            </form>\
-            <form action={{url('operator/ketetapanPajak/hapusKetetapanPajak')}} method=post>\
-              <input type=hidden name=id value="+this.ketetapan_pajak_id+">\
-              <button type=submit class='btn btn-danger'>Delete</button>\
-            </form>\
-            </td>\
             <td>"+html+"\
             </td>\
             </tr>"

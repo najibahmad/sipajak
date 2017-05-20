@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard Penanggung Jawab</title>
+    <title>Dashboard Verifikator</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{URL('public/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Dashboard Penanggung Jawab</a>
+                <a class="navbar-brand" href="index.html">Dashboard Verifikator</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -85,8 +85,14 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li class="active">
-                            <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <li @yield('dashboard')>
+                            <a href="{{url('verifikator')}}" @yield('dashboard')><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li @yield('verifikasi')>
+                            <a href="{{url('verifikator/verifikasiKetetapanPajak')}}" @yield('verifikasi')><i class="fa fa-envelope fa-fw"></i> Verifikasi Data Ketetapan Pajak</a>
+                        </li>
+                        <li @yield('pwd')>
+                            <a href="{{url('verifikator/pwd')}}" @yield('pwd')><i class="fa fa-key fa-fw"></i> Ganti Password</a>
                         </li>
 
                     </ul>
@@ -116,6 +122,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{URL('public/js/sb-admin-2.js')}}"></script>
+
+    @yield('script')
 
 </body>
 

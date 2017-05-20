@@ -127,5 +127,9 @@ Route::group(['prefix'=>'/operator'],function(){
 Route::get('/verifikator','VerifikatorController@index');
 Route::group(['prefix'=>'/verifikator'],function(){
   Route::get('verifikasiKetetapanPajak','VerifikatorController@verifikasiKetetapanPajak');
+  Route::group(['prefix'=>'verifikasiKetetapanPajak'],function(){
+    Route::post('statusVerifikasi','VerifikatorController@statusVerifikasi');
+    Route::post('getDataKetetapanPajak','VerifikatorController@getDataKetetapanPajak');
+  });
   Route::get('pwd','VerifikatorController@pwd');
 });

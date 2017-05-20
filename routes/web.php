@@ -95,7 +95,13 @@ Route::group(['prefix'=>'penanggungJawab'],function(){
 //jika hak akses bendahara
 Route::get('/bendahara','BendaharaController@index');
 Route::group(['prefix'=>'/bendahara'],function(){
-
+  Route::get('dataPajak','BendaharaController@dataPajak');
+  Route::group(['prefix'=>'dataPajak'],function(){
+    Route::post('statusPembayaran','BendaharaController@statusPembayaran');
+    Route::post('getDataKetetapanPajak','BendaharaController@getDataKetetapanPajak');
+  });
+  Route::get('laporan','BendaharaController@laporan');
+  Route::get('pwd','BendaharaController@pwd');
 });
 
 //jika hak akses operator

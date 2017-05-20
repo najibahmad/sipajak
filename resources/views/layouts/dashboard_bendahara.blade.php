@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard Penanggung Jawab</title>
+    <title>Dashboard Bendahara</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{URL('public/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Dashboard Penanggung Jawab</a>
+                <a class="navbar-brand" href="index.html">Dashboard Bendahara</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -85,8 +85,17 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li class="active">
-                            <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <li @yield('dashboard')>
+                            <a href="{{url('bendahara')}}" @yield('dashboard')><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li @yield('dataPajak')>
+                            <a href="{{url('bendahara/dataPajak')}}" @yield('dataPajak')><i class="fa fa-table fa-fw"></i> Data Pajak</a>
+                        </li>
+                        <li @yield('laporan')>
+                            <a href="{{url('bendahara/laporan')}}" @yield('laporan')><i class="fa fa-list-alt fa-fw"></i> Laporan</a>
+                        </li>
+                        <li @yield('pwd')>
+                            <a href="{{url('bendahara/pwd')}}" @yield('pwd')><i class="fa fa-key fa-fw"></i> Reset Password</a>
                         </li>
 
                     </ul>
@@ -116,6 +125,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{URL('public/js/sb-admin-2.js')}}"></script>
+
+    @yield('script')
 
 </body>
 

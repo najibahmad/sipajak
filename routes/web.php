@@ -118,6 +118,7 @@ Route::group(['prefix'=>'/operator'],function(){
       Route::post('editKetetapanPajak','OperatorController@editKetetapanPajak');
       Route::post('hapusKetetapanPajak','OperatorController@hapusKetetapanPajak');
       Route::post('statusVerifikasi','OperatorController@statusVerifikasi');
+      Route::post('getDataKetetapanPajak','OperatorController@getDataKetetapanPajak');
     });
   Route::get('pwd','OperatorController@pwd');
 });

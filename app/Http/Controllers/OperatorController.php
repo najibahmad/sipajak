@@ -158,6 +158,13 @@ class OperatorController extends Controller
 
       return Response::json($data);
     }
+    public function getDataKetetapanPajak(){
+      $request=Input::all();
+
+      $data=ItemKetetapanPajak::join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')->where('npwp',$request['npwp'])->get();
+
+      return Response::json($data);
+    }
     public function pwd(){
       return view('operator/operator_pwd');
     }

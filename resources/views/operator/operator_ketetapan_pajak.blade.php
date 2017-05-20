@@ -19,15 +19,13 @@
     <form action="{{URL('operator/ketetapanPajak/tambahKetetapanPajak')}}" method="post">
       <button type="submit" class="btn btn-default">Tambah Ketetapan Pajak</button>
     </form><hr>
-    <form action="{{URL('admin/pajak/insertJenisPajak')}}" role="form" method="post">
       <div class="form-group">
-        <label for="namaJenisPajak">Nama</label>
-          <input type="text" class="form-control" name="nama" placeholder="Search nama">
+        <label for="cariNPWP">Search NPWP</label>
+          <input type="text" class="form-control" name="npwp" placeholder="Search NPWP" id="getDataKetetapanPajak">
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-default">Submit</button>
       </div>
-    </form>
     <hr>
     <div class="row">
       <div class="col-lg-12">
@@ -44,7 +42,7 @@
                 <th>Kirim ke Verifikator</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="dataKetetapanPajak">
               @foreach ($itemKetetapanPajak as $no => $ini)
                 <input type="hidden" name="jenisPajakId" value="{{$ini->jenis_pajak_id}}" id="jenisPajakId">
                 <tr>
@@ -82,4 +80,55 @@
     </div>
 
   </div>
+@endsection
+
+@section('script')
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#getDataKetetapanPajak').keyup(function(){
+        var data = $(this).val();
+        // console.log(data);
+        $.post("{{url('operator/ketetapanPajak/getDataKetetapanPajak')}}",{npwp:data},function(result){
+        console.log(result);
+        $('#dataKetetapanPajak').html("");
+        $.each(result,function(i,item){
+          i=i+1;
+          if (this.status_verifikasi==0) {
+            var html =
+            "<form>\
+            <input type=hidden name=id value="+this.ketetapan_pajak_id+">\
+            <button type=submit class='btn btn-success'>Verify</button>\
+            </form>";
+          } else {
+            var html =
+            "<h3>Verified</h3>";
+          }
+          console.log(html);
+          $('#dataKetetapanPajak').append(
+            "<tr>\
+            <td>"+i+"</td>\
+            <td>"+this.nama_item+"</td>\
+            <td>"+this.npwp+"</td>\
+            <td>"+this.jenis+"</td>\
+            <td>"+this.volume+"</td>\
+            <td>"+this.created_at+"</td>\
+            <td>\
+            <form action={{url('operator/ketetapanPajak/editKetetapanPajak')}} method=post>\
+              <input type=hidden name=id value="+this.ketetapan_pajak_id+">\
+              <button type=submit class='btn btn-warning'>Edit</button>\
+            </form>\
+            <form action={{url('operator/ketetapanPajak/hapusKetetapanPajak')}} method=post>\
+              <input type=hidden name=id value="+this.ketetapan_pajak_id+">\
+              <button type=submit class='btn btn-danger'>Delete</button>\
+            </form>\
+            </td>\
+            <td>"+html+"\
+            </td>\
+            </tr>"
+          );
+        });
+        },"json");
+      });
+    });
+  </script>
 @endsection

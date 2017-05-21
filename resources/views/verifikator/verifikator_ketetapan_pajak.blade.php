@@ -16,7 +16,8 @@
     </div>
       <div class="form-group">
         <label for="cariNPWP">Search NPWP</label>
-          <input type="text" class="form-control" name="npwp" placeholder="Search NPWP" id="getDataKetetapanPajak">
+          <input type="text" class="form-control" name="npwp" placeholder="Search NPWP" id="livesearch" list="datalist">
+          <datalist id="datalist"></datalist>
       </div>
     <hr>
     <div class="row">
@@ -66,7 +67,21 @@
 @section('script')
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#getDataKetetapanPajak').keyup(function(){
+
+      $('#livesearch').keyup(function(){
+        var data=$(this).val();
+        $.post("{{url('operator/wajibPajak/getNPWP')}}",{npwp:data},function(result){
+          console.log(result);
+          $('#datalist').html("");
+          $.each(result,function(i, item){
+              $('#datalist').append(
+                "<option value="+this.npwp+">"+this.npwp+"</option>"
+              );
+          });
+        },"json");
+      });
+
+      $('#livesearch').change(function(){
         var data = $(this).val();
         // console.log(data);
         $.post("{{url('verifikator/verifikasiKetetapanPajak/getDataKetetapanPajak')}}",{npwp:data},function(result){

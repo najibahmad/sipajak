@@ -33,7 +33,7 @@
     <div class="row">
       <div class="col-lg-12">
         <form action="{{URL('admin/tarif/tambahTarifPajak')}}" method="post">
-          <button type="submit" class="btn btn-default">Tambah Rekening Penerimaan</button>
+          <button type="submit" class="btn btn-default">Tambah Standar Tarif Pajak</button>
         </form><hr>
         <table class="table table-striped">
             <thead>
@@ -96,11 +96,11 @@
               <td>"+this.tahun+"</td>\
               <td>\
               <form action={{URL('admin/tarif/editTarifPajak')}} method=post>\
-              <input type=hidden name=id value="+this.id+">\
+                <input type=hidden name=id value="+this.id+">\
               <button type=submit class='btn btn-warning'>Edit</button>\
               </form>\
               <form action={{URL('admin/tarif/hapusTarifPajak')}} method=post>\
-              <input type=hidden name=id value="+this.id+">\
+                <input type=hidden name=id value="+this.id+">\
               <button type=submit class='btn btn-danger'>Delete</button>\
               </form>\
               </td>\

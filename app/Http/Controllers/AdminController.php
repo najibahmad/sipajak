@@ -57,14 +57,15 @@ class AdminController extends Controller
     }
 
     public function tarif(){
-      $result['data']=StandarTarif::join('jenis_pajak','jenis_pajak.id','=','standar_tarif.jenis_pajak_id')->get();
+       $result['data']=StandarTarif::join('jenis_pajak','jenis_pajak.id','=','standar_tarif.jenis_pajak_id')->select('standar_tarif.*','jenis_pajak.*','standar_tarif.id as id')->get();
 
+      // dd($result['data']);
       // return $result;
       return view('admin/admin_tarif',$result);
     }
     public function getStandarTarif(){
       $request=Input::all();
-      $data=StandarTarif::join('jenis_pajak','jenis_pajak.id','=','standar_tarif.jenis_pajak_id')->where('tahun',$request['tahun'])->get();
+      $data=StandarTarif::join('jenis_pajak','jenis_pajak.id','=','standar_tarif.jenis_pajak_id')->where('tahun',$request['tahun'])->select('standar_tarif.*','jenis_pajak.*','standar_tarif.id as id')->get();
 
       return Response::json($data);
     }
@@ -85,8 +86,9 @@ class AdminController extends Controller
         "tarif"=>$request['tarif'],
         "tahun"=>$request['tahun']
       ];
-      (!isset($request['id'])) ? StandarTarif::create($query) : StandarTarif::where('id',$request['id'])->update($query);
+      (!isset($request['id'])) ? $data=StandarTarif::create($query) : $data=StandarTarif::where('id',$request['id'])->update($query);
 
+      // dd($data);
       return redirect('admin/tarif');
     }
 

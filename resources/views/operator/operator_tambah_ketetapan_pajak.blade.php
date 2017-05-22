@@ -2,7 +2,7 @@
 @section('title','Control Panel')
 @section('dashboard-active',"class=active")
 @section('content')
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="row">
         <div class="col-lg-12">
@@ -146,12 +146,13 @@
             <th>Volume</th>
             <th>Satuan</th>
             <th>Harga</th>
-            <th>Jumlah</th>
           </tr>
         </thead>
         <tbody id="itemKetetapanPajak">
         </tbody>
       <table>
+      <div id="addItem"></div>
+      <div id="totalItem"></div>
 
       @if (isset($id))
         <input type="hidden" name="id" value="{{$id}}">
@@ -160,7 +161,7 @@
       <input type="hidden" name="wajibPajakId" id="wajibPajakId">
       <div class="form-group">
         <hr>
-        <button type="submit" class="btn btn-default btn-block">Submit</button>
+        <button type="submit" class="btn btn-success btn-block">Submit</button>
       </div>
     </form>
 
@@ -170,6 +171,8 @@
 @section('script')
   <script type="text/javascript">
     $(document).ready(function(){
+
+      var i=1;
 
       $('#livesearch').keyup(function(){
         var data=$(this).val();
@@ -185,6 +188,9 @@
       });
 
       $('#livesearch').change(function(){
+        $("#addItem").html(
+          "<button type=button class='btn btn-info btn-block' name=button>Add Item</button>"
+        );
         var data=$(this).val();
         $.post("{{url('operator/wajibPajak/getDataWajibPajak')}}",{npwp:data},function(result){
           console.log(result);
@@ -196,14 +202,31 @@
         $('#itemKetetapanPajak').html(
           "<tr>\
           <td>1</td>\
-          <td><input type=text class=form-control name=namaItem></td>\
-          <td><input type=text class=form-control name=volume></td>\
-          <td><input type=text class=form-control name=satuan></td>\
-          <td><input type=text class=form-control name=harga></td>\
-          <td><input type=text class=form-control name=jumlah></td>\
+          <td><input type=text class=form-control name=namaItem1></td>\
+          <td><input type=text class=form-control name=volume1></td>\
+          <td><input type=text class=form-control name=satuan1></td>\
+          <td><input type=text class=form-control name=harga1></td>\
           </tr>"
         );
       });
+
+      $("#addItem").click(function(){
+        i=i+1;
+        $('#itemKetetapanPajak').append(
+          "<tr>\
+          <td>"+i+"</td>\
+          <td><input type=text class=form-control name=namaItem"+i+"></td>\
+          <td><input type=text class=form-control name=volume"+i+"></td>\
+          <td><input type=text class=form-control name=satuan"+i+"></td>\
+          <td><input type=text class=form-control name=harga"+i+"></td>\
+          </tr>"
+        );
+        $("#totalItem").html(
+          "<input type=hidden name=totalItem value="+i+">"
+        );
+
+      });
+
     });
   </script>
 @endsection

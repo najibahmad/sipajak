@@ -2,7 +2,7 @@
 @section('title','Control Panel')
 @section('dashboard-active',"class=active")
 @section('content')
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="row">
         <div class="col-lg-12">

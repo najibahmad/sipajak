@@ -90,7 +90,9 @@ class OperatorController extends Controller
       return view('operator/operator_tambah_ketetapan_pajak',$data);
     }
     public function insertKetetapanPajak(){
-    $request=Input::all();
+      $request=Input::all();
+      // $a=2;
+      // return $request['volume'.$a];
 
       $query1=[
         "bulan"=>$request['bulan'],
@@ -105,19 +107,32 @@ class OperatorController extends Controller
 
       (!isset($request['id'])) ? $ketetapanPajak=KetetapanPajak::create($query1) : $ketetapanPajak=KetetapanPajak::where('id',$request['id'])->update($query1);
 
-      (!isset($request['id'])) ? ItemKetetapanPajak::create([
-        "nama_item"=>$request['namaItem'],
-        "volume"=>$request['volume'],
-        "satuan"=>$request['satuan'],
-        "harga"=>$request['harga'],
-        "ketetapan_pajak_id"=> $ketetapanPajak->id
-      ]) : ItemKetetapanPajak::where('ketetapan_pajak_id',$request['id'])->update([
-        "nama_item"=>$request['namaItem'],
-        "volume"=>$request['volume'],
-        "satuan"=>$request['satuan'],
-        "harga"=>$request['harga'],
-        "ketetapan_pajak_id"=> $request['id']
-      ]);
+      if(!isset($request['id'])){
+        for ($i=1; $i <= $request['totalItem'] ; $i++) {
+          ItemKetetapanPajak::create([
+            "nama_item"=>$request['namaItem'.$i],
+            "volume"=>$request['volume'.$i],
+            "satuan"=>$request['satuan'.$i],
+            "harga"=>$request['harga'.$i],
+            "ketetapan_pajak_id"=> $ketetapanPajak->id
+          ]);
+        }
+      } else {
+        for ($i=1; $i <= $request['totalItem'] ; $i++){
+          ItemKetetapanPajak::where('ketetapan_pajak_id',$request['id'])->update([
+            "nama_item"=>$request['namaItem'.$i],
+            "volume"=>$request['volume'.$i],
+            "satuan"=>$request['satuan'.$i],
+            "harga"=>$request['harga'.$i],
+            "ketetapan_pajak_id"=> $request['id']
+          ]);
+        }
+      }
+
+      // (!isset($request['id'])) ?
+      //
+      // :
+      //
 
       return redirect('operator/ketetapanPajak');
     }

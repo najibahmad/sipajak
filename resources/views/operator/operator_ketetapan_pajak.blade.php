@@ -30,7 +30,8 @@
             <thead>
               <tr>
                 <th>No.</th>
-                <th>Nama</th>
+                <th>Nama Pekerjaan</th>
+                <th>Nama Item</th>
                 <th>No NPWP</th>
                 <th>Jenis Pajak</th>
                 <th>Jumlah</th>
@@ -44,6 +45,7 @@
                 <input type="hidden" name="jenisPajakId" value="{{$ini->jenis_pajak_id}}" id="jenisPajakId">
                 <tr>
                   <td>{{$no+1}}</td>
+                  <td>{{$ini->nama_pekerjaan}}</td>
                   <td>{{$ini->nama_item}}</td>
                   <td>{{$ini->npwp}}</td>
                   <td>{{$ini->jenis}}</td>
@@ -51,11 +53,11 @@
                   <td>{{$ini->created_at}}</td>
                   <td>
                     <form action="{{URL('operator/ketetapanPajak/editKetetapanPajak')}}" method="post">
-                        <input type="hidden" name="id" value="{{$ini->ketetapan_pajak_id}}">
+                        <input type="hidden" name="id" value="{{$ini->id}}">
                         <button type="submit" name="button" class="btn btn-warning">Edit</button>
                     </form>
                     <form action="{{URL('operator/ketetapanPajak/hapusKetetapanPajak')}}" method="post">
-                        <input type="hidden" name="id" value="{{$ini->ketetapan_pajak_id}}">
+                        <input type="hidden" name="id" value="{{$ini->id}}">
                         <button type="submit" name="button" class="btn btn-danger">Delete</button>
                     </form>
                   </td>

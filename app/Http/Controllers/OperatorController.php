@@ -64,7 +64,7 @@ class OperatorController extends Controller
     }
     public function ketetapanPajak(){
       // $data['ketetapanPajak']=WajibPajak::join('ketetapan_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')->get();
-      $data['itemKetetapanPajak']=ItemKetetapanPajak::join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')->whereIn('status_verifikasi',[1,0])->get();
+      $data['itemKetetapanPajak']=ItemKetetapanPajak::join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')->whereIn('status_verifikasi',[1,0])->select('ketetapan_pajak.*','wajib_pajak.*','jenis_pajak.*','item_ketetapan_pajak.*','item_ketetapan_pajak.id as id')->get();
 
       return view('operator/operator_ketetapan_pajak',$data);
     }
@@ -118,15 +118,13 @@ class OperatorController extends Controller
           ]);
         }
       } else {
-        for ($i=1; $i <= $request['totalItem'] ; $i++){
-          ItemKetetapanPajak::where('ketetapan_pajak_id',$request['id'])->update([
-            "nama_item"=>$request['namaItem'.$i],
-            "volume"=>$request['volume'.$i],
-            "satuan"=>$request['satuan'.$i],
-            "harga"=>$request['harga'.$i],
-            "ketetapan_pajak_id"=> $request['id']
-          ]);
-        }
+        ItemKetetapanPajak::where('id',$request['id'])->update([
+          "nama_item"=>$request['namaItem'],
+          "volume"=>$request['volume'],
+          "satuan"=>$request['satuan'],
+          "harga"=>$request['harga'],
+          "ketetapan_pajak_id"=> $request['id']
+        ]);
       }
 
       // (!isset($request['id'])) ?
@@ -139,7 +137,7 @@ class OperatorController extends Controller
     public function hapusKetetapanPajak(){
       $request=Input::all();
 
-      ItemKetetapanPajak::where('ketetapan_pajak_id',$request['id'])->delete();
+      ItemKetetapanPajak::where('id',$request['id'])->delete();
 
       return redirect('operator/ketetapanPajak');
     }

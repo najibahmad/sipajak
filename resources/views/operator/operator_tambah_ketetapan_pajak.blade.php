@@ -143,7 +143,7 @@
           <tr>
             <th>No</th>
             <th>Nama Item</th>
-            <th>Volume</th>
+            <th>Jumlah</th>
             <th>Satuan</th>
             <th>Harga</th>
           </tr>
@@ -154,8 +154,9 @@
       <div id="addItem"></div>
       <div id="totalItem"></div>
 
+      {{-- {{dd($id)}} --}}
       @if (isset($id))
-        <input type="hidden" name="id" value="{{$id}}">
+        <input type="hidden" name="id" id="updateId" value="{{$id}}">
       @endif
 
       <input type="hidden" name="wajibPajakId" id="wajibPajakId">
@@ -173,6 +174,9 @@
     $(document).ready(function(){
 
       var i=1;
+      $("#totalItem").html(
+        "<input type=hidden name=totalItem value="+i+">"
+      );
 
       $('#livesearch').keyup(function(){
         var data=$(this).val();
@@ -188,9 +192,7 @@
       });
 
       $('#livesearch').change(function(){
-        $("#addItem").html(
-          "<button type=button class='btn btn-info btn-block' name=button>Add Item</button>"
-        );
+
         var data=$(this).val();
         $.post("{{url('operator/wajibPajak/getDataWajibPajak')}}",{npwp:data},function(result){
           console.log(result);
@@ -199,15 +201,34 @@
           $("#jatuhTempo").attr("value",result.jatuh_tempo);
           $("#wajibPajakId").attr("value",result.id);
         },"json");
-        $('#itemKetetapanPajak').html(
-          "<tr>\
-          <td>1</td>\
-          <td><input type=text class=form-control name=namaItem1></td>\
-          <td><input type=text class=form-control name=volume1></td>\
-          <td><input type=text class=form-control name=satuan1></td>\
-          <td><input type=text class=form-control name=harga1></td>\
-          </tr>"
-        );
+
+        if(($("#updateId").length > 0)){
+          console.log('ada id');
+          $('#itemKetetapanPajak').html(
+            "<tr>\
+            <td>1</td>\
+            <td><input type=text class=form-control name=namaItem></td>\
+            <td><input type=text class=form-control name=volume></td>\
+            <td><input type=text class=form-control name=satuan></td>\
+            <td><input type=text class=form-control name=harga></td>\
+            </tr>"
+          );
+        } else {
+          console.log('ga ada id');
+          $("#addItem").html(
+            "<button type=button class='btn btn-info btn-block' name=button>Add Item</button>"
+          );
+          $('#itemKetetapanPajak').html(
+            "<tr>\
+            <td>1</td>\
+            <td><input type=text class=form-control name=namaItem1></td>\
+            <td><input type=text class=form-control name=volume1></td>\
+            <td><input type=text class=form-control name=satuan1></td>\
+            <td><input type=text class=form-control name=harga1></td>\
+            </tr>"
+          );
+        }
+
       });
 
       $("#addItem").click(function(){

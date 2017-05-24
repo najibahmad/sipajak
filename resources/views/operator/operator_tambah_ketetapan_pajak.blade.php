@@ -151,7 +151,14 @@
         <tbody id="itemKetetapanPajak">
         </tbody>
       <table>
-      <div id="addItem"></div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div id="addItem"></div>
+        </div>
+        <div class="col-sm-6">
+          <div id="removeItem"></div>
+        </div>
+      </div>
       <div id="totalItem"></div>
 
       {{-- {{dd($id)}} --}}
@@ -218,6 +225,9 @@
           $("#addItem").html(
             "<button type=button class='btn btn-info btn-block' name=button>Add Item</button>"
           );
+          $("#removeItem").html(
+            "<button type=button class='btn btn-danger btn-block' name=button>Remove Item</button>"
+          );
           $('#itemKetetapanPajak').html(
             "<tr>\
             <td>1</td>\
@@ -234,7 +244,7 @@
       $("#addItem").click(function(){
         i=i+1;
         $('#itemKetetapanPajak').append(
-          "<tr>\
+          "<tr id=item"+i+">\
           <td>"+i+"</td>\
           <td><input type=text class=form-control name=namaItem"+i+"></td>\
           <td><input type=text class=form-control name=volume"+i+"></td>\
@@ -246,6 +256,11 @@
           "<input type=hidden name=totalItem value="+i+">"
         );
 
+      });
+
+      $("#removeItem").click(function(){
+        $("#item"+i).remove();
+        i=i-1;
       });
 
     });

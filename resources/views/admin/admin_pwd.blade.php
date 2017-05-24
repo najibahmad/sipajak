@@ -18,32 +18,13 @@
     </div>
     <!-- /.row -->
 
-    <div class="row">
-      <div class="col-lg-12"><hr>
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>Nama</th>
-                <th>Grup</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>lorem</td>
-                <td>ipsum</td>
-                <td>dolor</td>
-                <td>
-                  <form class="{{URL('admin/rekening/editRekening')}}" action="index.html" method="post">
-                      <button type="submit" name="button" class="btn btn-warning">Reset</button>
-                  </form>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    <form class="" action="{{url('admin/pwd/updatePwd')}}" method="post">
+      <div class="form-group">
+        <label for="">Ganti Password Akun Anda</label>
+        <input type="password" class="form-control" name="pwd" value="">
       </div>
-    </div>
+      <button type="submit" class="btn btn-success btn-block" name="button">Submit</button>
+    </form>
 
   </div>
 @endsection

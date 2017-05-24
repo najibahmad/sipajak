@@ -93,7 +93,7 @@
                             <a href="{{URL('/penanggungJawab/pegawai')}}"><i class="fa fa-user fa-fw"></i> Pegawai</a>
                         </li>
                         <li @yield('pwd-active')>
-                            <a href="{{URL('/penanggungjawab/pwd')}}"><i class="fa fa-key fa-fw"></i> Ubah Password</a>
+                            <a href="{{URL('/penanggungJawab/pwd')}}"><i class="fa fa-key fa-fw"></i> Ubah Password</a>
                         </li>
 
                     </ul>

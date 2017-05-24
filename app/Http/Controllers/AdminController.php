@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 use App\RekeningPenerimaan;
 use App\StandarTarif;
 use App\JenisPajak;
-use Auth;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -135,6 +136,16 @@ class AdminController extends Controller
       return redirect('admin/pajak');
     }
     public function pwd(){
+
       return view('admin/admin_pwd');
+    }
+    public function updatePwd(){
+      $request=Input::all();
+      // return $currentId=Auth::user()->id;
+      User::where('id',Auth::user()->id)->update([
+        "password"=>bcrypt($request['pwd'])
+      ]);
+
+      return redirect('admin/pwd');
     }
 }

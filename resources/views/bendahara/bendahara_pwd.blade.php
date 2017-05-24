@@ -1,4 +1,4 @@
-@extends('layouts/dashboard_verifikator')
+@extends('layouts/dashboard_bendahara')
 @section('content')
   <div class="container-fluid">
 
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <form class="" action="{{url('verifikator/pwd/updatePwd')}}" method="post">
+    <form class="" action="{{url('bendahara/pwd/updatePwd')}}" method="post">
       <div class="form-group">
         <label for="">Ganti Password Akun Anda</label>
         <input type="password" class="form-control" name="pwd" value="">

@@ -48,7 +48,7 @@ Route::post('checking',function(){
 
 });
 Route::get('cekRole',function(){
-  return Auth::user()->role_id;
+  return Auth::user();
 });
 //jika hak akses admin
 Route::get('/admin','AdminController@index');
@@ -76,6 +76,9 @@ Route::group(['prefix'=>'admin'],function(){
       Route::post('hapusJenisPajak','AdminController@hapusJenisPajak');
     });
   Route::get('/pwd','AdminController@pwd');
+  Route::group(['prefix'=>'pwd'],function(){
+    Route::post('updatePwd','AdminController@updatePwd');
+  });
 });
 
 //jika hak akses penanggung jawab
@@ -90,6 +93,9 @@ Route::group(['prefix'=>'penanggungJawab'],function(){
       Route::post('insertEditedPegawai','PjController@insertEditedPegawai');
     });
   Route::get('pwd','PjController@pwd');
+  Route::group(['prefix'=>'pwd'],function(){
+    Route::post('updatePwd','PjController@updatePwd');
+  });
 });
 
 //jika hak akses bendahara
@@ -102,6 +108,9 @@ Route::group(['prefix'=>'/bendahara'],function(){
   });
   Route::get('laporan','BendaharaController@laporan');
   Route::get('pwd','BendaharaController@pwd');
+  Route::group(['prefix'=>'pwd'],function(){
+    Route::post('updatePwd','PjController@updatePwd');
+  });
 });
 
 //jika hak akses operator
@@ -127,6 +136,9 @@ Route::group(['prefix'=>'/operator'],function(){
       Route::post('getDataKetetapanPajak','OperatorController@getDataKetetapanPajak');
     });
   Route::get('pwd','OperatorController@pwd');
+  Route::group(['prefix'=>'pwd'],function(){
+    Route::post('updatePwd','OperatorController@updatePwd');
+  });
 });
 
 //jika hak akses verifikator
@@ -138,4 +150,7 @@ Route::group(['prefix'=>'/verifikator'],function(){
     Route::post('getDataKetetapanPajak','VerifikatorController@getDataKetetapanPajak');
   });
   Route::get('pwd','VerifikatorController@pwd');
+  Route::group(['prefix'=>'pwd'],function(){
+    Route::post('updatePwd','VerifikatorController@updatePwd');
+  });
 });

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 use App\Pegawai;
 use App\User;
@@ -32,7 +33,7 @@ class PjController extends Controller
         "role_id"=>$request['grup'],
         "name"=>$request['name'],
         "email"=>$request['email'],
-        "password"=>$request['name']
+        "password"=>bcrypt($request['name'])
       ]);
 
       $lastUser=User::orderBy('id','desc')->first();
@@ -70,8 +71,7 @@ class PjController extends Controller
       $user=User::where('id','=',$request['user_id'])->update([
         "role_id"=>$request['grup'],
         "name"=>$request['name'],
-        "email"=>$request['email'],
-        "password"=>$request['name']
+        "email"=>$request['email']
       ]);
 
       $pegawai=Pegawai::where('user_id','=',$request['user_id'])->update([
@@ -85,4 +85,18 @@ class PjController extends Controller
 
       return redirect('penanggungJawab/pegawai');
     }
+    public function pwd(){
+
+      return view('penanggungJawab/penanggung_jawab_pwd');
+    }
+    public function updatePwd(){
+      $request=Input::all();
+      // return $currentId=Auth::user()->id;
+      User::where('id',Auth::user()->id)->update([
+        "password"=>bcrypt($request['pwd'])
+      ]);
+
+      return redirect('penanggungJawab/pwd');
+    }
+
 }

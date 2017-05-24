@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\WajibPajak;
 use App\Desa;
@@ -14,6 +16,7 @@ use App\KetetapanPajak;
 use App\RekeningPenerimaan;
 use App\JenisPajak;
 use App\ItemKetetapanPajak;
+use App\User;
 
 class BendaharaController extends Controller
 {
@@ -44,6 +47,15 @@ class BendaharaController extends Controller
 
     }
     public function pwd(){
+      return view('bendahara/bendahara_pwd');
+    }
+    public function updatePwd(){
+      $request=Input::all();
+      // return $currentId=Auth::user()->id;
+      User::where('id',Auth::user()->id)->update([
+        "password"=>bcrypt($request['pwd'])
+      ]);
 
+      return redirect('bendahara/pwd');
     }
 }

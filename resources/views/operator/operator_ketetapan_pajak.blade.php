@@ -106,6 +106,7 @@
           $('#dataKetetapanPajak').append(
             "<tr>\
             <td>"+i+"</td>\
+            <td>"+this.nama_pekerjaan+"</td>\
             <td>"+this.nama_item+"</td>\
             <td>"+this.npwp+"</td>\
             <td>"+this.jenis+"</td>\

@@ -12,7 +12,7 @@
 
     <title>Control Panel</title>
 
-    <link rel="icon" type="image/gif" sizes="32x32" href="{{url('public/icon-controlPanel.png')}}">
+    <link rel="icon" type="image/gif" sizes="32x32" href="{{url($default_url.'icon-controlPanel.png')}}">
 
     <!-- Morris Charts CSS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
@@ -40,13 +40,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- w3 css -->
-    <link rel="stylesheet" type="text/css" href="{{URL('public/css/w3.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{URL($default_url.'css/w3.css')}}">
 
     <!-- Custom CSS -->
-    <link href="{{URL('public/css/sb-admin.css')}}" rel="stylesheet">
+    <link href="{{URL($default_url.'css/sb-admin.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{{URL('public/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{URL($default_url.'font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
     <!-- Jquery UI -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">

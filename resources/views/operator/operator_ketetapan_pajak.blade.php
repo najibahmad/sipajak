@@ -64,7 +64,7 @@
                   <td>
                       @if ($ini->status_verifikasi==0)
                         <form class="" action="{{url('operator/ketetapanPajak/statusVerifikasi')}}" method="post">
-                          <input type="hidden" name="id" value="{{$ini->ketetapan_pajak_id}}">
+                          <input type="hidden" name="id" value="{{$ini->idikp}}">
                           <button type="submit" class="btn btn-success" name="button">Verify</button>
                         </form>
                       @elseif($ini->status_verifikasi==1)

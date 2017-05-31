@@ -69,8 +69,10 @@
     $(document).ready(function(){
 
       $('#livesearch').keyup(function(){
+
         var data=$(this).val();
-        $.post("{{url('operator/wajibPajak/getNPWP')}}",{npwp:data},function(result){
+        //alert(data);
+        $.post("{{url('verifikator/verifikasiKetetapanPajak/getNPWP')}}",{npwp:data},function(result){
           console.log(result);
           $('#datalist').html("");
           $.each(result,function(i, item){
@@ -82,6 +84,7 @@
       });
 
       $('#livesearch').change(function(){
+
         var data = $(this).val();
         // console.log(data);
         $.post("{{url('verifikator/verifikasiKetetapanPajak/getDataKetetapanPajak')}}",{npwp:data},function(result){

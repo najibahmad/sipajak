@@ -126,6 +126,8 @@ Route::group(['middleware'=>'role:3'],function(){
   });
 });
 
+//Route::post('operator/wajibPajak/getNPWP','OperatorController@getNPWP');
+
 
 Route::group(['middleware'=>'role:4'],function(){
   //jika hak akses operator
@@ -166,6 +168,7 @@ Route::group(['middleware'=>'role:5'],function(){
     Route::group(['prefix'=>'verifikasiKetetapanPajak'],function(){
       Route::post('statusVerifikasi','VerifikatorController@statusVerifikasi');
       Route::post('getDataKetetapanPajak','VerifikatorController@getDataKetetapanPajak');
+      Route::post('getNPWP','OperatorController@getNPWP');
     });
     Route::get('pwd','VerifikatorController@pwd');
     Route::group(['prefix'=>'pwd'],function(){

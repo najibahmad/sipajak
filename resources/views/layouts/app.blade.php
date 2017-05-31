@@ -10,8 +10,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+
     <!-- Styles -->
-    <link href="{{ URL('public/css/app.css') }}" rel="stylesheet">
+    <link href="{{ URL($default_url.'css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -81,6 +82,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ URL('public/js/app.js') }}"></script>
+    <script src="{{ URL($default_url.'js/app.js') }}"></script>
 </body>
 </html>

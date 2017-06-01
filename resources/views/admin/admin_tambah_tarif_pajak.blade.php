@@ -26,7 +26,9 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="namaItem">Nama Item</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="namaItem" placeholder="Nama Item">
+          <input type="text" class="form-control" name="namaItem" placeholder="Nama Item" @if (isset($edit))
+            value="{{$edit->nama_item}}"
+          @endif>
         </div>
       </div>
       <div class="form-group">
@@ -42,13 +44,17 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="satuan">Satuan</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="satuan" placeholder="Satuan">
+          <input type="text" class="form-control" name="satuan" placeholder="Satuan" @if (isset($edit))
+            value="{{$edit->satuan}}"
+          @endif>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="tarif">Tarif</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="tarif" placeholder="Tarif">
+          <input type="text" class="form-control" name="tarif" placeholder="Tarif" @if (isset($edit))
+            value="{{$edit->tarif}}"
+          @endif>
         </div>
       </div>
       <div class="form-group">

@@ -24,13 +24,17 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="namaJenisPajak">Nama Jenis Pajak</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="nama" placeholder="Nama">
+          <input type="text" class="form-control" name="nama" placeholder="Nama" @if (isset($edit))
+            value="{{$edit->nama}}"
+          @endif>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="NPWP">NPWP:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="NPWP" placeholder="NPWP">
+          <input type="text" class="form-control" name="NPWP" placeholder="NPWP" @if (isset($edit))
+            value="{{$edit->npwp}}"
+          @endif>
         </div>
       </div>
       <div class="form-group">
@@ -54,13 +58,17 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="alamat">Alamat:</label>
         <div class="col-sm-10">
-          <textarea type="text" class="form-control" name="alamat" placeholder="Alamat"></textarea>
+          <textarea type="text" class="form-control" name="alamat" placeholder="Alamat">
+            @if (isset($edit)){{$edit->alamat}}@endif
+          </textarea>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="kecamatan">Jatuh Tempo:</label>
         <div class="col-sm-10">
-          <input type="text" class="datepicker form-control" data-provide="datepicker" name="jatuhTempo" placeholder="jatuh tempo">
+          <input type="text" class="datepicker form-control" data-provide="datepicker" name="jatuhTempo" placeholder="jatuh tempo" @if (isset($edit))
+            value="jatuh_tempo"
+          @endif>
         </div>
       </div>
       @if (isset($id))

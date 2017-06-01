@@ -151,6 +151,7 @@ Route::group(['middleware'=>'role:4'],function(){
         Route::post('hapusKetetapanPajak','OperatorController@hapusKetetapanPajak');
         Route::post('statusVerifikasi','OperatorController@statusVerifikasi');
         Route::post('getDataKetetapanPajak','OperatorController@getDataKetetapanPajak');
+        Route::post('getEditData','OperatorController@getEditData');
       });
     Route::get('pwd','OperatorController@pwd');
     Route::group(['prefix'=>'pwd'],function(){

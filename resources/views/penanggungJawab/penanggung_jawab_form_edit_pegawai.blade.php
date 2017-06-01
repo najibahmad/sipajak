@@ -24,31 +24,31 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">Nama: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Nama anda" name="name">
+          <input type="text" class="form-control" placeholder="Nama anda" name="name" value="{{$edit->nama}}">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">NIP: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="NIP" name="NIP">
+          <input type="text" class="form-control" placeholder="NIP" name="NIP" value="{{$edit->nip}}">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">Alamat: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Alamat" name="alamat">
+          <input type="text" class="form-control" placeholder="Alamat" name="alamat" value="{{$edit->alamat}}">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">E-mail: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="E-mail" name="email">
+          <input type="text" class="form-control" placeholder="E-mail" name="email" value="{{$edit->email}}">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">HP: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Nomor yang dapat dihubungi" name="HP">
+          <input type="text" class="form-control" placeholder="Nomor yang dapat dihubungi" name="HP" value="{{$edit->hp}}">
         </div>
       </div>
       <div class="form-group">
@@ -64,6 +64,7 @@
         <label class="control-label col-sm-2" for="bulan">Grup: </label>
         <div class="col-sm-10">
           <select class="form-control" name="grup">
+            <option>Select Grup</option>
             @foreach ($roles as $id => $ini)
               <option value="{{$ini->id}}">{{$ini->description}}</option>
             @endforeach
@@ -73,7 +74,7 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">Nomor SK: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Nomor SK" name="nomorSK">
+          <input type="text" class="form-control" placeholder="Nomor SK" name="nomorSK" value="{{$edit->nomor_sk}}">
         </div>
       </div>
       <input type="hidden" name="user_id" value="{{$user_id}}">

@@ -26,13 +26,17 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="nomorRekening">Nomor Rekening</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="nomorRekening" placeholder="Nomor rekening">
+          <input type="text" class="form-control" name="nomorRekening" placeholder="Nomor rekening" @if (isset($edit))
+            value="{{$edit->nomor_rekening}}"
+          @endif>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="uraian">Uraian</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="uraian" placeholder="Uraian">
+          <input type="text" class="form-control" name="uraian" placeholder="Uraian" @if (isset($edit))
+            value="{{$edit->uraian}}"
+          @endif>
         </div>
       </div>
       <div class="form-group">

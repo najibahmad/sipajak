@@ -55,28 +55,7 @@
             </select>
           </div>
         </div>
-        {{-- <div class="form-group">
-          <label class="control-label col-sm-2" for="kecamatan">Kecamatan</label>
-          <div class="col-sm-10">
-            <select class="form-control" id="sel1" name="kecamatan">
-              <option>Silahkan pilih Kecamatan</option>
-              @foreach ($kecamatan as $no => $ini)
-                <option value="{{$ini->id}}">{{$ini->kecamatan}}</option>
-              @endforeach
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="desa">Desa/Kelurahan:</label>
-          <div class="col-sm-10">
-            <select class="form-control" id="sel1" name="desa">
-              <option>Silahkan pilih Desa/Kelurahan</option>
-              @foreach ($desa as $no => $ini)
-                <option value="{{$ini->id}}">{{$ini->desa}}</option>
-              @endforeach
-            </select>
-          </div>
-        </div> --}}
+        
         <div class="form-group">
           <label class="control-label col-sm-2" for="NPWP">NPWP</label>
           <div class="col-sm-10">
@@ -87,19 +66,24 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="nama">Nama</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama">
+            <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" @if (isset($edit))
+              value="{{$edit->nama}}"
+            @endif>
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-2" for="alamat">Alamat</label>
           <div class="col-sm-10">
-            <textarea type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat"></textarea>
+            <textarea type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat">@if (isset($edit)){{$edit->alamat}}
+            @endif</textarea>
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-2" for="jatuhTempo">Jatuh Tempo</label>
           <div class="col-sm-10">
-            <input type="text" class="datepicker form-control" id="jatuhTempo" data-provide="datepicker" name="jatuhTempo" placeholder="Jatuh Tempo">
+            <input type="text" class="datepicker form-control" id="jatuhTempo" data-provide="datepicker" name="jatuhTempo" placeholder="Jatuh Tempo" @if (isset($edit))
+              value="{{$edit->jatuh_tempo}}"
+            @endif>
           </div>
         </div>
         <div class="form-group">
@@ -116,13 +100,15 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="namaKegiatan">Nama Kegiatan/Pekerjaan</label>
           <div class="col-sm-10">
-            <textarea type="text" class="form-control" name="namaKegiatan" placeholder="Nama Kegiatan"></textarea>
+            <textarea type="text" class="form-control" name="namaKegiatan" placeholder="Nama Kegiatan">@if (isset($edit)){{$edit->nama_pekerjaan}}@endif</textarea>
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-2" for="keteranganKegiatan">Keterangan Kegiatan</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="keteranganKegiatan" placeholder="keterangan">
+            <input type="text" class="form-control" name="keteranganKegiatan" placeholder="keterangan" @if (isset($edit))
+              value="{{$edit->keterangan_pekerjaan}}"
+            @endif)>
           </div>
         </div>
         <div class="form-group">
@@ -211,15 +197,18 @@
 
         if(($("#updateId").length > 0)){
           console.log('ada id');
-          $('#itemKetetapanPajak').html(
-            "<tr>\
-            <td>1</td>\
-            <td><input type=text class=form-control name=namaItem></td>\
-            <td><input type=text class=form-control name=volume></td>\
-            <td><input type=text class=form-control name=satuan></td>\
-            <td><input type=text class=form-control name=harga></td>\
-            </tr>"
-          );
+          $.post("{{url('operator/ketetapanPajak/getEditData')}}",{id:$("#updateId").val()},function(data){
+            console.log(data);
+            $('#itemKetetapanPajak').html(
+              "<tr>\
+              <td>1</td>\
+              <td><input type=text class=form-control name=namaItem value="+data.nama_item+"></td>\
+              <td><input type=text class=form-control name=volume value="+data.volume+"></td>\
+              <td><input type=text class=form-control name=satuan value="+data.satuan+"></td>\
+              <td><input type=text class=form-control name=harga value="+data.harga+"></td>\
+              </tr>"
+            );
+          },"json");
         } else {
           console.log('ga ada id');
           $("#addItem").html(

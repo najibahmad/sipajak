@@ -46,6 +46,8 @@ class AdminController extends Controller
     public function editRekening(){
       $request=Input::all();
       $data['id']=$request['id'];
+      $data['edit']=RekeningPenerimaan::where('id',$request['id'])->first();
+      // dd($data['edit']);
       return view('admin/admin_tambah_rekening',$data);
     }
 
@@ -97,6 +99,7 @@ class AdminController extends Controller
       $request=Input::all();
       $data['id']=$request['id'];
       $data['jenisPajak']=JenisPajak::get();
+      $data['edit']=StandarTarif::where('id',$request['id'])->first();
       return view('admin/admin_tambah_tarif_pajak',$data);
     }
 
@@ -128,6 +131,7 @@ class AdminController extends Controller
     public function editJenisPajak(){
       $request=Input::all();
       $data['id']=$request['id'];
+      $data['edit']=JenisPajak::where('id',$request['id'])->first();
       return view('admin/admin_tambah_jenis_pajak',$data);
     }
     public function hapusJenisPajak(){

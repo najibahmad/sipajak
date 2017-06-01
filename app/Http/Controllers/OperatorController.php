@@ -39,6 +39,8 @@ class OperatorController extends Controller
       $data['id']=$request['id'];
       $data['kecamatan']=Kecamatan::get();
       $data['desa']=Desa::get();
+      $data['edit']=WajibPajak::where('id',$request['id'])->first();
+      // dd($data['edit']);
       return view('operator/operator_tambah_wajib_pajak',$data);
     }
     public function insertWajibPajak(){
@@ -68,10 +70,10 @@ class OperatorController extends Controller
       // $data['ketetapanPajak']=WajibPajak::join('ketetapan_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')->get();
       $data['itemKetetapanPajak']=
           ItemKetetapanPajak::join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
-                              ->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
-                              ->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')
-                              ->whereIn('status_verifikasi',[1,0])
-                              ->select('ketetapan_pajak.*','wajib_pajak.*','jenis_pajak.*','item_ketetapan_pajak.*','item_ketetapan_pajak.id as idikp')->get();
+                ->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
+                ->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')
+                ->whereIn('status_verifikasi',[1,0])
+                ->select('ketetapan_pajak.*','wajib_pajak.*','jenis_pajak.*','item_ketetapan_pajak.*','item_ketetapan_pajak.id as idikp')->get();
                               //dd($data);
       return view('operator/operator_ketetapan_pajak',$data);
     }
@@ -92,6 +94,11 @@ class OperatorController extends Controller
       $data['desa']=Desa::get();
       $data['rekening']=RekeningPenerimaan::get();
       $data['jenisPajak']=JenisPajak::get();
+      $data['edit']=ItemKetetapanPajak::join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
+            ->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
+            ->where('item_ketetapan_pajak.id',$request['id'])
+            ->first();
+            // dd($data['edit']);
 
       // return $data['rekening'];
       return view('operator/operator_tambah_ketetapan_pajak',$data);
@@ -195,6 +202,16 @@ class OperatorController extends Controller
 
       return Response::json($data);
     }
+    public function getEditData(){
+      $request=Input::all();
+
+      $data=ItemKetetapanPajak::join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
+            ->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
+            ->where('item_ketetapan_pajak.id',$request['id'])
+            ->first();
+      return Response::json($data);
+    }
+
     public function pwd(){
       return view('operator/operator_pwd');
     }

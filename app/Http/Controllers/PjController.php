@@ -58,8 +58,13 @@ class PjController extends Controller
     }
     public function editPegawai(){
       $request=Input::all();
-
+      // dd($request);
       $data['user_id']=$request['id'];
+      $data['edit']=Pegawai::join('users','pegawai.user_id','=','users.id')
+                    ->join('roles','users.role_id','=','roles.id')
+                    ->where('pegawai.user_id',$request['id'])
+                    ->first();
+                    // dd($data['edit']);
       $data['roles']=roles::get();
       $data['pegawai']=Pegawai::join('users','pegawai.user_id','=','users.id')->join('roles','roles.id','=','users.role_id')->get();
 

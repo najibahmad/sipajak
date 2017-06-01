@@ -26,7 +26,9 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="namaJenisPajak">Nama Jenis Pajak</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="namaJenisPajak" placeholder="Nama Jenis Pajak">
+          <input type="text" class="form-control" name="namaJenisPajak" placeholder="Nama Jenis Pajak" @if (isset($edit))
+            value="{{$edit->jenis}}"
+          @endif>
         </div>
       </div>
       @if (isset($id))

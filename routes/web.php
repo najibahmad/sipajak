@@ -47,9 +47,11 @@ Route::post('checking',function(){
   }
 
 });
+
 Route::get('cekRole',function(){
   return Auth::user();
 });
+
 Route::get('role',[
   'middleware' => 'role:admin',
   'uses' => 'TestController@index',

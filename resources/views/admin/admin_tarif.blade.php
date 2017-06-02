@@ -29,6 +29,7 @@
         </select>
       </div>
     </form>
+    
 
     <div class="row">
       <div class="col-lg-12">
@@ -48,7 +49,7 @@
               </tr>
             </thead>
             <tbody id="data">
-              {{-- @foreach ($data as $no => $ini)
+              @foreach ($data as $no => $ini)
                 <tr>
                   <td>{{$no+1}}</td>
                   <td>{{$ini->nama_item}}</td>
@@ -67,7 +68,7 @@
                     </form>
                   </td>
                 </tr>
-              @endforeach --}}
+              @endforeach
             </tbody>
           </table>
       </div>

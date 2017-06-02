@@ -40,7 +40,8 @@ class OperatorController extends Controller
       $data['kecamatan']=Kecamatan::get();
       $data['desa']=Desa::get();
       $data['edit']=WajibPajak::where('id',$request['id'])->first();
-      // dd($data['edit']);
+      $data['kecamatan_id']=Desa::where('id',$data['edit']->desa_id)->value('kecamatan_id');
+       //dd($data['kecamatan_id']);
       return view('operator/operator_tambah_wajib_pajak',$data);
     }
     public function insertWajibPajak(){
@@ -94,6 +95,7 @@ class OperatorController extends Controller
       $data['desa']=Desa::get();
       $data['rekening']=RekeningPenerimaan::get();
       $data['jenisPajak']=JenisPajak::get();
+
       $data['edit']=ItemKetetapanPajak::join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
             ->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
             ->where('item_ketetapan_pajak.id',$request['id'])
@@ -119,7 +121,9 @@ class OperatorController extends Controller
         "jenis_pajak_id"=>$request['jenisPajak']
       ];
 
-      (!isset($request['id'])) ? $ketetapanPajak=KetetapanPajak::create($query1) : $ketetapanPajak=KetetapanPajak::where('id',$request['id'])->update($query1);
+      (!isset($request['id'])) ?
+      $ketetapanPajak=KetetapanPajak::create($query1) :
+      $ketetapanPajak=KetetapanPajak::where('id',$request['id'])->update($query1);
 
       if(!isset($request['id'])){
         for ($i=1; $i <= $request['totalItem'] ; $i++) {
@@ -137,7 +141,7 @@ class OperatorController extends Controller
           "volume"=>$request['volume'],
           "satuan"=>$request['satuan'],
           "harga"=>$request['harga'],
-          "ketetapan_pajak_id"=> $request['id']
+          //"ketetapan_pajak_id"=> $request['id']
         ]);
       }
 
@@ -209,6 +213,7 @@ class OperatorController extends Controller
             ->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
             ->where('item_ketetapan_pajak.id',$request['id'])
             ->first();
+      //dd($data);      
       return Response::json($data);
     }
 

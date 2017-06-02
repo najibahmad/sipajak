@@ -43,7 +43,11 @@
           <select class="form-control" id="kecamatan" name="kecamatan">
             <option>Silahkan pilih Kecamatan</option>
             @foreach ($kecamatan as $no => $ini)
-              <option value="{{$ini->id}}">{{$ini->kecamatan}}</option>
+              @if($ini->id == $kecamatan_id)
+                <option value="{{$ini->id}}" selected>{{$ini->kecamatan}}</option>
+              @else
+                <option value="{{$ini->id}}">{{$ini->kecamatan}}</option>
+              @endif
             @endforeach
           </select>
         </div>
@@ -58,8 +62,7 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="alamat">Alamat:</label>
         <div class="col-sm-10">
-          <textarea type="text" class="form-control" name="alamat" placeholder="Alamat">
-            @if (isset($edit)){{$edit->alamat}}@endif
+          <textarea type="text" class="form-control" name="alamat" placeholder="Alamat">@if (isset($edit)){{$edit->alamat}}@endif
           </textarea>
         </div>
       </div>
@@ -67,7 +70,7 @@
         <label class="control-label col-sm-2" for="kecamatan">Jatuh Tempo:</label>
         <div class="col-sm-10">
           <input type="text" class="datepicker form-control" data-provide="datepicker" name="jatuhTempo" placeholder="jatuh tempo" @if (isset($edit))
-            value="jatuh_tempo"
+            value="{{$edit->jatuh_tempo}}"
           @endif>
         </div>
       </div>
@@ -99,6 +102,32 @@
           });
         },"json");
       });
+
+      @if (isset($id))
+        //alert('{{$edit->desa_id}}');
+        //select kecamatan
+
+        var desa_id = {{$edit->desa_id}};
+        var kecamatan={{$kecamatan_id}};
+        $.post("{{url('operator/wajibPajak/getDesa')}}",{id:kecamatan},function(data){
+          console.log(data);
+          $('#desa').html("");
+          $.each(data,function(i,item){
+            if(this.id==desa_id){
+              $('#desa').append(
+                "<option value="+this.id+" selected>"+this.desa+"</option>"
+              );
+            }
+            else{
+              $('#desa').append(
+                "<option value="+this.id+">"+this.desa+"</option>"
+              );
+            }
+
+          });
+        },"json");
+      @endif
+
     });
   </script>
 @endsection

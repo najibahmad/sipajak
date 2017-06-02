@@ -26,40 +26,52 @@
           <label class="control-label col-sm-2" for="bulan">Bulan</label>
           <div class="col-sm-10">
             <select class="form-control" id="sel1" name="bulan">
-              <option value="Januari">Januari</option>
-              <option value="Februari">Februari</option>
-              <option value="Maret">Maret</option>
-              <option value="April">April</option>
-              <option value="Mei">Mei</option>
-              <option value="Juni">Juni</option>
-              <option value="July">July</option>
-              <option value="Agustus">Agustus</option>
-              <option value="September">September</option>
-              <option value="Oktober">Oktober</option>
-              <option value="November">November</option>
-              <option value="Desember">Desember</option>
+              @if (isset($edit))
+              @for ($i = 0; $i < 10; $i++)
+                  @if($bulan[$i]==$edit->bulan)
+                    <option value="{{$bulan[$i]}}" selected>{{$bulan[$i]}}</option>
+                  @else
+                    <option value="{{$bulan[$i]}}">{{$bulan[$i]}}</option>
+                  @endif
+              @endfor
+              @else
+                @for ($i = 0; $i < 10; $i++)
+                  <option value="{{$bulan[$i]}}">{{$bulan[$i]}}</option>
+                @endfor
+              @endif
+
+
+
             </select>
           </div>
         </div>
+
         <div class="form-group">
           <label class="control-label col-sm-2" for="tahun">Tahun</label>
           <div class="col-sm-10">
             <select class="form-control" id="sel1" name="tahun">
-              <option value="2011">2011</option>
-              <option value="2012">2012</option>
-              <option value="2013">2013</option>
-              <option value="2014">2014</option>
-              <option value="2015">2015</option>
-              <option value="2016">2016</option>
-              <option value="2017">2017</option>
+              @if (isset($edit))
+                @for ($i = 0; $i < count($tahun); $i++)
+                    @if($tahun[$i]==$edit->tahun)
+                      <option value="{{$tahun[$i]}}" selected>{{$tahun[$i]}}</option>
+                    @else
+                      <option value="{{$tahun[$i]}}">{{$tahun[$i]}}</option>
+                    @endif
+                @endfor
+              @else
+                <option value="{{$tahun[$i]}}">{{$tahun[$i]}}</option>
+              @endif
+
             </select>
           </div>
         </div>
-        
+
         <div class="form-group">
           <label class="control-label col-sm-2" for="NPWP">NPWP</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="NPWP" id="livesearch" list="datalist" placeholder="search here">
+            <input type="text" class="form-control" name="NPWP" id="livesearch" list="datalist" placeholder="search here"@if (isset($edit))
+              value="{{$edit->npwp}}"
+            @endif>
             <datalist id="datalist"></datalist>
           </div>
         </div>
@@ -91,9 +103,22 @@
           <div class="col-sm-10">
             <select class="form-control" id="sel1" name="kodeRekening">
               <option>pilih kode rekening</option>
+
+
+              @if (isset($edit))
+                  @foreach ($rekening as $no => $ini)
+                    @if($ini->id == $edit->rekening_penerimaan_id)
+                      <option value="{{$ini->id}}" selected>{{$ini->nomor_rekening}}</option>
+                    @else
+                      <option value="{{$ini->id}}">{{$ini->nomor_rekening}}</option>
+                    @endif
+                  @endforeach
+              @else
               @foreach ($rekening as $no => $ini)
                 <option value="{{$ini->id}}">{{$ini->nomor_rekening}}</option>
-              @endforeach
+                @endforeach
+              @endif
+
             </select>
           </div>
         </div>
@@ -111,13 +136,29 @@
             @endif)>
           </div>
         </div>
+
         <div class="form-group">
           <label class="control-label col-sm-2" for="jenisPajak">Jenis Pajak</label>
           <div class="col-sm-10">
             <select class="form-control" id="sel1" name="jenisPajak">
+
+
+              @if (isset($edit))
+                @foreach ($jenisPajak as $no => $ini)
+                  @if($ini->id == $edit->jenis_pajak_id)
+                    <option value="{{$ini->id}}" selected>{{$ini->jenis}}</option>
+                  @else
+                    <option value="{{$ini->id}}">{{$ini->jenis}}</option>
+                  @endif
+
+                @endforeach
+              @else
               @foreach ($jenisPajak as $no => $ini)
-                <option value="{{$ini->id}}">{{$ini->jenis}}</option>
+
+                  <option value="{{$ini->id}}">{{$ini->jenis}}</option>
+
               @endforeach
+              @endif
             </select>
           </div>
         </div>
@@ -183,6 +224,30 @@
           });
         },"json");
       });
+
+      @if (isset($id))
+      var data = {{$edit->npwp}};
+      $.post("{{url('operator/wajibPajak/getDataWajibPajak')}}",{npwp:data},function(result){
+        console.log(result);
+        $("#nama").attr("value",result.nama);
+        $("#alamat").attr("value",result.alamat);
+        $("#jatuhTempo").attr("value",result.jatuh_tempo);
+        $("#wajibPajakId").attr("value",result.id);
+      },"json");
+
+          $.post("{{url('operator/ketetapanPajak/getEditData')}}",{id:$("#updateId").val()},function(data){
+            console.log(data);
+            $('#itemKetetapanPajak').html(
+              "<tr>\
+              <td>1</td>\
+              <td><input type=text class=form-control name=namaItem value="+data.nama_item+"></td>\
+              <td><input type=text class=form-control name=volume value="+data.volume+"></td>\
+              <td><input type=text class=form-control name=satuan value="+data.satuan+"></td>\
+              <td><input type=text class=form-control name=harga value="+data.harga+"></td>\
+              </tr>"
+            );
+          },"json");
+      @endif
 
       $('#livesearch').change(function(){
 

@@ -77,7 +77,7 @@
           $('#datalist').html("");
           $.each(result,function(i, item){
               $('#datalist').append(
-                "<option value="+this.npwp+">"+this.npwp+"</option>"
+                "<option value="+this.npwp+">"+this.npwp+" : "+this.nama+"</option>"
               );
           });
         },"json");

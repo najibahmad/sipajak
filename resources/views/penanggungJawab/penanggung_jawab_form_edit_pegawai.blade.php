@@ -5,16 +5,19 @@
   <div class="container-fluid">
 
     <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                Beranda
-            </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> <a href="{{url('admin/dashboard')}}">Beranda</a>
-                </li>
-            </ol>
-        </div>
+      <div class="col-lg-12">
+          <h1 class="page-header">
+              Kepegawaian
+          </h1>
+          <ol class="breadcrumb">
+              <li>
+                  <i class="fa fa-dashboard"></i> <a href="{{url('penanggungJawab/pegawai')}}">List Pegawai</a>
+              </li>
+              <li class="active">
+                  <i class="fa fa-dashboard"></i> <a href="{{url('penanggungJawab/editPegawai')}}">Tambah Edit Pegawai</a>
+              </li>
+          </ol>
+      </div>
     </div>
 
     <a href="{{URL('penanggungJawab/pegawai')}}"><button type="button" class="btn btn-default" name="button">Back</button></a>

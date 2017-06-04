@@ -20,21 +20,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
     <!-- Datejs -->
     <script src="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/datejs/date.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Bootstrap datepicker -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-
-    <!-- JQueryUI CSS -->
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -54,6 +45,8 @@
     <!-- JQuery JS -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 
+    <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -61,12 +54,19 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
+        html, body{
+         width:100%;
+         height:100%;
+         background-color:#fff;
+       font-family: 'Sansita', sans-serif;
+         }
         .vcenter{
             display: inline-block;
             vertical-align: middle;
             float: none;
         }
     </style>
+    @yield('css')
 
 </head>
 
@@ -106,13 +106,13 @@
                         <a href="{{url('admin/rekening')}}"><i class="fa fa-fw fa-bar-chart-o"></i> Rekening Penerimaan</a>
                     </li>
                     <li @yield('tarif-active')>
-                        <a href="{{url('admin/tarif')}}"><i class="fa fa-fw fa-table"></i> Standar Tarif</a>
+                        <a href="{{url('admin/tarif')}}"><i class="fa fa-fw fa-align-left"></i> Standar Tarif</a>
                     </li>
                     <li @yield('pajak-active')>
-                        <a href="{{url('admin/pajak')}}"><i class="fa fa-fw fa-table"></i> Jenis Pajak</a>
+                        <a href="{{url('admin/pajak')}}"><i class="fa fa-fw fa-book"></i> Jenis Pajak</a>
                     </li>
                     <li @yield('pwd-active')>
-                        <a href="{{url('admin/pwd')}}"><i class="fa fa-fw fa-table"></i> Ubah Password</a>
+                        <a href="{{url('admin/pwd')}}"><i class="fa fa-fw fa-key"></i> Ubah Password</a>
                     </li>
                 </ul>
             </div>
@@ -133,6 +133,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <!-- JQuery UI -->
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
     @yield('script')
 </body>

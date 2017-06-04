@@ -29,12 +29,12 @@
         </select>
       </div>
     </form>
-    
+
 
     <div class="row">
       <div class="col-lg-12">
         <form action="{{URL('admin/tarif/tambahTarifPajak')}}" method="post">
-          <button type="submit" class="btn btn-default">Tambah Standar Tarif Pajak</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Standar Tarif Pajak</button>
         </form><hr>
         <table class="table table-striped">
             <thead>
@@ -58,13 +58,13 @@
                   <td>{{$ini->tarif}}</td>
                   <td>{{$ini->tahun}}</td>
                   <td>
-                    <form action="{{URL('admin/tarif/editTarifPajak')}}" method="post">
+                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editTarifPajak').submit();">Edit</button>
+                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusTarifPajak').submit();">Delete</button>
+                    <form id="editTarifPajak" action="{{URL('admin/tarif/editTarifPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
-                        <button type="submit" name="button" class="btn btn-warning">Edit</button>
                     </form>
-                    <form action="{{URL('admin/tarif/hapusTarifPajak')}}" method="post">
+                    <form id="hapusTarifPajak" action="{{URL('admin/tarif/hapusTarifPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
-                        <button type="submit" name="button" class="btn btn-danger">Delete</button>
                     </form>
                   </td>
                 </tr>
@@ -96,13 +96,13 @@
               <td>"+this.tarif+"</td>\
               <td>"+this.tahun+"</td>\
               <td>\
-              <form action={{URL('admin/tarif/editTarifPajak')}} method=post>\
+              <button type=submit class='btn btn-warning' onclick=event.preventDefault();document.getElementById('editTarifPajak').submit();>Edit</button>\
+              <button type=submit class='btn btn-danger' onclick=event.preventDefault();document.getElementById('hapusTarifPajak').submit();>Delete</button>\
+              <form id=editTarifPajak action={{URL('admin/tarif/editTarifPajak')}} method=post>\
                 <input type=hidden name=id value="+this.id+">\
-              <button type=submit class='btn btn-warning'>Edit</button>\
               </form>\
-              <form action={{URL('admin/tarif/hapusTarifPajak')}} method=post>\
+              <form id=hapusTarifPajak action={{URL('admin/tarif/hapusTarifPajak')}} method=post>\
                 <input type=hidden name=id value="+this.id+">\
-              <button type=submit class='btn btn-danger'>Delete</button>\
               </form>\
               </td>\
               </tr>"

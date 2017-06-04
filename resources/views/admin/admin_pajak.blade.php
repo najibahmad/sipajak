@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-lg-12">
         <form action="{{URL('admin/pajak/tambahJenisPajak')}}" method="post">
-          <button type="submit" class="btn btn-default">Tambah Jenis Pajak</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Jenis Pajak</button>
         </form><hr>
         <table class="table table-striped">
             <thead>
@@ -36,13 +36,13 @@
                   <td>{{$no+1}}</td>
                   <td>{{$ini->jenis}}</td>
                   <td>
-                    <form action="{{URL('admin/pajak/editJenisPajak')}}" method="post">
+                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editJenisPajak').submit();">Edit</button>
+                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusJenisPajak').submit();">Delete</button>
+                    <form id="editJenisPajak" action="{{URL('admin/pajak/editJenisPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
-                        <button type="submit" name="button" class="btn btn-warning">Edit</button>
                     </form>
-                    <form action="{{URL('admin/pajak/hapusJenisPajak')}}" method="post">
+                    <form id="hapusJenisPajak" action="{{URL('admin/pajak/hapusJenisPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
-                        <button type="submit" name="button" class="btn btn-danger">Delete</button>
                     </form>
                   </td>
                 </tr>

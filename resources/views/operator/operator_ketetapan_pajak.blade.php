@@ -17,7 +17,7 @@
         </div>
     </div>
     <form action="{{URL('operator/ketetapanPajak/tambahKetetapanPajak')}}" method="post">
-      <button type="submit" class="btn btn-default">Tambah Ketetapan Pajak</button>
+      <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Ketetapan Pajak</button>
     </form><hr>
       <div class="form-group">
         <label for="cariNPWP">Search NPWP</label>
@@ -52,13 +52,13 @@
                   <td>{{$ini->volume}}</td>
                   <td>{{$ini->created_at}}</td>
                   <td>
-                    <form action="{{URL('operator/ketetapanPajak/editKetetapanPajak')}}" method="post">
+                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editKetetapanPajak').submit();">Edit</button>
+                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusKetetapanPajak').submit();">Delete</button>
+                    <form id="editKetetapanPajak" action="{{URL('operator/ketetapanPajak/editKetetapanPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
-                        <button type="submit" name="button" class="btn btn-warning">Edit</button>
                     </form>
-                    <form action="{{URL('operator/ketetapanPajak/hapusKetetapanPajak')}}" method="post">
+                    <form id="hapusKetetapanPajak" action="{{URL('operator/ketetapanPajak/hapusKetetapanPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
-                        <button type="submit" name="button" class="btn btn-danger">Delete</button>
                     </form>
                   </td>
                   <td>
@@ -113,13 +113,13 @@
             <td>"+this.volume+"</td>\
             <td>"+this.created_at+"</td>\
             <td>\
-            <form action={{url('operator/ketetapanPajak/editKetetapanPajak')}} method=post>\
-              <input type=hidden name=id value="+this.ketetapan_pajak_id+">\
-              <button type=submit class='btn btn-warning'>Edit</button>\
+            <button type=submit class='btn btn-warning' onclick=event.preventDefault();document.getElementById('editKetetapanPajak').submit(); >Edit</button>\
+            <button type=submit class='btn btn-danger' onclick=event.preventDefault();document.getElementById('hapusKetetapanPajak').submit(); >Delete</button>\
+            <form id=editKetetapanPajak action={{url('operator/ketetapanPajak/editKetetapanPajak')}} method=post>\
+              <input type=hidden name=id value="+this.id+">\
             </form>\
-            <form action={{url('operator/ketetapanPajak/hapusKetetapanPajak')}} method=post>\
-              <input type=hidden name=id value="+this.ketetapan_pajak_id+">\
-              <button type=submit class='btn btn-danger'>Delete</button>\
+            <form id=hapusKetetapanPajak action={{url('operator/ketetapanPajak/hapusKetetapanPajak')}} method=post>\
+              <input type=hidden name=id value="+this.id+">\
             </form>\
             </td>\
             <td>"+html+"\

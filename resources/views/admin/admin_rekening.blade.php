@@ -21,7 +21,7 @@
     <div class="row">
       <div class="col-lg-12">
         <form action="{{URL('admin/rekening/tambahRekening')}}" method="post">
-          <button type="submit" class="btn btn-default">Tambah Rekening Penerimaan</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Rekening Penerimaan</button>
         </form><hr>
         <table class="table table-striped">
             <thead>
@@ -39,13 +39,13 @@
                   <td>{{$ini->nomor_rekening}}</td>
                   <td>{{$ini->uraian}}</td>
                   <td>
-                    <form class="" action="{{URL('admin/rekening/editRekening/')}}" method="post">
+                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editRekening').submit();">Edit</button>
+                    <button type="submit" name="button" class="btn btn-danger" ck="event.preventDefault();document.getElementById('hapusRekening').submit();">Delete</button>
+                    <form id="editRekening" class="" action="{{URL('admin/rekening/editRekening/')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
-                        <button type="submit" name="button" class="btn btn-warning">Edit</button>
                     </form>
-                    <form class="" action="{{URL('admin/rekening/hapusRekening')}}" method="post">
+                    <form id="hapusRekening" class="" action="{{URL('admin/rekening/hapusRekening')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
-                        <button type="submit" name="button" class="btn btn-danger">Delete</button>
                     </form>
                   </td>
                 </tr>

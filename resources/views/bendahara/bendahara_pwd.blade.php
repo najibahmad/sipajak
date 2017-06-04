@@ -20,7 +20,7 @@
         <label for="">Ganti Password Akun Anda</label>
         <input type="password" class="form-control" name="pwd" value="">
       </div>
-      <button type="submit" class="btn btn-success btn-block" name="button">Submit</button>
+      <button type="submit" class="btn btn-success" name="button">Submit</button>
     </form>
 
   </div>

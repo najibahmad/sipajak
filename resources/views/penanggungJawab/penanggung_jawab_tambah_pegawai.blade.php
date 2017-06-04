@@ -7,11 +7,14 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Beranda
+                Kepegawaian
             </h1>
             <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i> <a href="{{url('penanggungJawab/pegawai')}}">List Pegawai</a>
+                </li>
                 <li class="active">
-                    <i class="fa fa-dashboard"></i> <a href="{{url('admin/dashboard')}}">Beranda</a>
+                    <i class="fa fa-dashboard"></i> <a href="{{url('penanggungJawab/tambahPegawai')}}">Tambah Pegawai</a>
                 </li>
             </ol>
         </div>

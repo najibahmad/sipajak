@@ -6,11 +6,11 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Beranda
+                Kepegawaian
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <i class="fa fa-dashboard"></i> <a href="{{url('admin/dashboard')}}">Beranda</a>
+                    <i class="fa fa-dashboard"></i> <a href="{{url('penanggungJawab/pegawai')}}">List pegawai</a>
                 </li>
             </ol>
         </div>
@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col-lg-12">
         <form action="{{URL('penanggungJawab/pegawai/tambahPegawai')}}" method="post">
-          <button type="submit" class="btn btn-default">Tambah Pegawai</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Pegawai</button>
         </form><hr>
         <table class="table table-striped">
             <thead>
@@ -49,13 +49,13 @@
                   <td>{{$ini->status}}</td>
                   <td>{{$ini->nomor_sk}}</td>
                   <td>
-                    <form action="{{URL('penanggungJawab/pegawai/editPegawai')}}" method="post">
+                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editPegawai').submit();">Edit</button>
+                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusPegawai').submit();">Delete</button>
+                    <form id="editPegawai" action="{{URL('penanggungJawab/pegawai/editPegawai')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->user_id}}">
-                        <button type="submit" name="button" class="btn btn-warning">Edit</button>
                     </form>
-                    <form action="{{URL('penanggungJawab/pegawai/hapusPegawai')}}" method="post">
+                    <form id="hapusPegawai" action="{{URL('penanggungJawab/pegawai/hapusPegawai')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->user_id}}">
-                        <button type="submit" name="button" class="btn btn-danger">Delete</button>
                     </form>
                   </td>
                 </tr>

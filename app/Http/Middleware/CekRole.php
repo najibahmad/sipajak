@@ -16,6 +16,10 @@ class CekRole
      */
     public function handle($request, Closure $next, $role)
     {
+        if (!Auth::check())
+        {
+          return abort(503);
+        }
         if(Auth::user()->role_id != $role){
           return abort(503);
         }

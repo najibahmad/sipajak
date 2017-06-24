@@ -42,6 +42,8 @@
         <div class="col-sm-10">
           <select class="form-control" id="kecamatan" name="kecamatan">
             <option>Silahkan pilih Kecamatan</option>
+
+            @if (isset($edit))
             @foreach ($kecamatan as $no => $ini)
               @if($ini->id == $kecamatan_id)
                 <option value="{{$ini->id}}" selected>{{$ini->kecamatan}}</option>
@@ -49,6 +51,11 @@
                 <option value="{{$ini->id}}">{{$ini->kecamatan}}</option>
               @endif
             @endforeach
+            @else
+            @foreach ($kecamatan as $no => $ini)
+                <option value="{{$ini->id}}">{{$ini->kecamatan}}</option>
+            @endforeach
+            @endif
           </select>
         </div>
       </div>

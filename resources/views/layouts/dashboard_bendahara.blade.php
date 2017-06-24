@@ -137,6 +137,17 @@
     <!-- Custom Theme JavaScript -->
     <script src="{{URL($default_url.'js/sb-admin-2.js')}}"></script>
 
+    <script src="{{url($default_url.'js/bootstrap-datepicker.js')}}" charset="utf-8"></script>
+    <script src="{{url($default_url.'locales/bootstrap-datepicker.id.min.js')}}" charset="utf-8"></script>
+    <script>
+        $(document).ready(function(){
+          $('.datepicker').datepicker({
+              language: 'id',
+              format:'yyyy-mm-dd'
+          });
+        });
+    </script>
+
     @yield('script')
 
 </body>

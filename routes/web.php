@@ -125,6 +125,10 @@ Route::group(['middleware'=>'role:3'],function(){
     Route::group(['prefix'=>'pwd'],function(){
       Route::post('updatePwd','PjController@updatePwd');
     });
+    Route::post('cetak_stbp','BendaharaController@cetak_stbp');
+
+    Route::get('cetak_stbp',array('as'=>'cetak_stbp','uses'=>'BendaharaController@cetak_stbp_pdf'));
+
   });
 });
 

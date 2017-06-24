@@ -30,6 +30,7 @@
                 <th>No NPWP</th>
                 <th>Jenis Pajak</th>
                 <th>Jumlah</th>
+                <th>Harga</th>
                 <th>Alamat</th>
                 <th>Tanggal</th>
                 <th>Status Pembayaran</th>
@@ -46,12 +47,13 @@
                   <td>{{$ini->npwp}}</td>
                   <td>{{$ini->jenis}}</td>
                   <td>{{$ini->volume}}</td>
+                  <td>{{$ini->harga}}</td>
                   <td>{{$ini->alamat}}</td>
                   <td>{{$ini->created_at}}</td>
                   <td>
                       @if ($ini->status_pembayaran==0)
                         <form  action="{{url('bendahara/dataPajak/statusPembayaran')}}" method="post">
-                          <input type="hidden" name="id" value="{{$ini->ketetapan_pajak_id}}">
+                          <input type="hidden" name="id" value="{{$ini->id_item}}">
                           <button type="submit" class="btn btn-warning" name="button">Bayar</button>
                         </form>
                       @elseif($ini->status_pembayaran==1)
@@ -59,14 +61,22 @@
                       @endif
                   </td>
                   <td>
+
                     @if($ini->status_pembayaran==0)
                       <h4>Belum bisa Cetak</h4>
                     @elseif($ini->status_pembayaran==1)
-                      <button type="button" name="button" class="btn btn-info">Cetak</button>
+                    <a type="button" href="{{ route('cetak_stbp',['download'=>'pdf', 'id'=>$ini->id_item] ) }}" class="btn btn-warning"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Cetak</a>
+
+
+
+
+
+
+
                     @endif
                   </td>
                   <td>
-                    <button type="button" class="btn btn-success" name="button">Cetak</button>
+                    <button type="button" class="btn btn-success" name="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Cetak</button>
                   </td>
                 </tr>
               @endforeach

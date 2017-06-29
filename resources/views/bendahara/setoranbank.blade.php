@@ -17,7 +17,7 @@ table {
 td, th {
     border: 0px solid ;
     text-align: left;
-    padding: 10px;
+
 }
 
 tr:nth-child(even) {
@@ -94,6 +94,21 @@ tr:nth-child(even) {
 	margin-left: 10px;
 	margin:0 auto;
 	text-align:center;
+
+}
+#header_surat{
+
+	margin-left: 10px;
+	margin:0 auto;
+	text-align:left;
+  float:left;
+}
+#header_surat2{
+
+	margin-left: 10px;
+	margin:0 auto;
+	text-align:right;
+  float:right;
 }
 img{
 	  position: absolute;
@@ -158,7 +173,7 @@ width:10px;
 	width:50%;
 }
 .kosong{
-margin-bottom:100px;
+margin-bottom:50px;
 }
 </style>
 
@@ -168,28 +183,26 @@ margin-bottom:100px;
  <!-- <img src="{{ asset('images/logo2.png') }}" > -->
 
 
+ <div id="header_surat">
+
+
+ <strong style="font-size:11px;">PEMERINTAH KABUPATEN KERINCI<br><br>
+ </div>
+
+ <div id="header_surat2">
+
+
+ <strong style="font-size:11px;">Model Bend. 17<br>
+   Lembar : I/II/III/IV/V
+   <br>
+ </div>
+
 <div id="kepala_surat">
-<div class="kepala">
+<div class="kepala" style="margin-top:30px;">
 
-<strong>PEMERINTAH KABUPATEN KERINCI<br>
-BADAN PENGELOLA PAJAK DAN RESTRIBUSI DAERAH<br>
-(BPPRD)<br></strong></div>
-Jl. Imam Bonjol No. 06 Sungai Penuh, e-mail:bpprd.krckab@yahoo.com<br><br>
-<div class="kepala">
-
-<strong>TANDA BUKTI PEMBAYARAN<br>
-NOMOR BUKTI: .......................................<br></strong></div>
-
-</div>
+<strong>SURAT TANDA SETORAN<br></strong></div>
 <!-- akhir kepala surat -->
 
-<hr>
-<div id="nomer_surat">
-  <br>
-
-
-  </div>
-  <br>
   <div id="par_pembuka">
 
   <!--<span class="masuk_alinea">&nbsp;</span>
@@ -219,84 +232,117 @@ NOMOR BUKTI: .......................................<br></strong></div>
   </div>
 -->
 
-<table >
-
-    <tbody>
-      <tr>
-        <td width="10px" valign="top">a.)</td>
-        <td colspan="2">
-          Bendahara Penerima / Bendahara Penerimaan Pembantu ................<br>
-          Telah menerima uang sebesar Rp. {{number_format($jumlah,0)}}
-        </td>
-      </tr>
-      <tr>
-        <td valign="top">b.)</td>
-        <td colspan="2"> Dengan huruf <strong> <i>{{$terbilang}} </i> </strong></td>
-      </tr>
-
-      <tr>
-        <td valign="top">c.)</td>
-        <td width="200px">Dari Nama</td>
-        <td> {{$ketetapanPajak->wajib_pajak->nama}} </td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>Alamat</td>
-        <td>{{$ketetapanPajak->wajib_pajak->alamat}} </td>
-      </tr>
-
-      <tr>
-        <td valign="top">d.)</td>
-        <td valign="top">Sebagai Pembayaran</td>
-        <td>{{$ketetapanPajak->nama_pekerjaan}}</td>
-      </tr>
-
-      <tr>
-        <td colspan="2">
-        <table border="1" style="margin-left:50px;" width="600px">
-          <tr>
-            <td align="center">Kode Rekening / Ayat</tes>
-              <td align="center">Jumlah (Rp)</tes>
-          </tr>
-          <?php foreach ($ketetapanPajak->item_ketetapan_pajak as $row): ?>
-
-              <tr>
-                <td align="center">{{$ketetapanPajak->rekening_penerimaan->nomor_rekening}}</td>
-                <td align="right">Rp. {{$row->harga}},-</td>
-              </tr>
-          <?php endforeach; ?>
-
-        </table>
-      </td>
-      </tr>
-
-      <tr>
-        <td>e.)</td>
-        <td>Tanggal Diterima Uang</td>
-        <td>{{$tgl_pembayaran}}</td>
-      </tr>
-
-
-    </tbody>
+<table style="font-size:12px;padding:10px;" border="1" width="90%" align="center">
+<tbody>
+  <tr style="font-size:12px;padding:10px;">
+    <td style="font-size:12px;padding:10px;">
+      Setoran seperti yang ke .................. <br>
+      dalam bulan .................................... <br>
+      tahun .............................................. <br>
+    </td>
+    <td style="font-size:12px;padding:10px;">Nomor : ........................ <br></td>
+    <td style="font-size:12px;padding:10px;">
+      Setoran seperti ini yang terakhir telah dilakukan pada:<br>
+      Tanggal : ........................ <br>
+      Nomor &nbsp;  : ........................ <br>
+    </td>
+  </tr>
+</tbody>
 </table>
+
+<table border="0" style="font-size:12px;padding:0px;margin-left:40px;" width="90%">
+<tbody>
+<tr>
+<td style="width:200px;">Pemegang Kas Daerah Kab. Kerinci</td>
+<td style="width:10px;">:</td>
+<td>BPD Cabang Sungai Penuh</td>
+</tr>
+<tr>
+<td colspan="3">Harap menerima uang sebesar Rp. {{number_format($jumlah,0)}}</td>
+
+</tr>
+<tr>
+<td>(dengan huruf)</td>
+<td>:</td>
+<td><strong> <i>{{$terbilang}} </i> </strong></td>
+</tr>
+<tr>
+<td>Dari</td>
+<td>:</td>
+<td>{{$ketetapanPajak->wajib_pajak->nama}}</td>
+</tr>
+<tr>
+<td>Alamat </td>
+<td>:</td>
+<td>{{$ketetapanPajak->wajib_pajak->alamat}}</td>
+</tr>
+<tr>
+<td>Sebagai Penyetoran</td>
+<td>:</td>
+<td>Pajak/Retribusi Daerah</td>
+</tr>
+</tbody>
+</table>
+
+<table style="font-size:12px;padding:10px;" border="1" width="90%" align="center">
+<tbody>
+<tr>
+<td align="center">Kode Rekening / Ayat</td>
+<td align="center">Jenis Penerimaan</td>
+<td align="center">Jumlah</td>
+</tr>
+<?php
+$i=5;
+foreach ($ketetapanPajak->item_ketetapan_pajak as $row): ?>
+
+    <tr>
+
+      <td align="center">{{$ketetapanPajak->rekening_penerimaan->nomor_rekening}}</td>
+      <td align="center">{{$row->nama_item}}</td>
+      <td align="right">Rp. {{$row->harga}},-</td>
+    </tr>
+<?php
+$i--;
+endforeach; ?>
+<?php
+  for($k=0;$k<$i;$k++){
+      ?>
+      <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      </tr>
+      <?php
+  }
+?>
+</tbody>
+</table>
+
+<table style="font-size:12px;padding:10px;" border="1" width="90%" align="center">
+<tbody>
+  <tr style="font-size:12px;padding:10px;">
+    <td style="font-size:12px;padding:10px;">
+      <div class="kosong" id="pejabat">.........................................</div>
+      <div id="nama_pejabat"><span style="text-transform:uppercase;text-decoration:underline;font-weight:bold"> ..................... </span></div>
+      <div id="nama_pejabat"><span style="text-transform:uppercase;font-weight:bold"> </span></div>
+    </td>
+    <td style="font-size:12px;padding:10px;">
+      <div class="kosong" id="pejabat">Sungai Penuh, tgl {{$tgl_pembayaran}}</div>
+      <div id="nama_pejabat"><span style="text-transform:uppercase;text-decoration:underline;font-weight:bold"> ..................... </span></div>
+      <div id="nama_pejabat"><span style="text-transform:uppercase;font-weight:bold"> </span></div>
+    </td>
+    <td style="font-size:12px;padding:10px;">
+      <div class="kosong" id="pejabat">Uang tersebut diatas diterima:<br>Sungai Penuh, tgl {{$tgl_pembayaran}}</div>
+      <div id="nama_pejabat"><span style="text-transform:uppercase;text-decoration:underline;font-weight:bold"> ..................... </span></div>
+      <div id="nama_pejabat"><span style="text-transform:uppercase;font-weight:bold"> </span></div>
+    </td>
+  </tr>
+</tbody>
+</table>
+
 
   <!--<div id="par_penutup"><span class="masuk_alinea">&nbsp; </span>Demikian Surat Keterangan ini diberikan, untuk dapat digunakan atas dasar sebenarnya.</div>-->
 
-
-  <br>
-  <div class="tanda_tangan" style="float:left;min-width:400px;">
-
-      <div class="kosong" id="pejabat">Mengetahui,<br>Bendahara Penerima/Bendahara Penerima Pembantu</div>
-      <div id="nama_pejabat"><span style="text-transform:uppercase;text-decoration:underline;font-weight:bold"> ..................... </span></div>
-      <div id="nama_pejabat"><span style="text-transform:uppercase;font-weight:bold"> </span></div>
-  </div>
-  <div class="tanda_tangan" style="float:right">
-
-      <div class="kosong" id="pejabat"><br>Penyetor</div>
-      <div id="nama_pejabat"><span style="text-transform:uppercase;text-decoration:underline;font-weight:bold"> .....................</span></div>
-      <div id="nama_pejabat"><span style="text-transform:uppercase;font-weight:bold"> </span></div>
-  </div>
   </div>
   </body>
 

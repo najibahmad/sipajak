@@ -35,6 +35,7 @@
               </tr>
             </thead>
             <tbody id="dataKetetapanPajak">
+              <?php $id=0; ?>
               @foreach ($itemKetetapanPajak as $no => $ini)
                 <input type="hidden" name="jenisPajakId" value="{{$ini->jenis_pajak_id}}" id="jenisPajakId">
                 <tr>
@@ -44,7 +45,12 @@
                   <td>{{$ini->jenis}}</td>
                   <td>{{$ini->volume}}</td>
                   <td>{{$ini->created_at}}</td>
-                  <td>
+                  <?php if($id != $ini->ketetapan_pajak->id){
+
+                    $counts = array_count_values($arr_id);
+                    $rows= $counts[$ini->ketetapan_pajak->id];
+                    ?>
+                  <td style="vertical-align:middle;text-align:center;"  rowspan="{{$rows}}">
                       @if ($ini->status_verifikasi==1)
                         <form class="" action="{{url('verifikator/verifikasiKetetapanPajak/statusVerifikasi')}}" method="post">
                           <input type="hidden" name="id" value="{{$ini->ketetapan_pajak_id}}">
@@ -54,6 +60,9 @@
                         <h3>Verified</h3>
                       @endif
                   </td>
+                  <?php }
+                  $id = $ini->ketetapan_pajak->id;
+                  ?>
                 </tr>
               @endforeach
             </tbody>

@@ -41,7 +41,9 @@
               </tr>
             </thead>
             <tbody id="dataKetetapanPajak">
+              <?php $id=0; ?>
               @foreach ($itemKetetapanPajak as $no => $ini)
+
                 <input type="hidden" name="jenisPajakId" value="{{$ini->jenis_pajak_id}}" id="jenisPajakId">
                 <tr>
                   <td>{{$no+1}}</td>
@@ -61,16 +63,25 @@
                         <input type="hidden" name="id" value="{{$ini->id}}">
                     </form>
                   </td>
-                  <td>
+                  <?php if($id != $ini->ketetapan_pajak->id){
+
+                    $counts = array_count_values($arr_id);
+                    $rows= $counts[$ini->ketetapan_pajak->id];
+                    ?>
+                  <td style="vertical-align:middle;text-align:center;"  rowspan="{{$rows}}">
                       @if ($ini->status_verifikasi==0)
                         <form class="" action="{{url('operator/ketetapanPajak/statusVerifikasi')}}" method="post">
-                          <input type="hidden" name="id" value="{{$ini->idikp}}">
-                          <button type="submit" class="btn btn-success" name="button">Verify</button>
+                          <input type="hidden" name="id" value="{{$ini->ketetapan_pajak->id}}">
+                          <button type="submit" class="btn btn-success" name="button">Kirim</button>
                         </form>
                       @elseif($ini->status_verifikasi==1)
                         <h3>Request Sent</h3>
                       @endif
                   </td>
+                  <?php }
+                  $id = $ini->ketetapan_pajak->id;
+                  ?>
+
                 </tr>
               @endforeach
             </tbody>

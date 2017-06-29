@@ -19,6 +19,7 @@
 
     <!-- Custom CSS -->
     <link href="{{URL($default_url.'css/sb-admin-2.css')}}" rel="stylesheet">
+    <link href="{{URL($default_url.'css/table.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{{URL($default_url.'font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
@@ -103,7 +104,10 @@
                             <a href="{{url('bendahara/dataPajak')}}" @yield('dataPajak')><i class="fa fa-table fa-fw"></i> Data Pajak</a>
                         </li>
                         <li @yield('laporan')>
-                            <a href="{{url('bendahara/laporan')}}" @yield('laporan')><i class="fa fa-list-alt fa-fw"></i> Laporan</a>
+                            <a href="{{url('bendahara/laporan')}}" @yield('laporan')><i class="fa fa-list-alt fa-fw"></i> Laporan Pembayaran Pajak</a>
+                        </li>
+                        <li @yield('laporan_setoran')>
+                            <a href="{{url('bendahara/laporan_setoran')}}" @yield('laporan_setoran')><i class="fa fa-list-alt fa-fw"></i> Laporan Setoran Bank</a>
                         </li>
                         <li @yield('pwd')>
                             <a href="{{url('bendahara/pwd')}}" @yield('pwd')><i class="fa fa-key fa-fw"></i> Reset Password</a>
@@ -146,6 +150,62 @@
               format:'yyyy-mm-dd'
           });
         });
+    </script>
+
+    <script>
+
+
+$(document).ready(function() {
+
+    var table = $('#table');
+
+
+    // Table striped
+    $('#table-striped').change(function() {
+        var value = $( this ).val();
+        table.removeClass('table-striped').addClass(value);
+    });
+
+    // Table hover
+    $('#table-hover').change(function() {
+        var value = $( this ).val();
+        table.removeClass('table-hover').addClass(value);
+    });
+
+    // Table color
+    $('#table-color').change(function() {
+        var value = $(this).val();
+        table.removeClass(/^table-mc-/).addClass(value);
+    });
+});
+
+// jQuery’s hasClass and removeClass on steroids
+// by Nikita Vasilyev
+// https://github.com/NV/jquery-regexp-classes
+(function(removeClass) {
+
+	jQuery.fn.removeClass = function( value ) {
+		if ( value && typeof value.test === "function" ) {
+			for ( var i = 0, l = this.length; i < l; i++ ) {
+				var elem = this[i];
+				if ( elem.nodeType === 1 && elem.className ) {
+					var classNames = elem.className.split( /\s+/ );
+
+					for ( var n = classNames.length; n--; ) {
+						if ( value.test(classNames[n]) ) {
+							classNames.splice(n, 1);
+						}
+					}
+					elem.className = jQuery.trim( classNames.join(" ") );
+				}
+			}
+		} else {
+			removeClass.call(this, value);
+		}
+		return this;
+	}
+
+})(jQuery.fn.removeClass);
     </script>
 
     @yield('script')

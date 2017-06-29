@@ -28,10 +28,11 @@
                 <th>No.</th>
                 <th>Nama</th>
                 <th>No NPWP</th>
+                <th>Nama Pekerjaan</th>
                 <th>Jenis Pajak</th>
                 <th>Jumlah</th>
-                <th>Harga</th>
-                <th>Alamat</th>
+
+
                 <th>Tanggal</th>
                 <th>Status Pembayaran</th>
                 <th>Cetak STBP</th>
@@ -39,21 +40,23 @@
               </tr>
             </thead>
             <tbody id="dataKetetapanPajak">
-              @foreach ($itemKetetapanPajak as $no => $ini)
+              @foreach ($ketetapanPajak as $no => $ini)
                 <input type="hidden" name="jenisPajakId" value="{{$ini->jenis_pajak_id}}" id="jenisPajakId">
                 <tr>
                   <td>{{$no+1}}</td>
-                  <td>{{$ini->nama_item}}</td>
+                  <td>{{$ini->nama}}</td>
                   <td>{{$ini->npwp}}</td>
+                  <td>{{$ini->nama_pekerjaan}}</td>
                   <td>{{$ini->jenis}}</td>
-                  <td>{{$ini->volume}}</td>
-                  <td>{{$ini->harga}}</td>
-                  <td>{{$ini->alamat}}</td>
-                  <td>{{$ini->created_at}}</td>
+                  <td>{{$ini->jumlah}}</td>
+
+
+
+                  <td>{{$ini->jatuh_tempo}}</td>
                   <td>
                       @if ($ini->status_pembayaran==0)
                         <form  action="{{url('bendahara/dataPajak/statusPembayaran')}}" method="post">
-                          <input type="hidden" name="id" value="{{$ini->id_item}}">
+                          <input type="hidden" name="id" value="{{$ini->id_ketetapan}}">
                           <button type="submit" class="btn btn-warning" name="button">Bayar</button>
                         </form>
                       @elseif($ini->status_pembayaran==1)
@@ -65,18 +68,16 @@
                     @if($ini->status_pembayaran==0)
                       <h4>Belum bisa Cetak</h4>
                     @elseif($ini->status_pembayaran==1)
-                    <a type="button" href="{{ route('cetak_stbp',['download'=>'pdf', 'id'=>$ini->id_item] ) }}" class="btn btn-warning"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Cetak</a>
-
-
-
-
-
-
-
+                    <a type="button" href="{{ route('cetak_stbp',['download'=>'pdf', 'id'=>$ini->id_ketetapan] ) }}" class="btn btn-warning"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Cetak</a>
                     @endif
                   </td>
                   <td>
-                    <button type="button" class="btn btn-success" name="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Cetak</button>
+
+                    @if($ini->status_pembayaran==0)
+                      <h4>Belum bisa Cetak</h4>
+                    @elseif($ini->status_pembayaran==1)
+                    <a type="button" href="{{ route('cetak_setoranbank',['download'=>'pdf', 'id'=>$ini->id_ketetapan] ) }}" class="btn btn-warning"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Cetak</a>
+                    @endif
                   </td>
                 </tr>
               @endforeach

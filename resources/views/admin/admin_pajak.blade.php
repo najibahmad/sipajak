@@ -36,12 +36,12 @@
                   <td>{{$no+1}}</td>
                   <td>{{$ini->jenis}}</td>
                   <td>
-                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editJenisPajak').submit();">Edit</button>
-                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusJenisPajak').submit();">Delete</button>
-                    <form id="editJenisPajak" action="{{URL('admin/pajak/editJenisPajak')}}" method="post">
+                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editJenisPajak.{{$ini->id}}').submit();">Edit</button>
+                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusJenisPajak.{{$ini->id}}').submit();">Delete</button>
+                    <form id="editJenisPajak.{{$ini->id}}" action="{{URL('admin/pajak/editJenisPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
                     </form>
-                    <form id="hapusJenisPajak" action="{{URL('admin/pajak/hapusJenisPajak')}}" method="post">
+                    <form id="hapusJenisPajak.{{$ini->id}}" action="{{URL('admin/pajak/hapusJenisPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
                     </form>
                   </td>

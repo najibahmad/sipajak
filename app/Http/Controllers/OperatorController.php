@@ -76,6 +76,10 @@ class OperatorController extends Controller
                 ->whereIn('status_verifikasi',[1,0])
                 ->select('ketetapan_pajak.*','wajib_pajak.*','jenis_pajak.*','item_ketetapan_pajak.*','item_ketetapan_pajak.id as idikp')->get();
                               //dd($data);
+      $data['arr_id'] = array();
+      foreach ($data['itemKetetapanPajak'] as $key => $value) {
+        $data['arr_id'][] = $value->ketetapan_pajak_id;
+      }
       return view('operator/operator_ketetapan_pajak',$data);
     }
     public function tambahKetetapanPajak(){
@@ -163,7 +167,7 @@ class OperatorController extends Controller
       $request=Input::all();
       //dd($request);
 
-      ItemKetetapanPajak::where('id',$request['id'])->update([
+      ItemKetetapanPajak::where('ketetapan_pajak_id',$request['id'])->update([
         "status_verifikasi"=>1
       ]);
 
@@ -213,7 +217,7 @@ class OperatorController extends Controller
             ->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
             ->where('item_ketetapan_pajak.id',$request['id'])
             ->first();
-      //dd($data);      
+      //dd($data);
       return Response::json($data);
     }
 

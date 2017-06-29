@@ -46,12 +46,12 @@
                   <td>{{$ini->alamat}}</td>
                   <td>{{$ini->jatuh_tempo}}</td>
                   <td>
-                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editWajibPajak').submit();">Edit</button>
-                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusWajibPajak').submit();">Delete</button>
-                    <form id="editWajibPajak" action="{{URL('operator/wajibPajak/editWajibPajak')}}" method="post">
+                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editWajibPajak.{{$ini->id}}').submit();">Edit</button>
+                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusWajibPajak.{{$ini->id}}').submit();">Delete</button>
+                    <form id="editWajibPajak.{{$ini->id}}" action="{{URL('operator/wajibPajak/editWajibPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
                     </form>
-                    <form id="hapusWajibPajak" action="{{URL('operator/wajibPajak/hapusWajibPajak')}}" method="post">
+                    <form id="hapusWajibPajak.{{$ini->id}}" action="{{URL('operator/wajibPajak/hapusWajibPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
                     </form>
                   </td>

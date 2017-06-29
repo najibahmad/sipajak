@@ -58,12 +58,12 @@
                   <td>{{$ini->tarif}}</td>
                   <td>{{$ini->tahun}}</td>
                   <td>
-                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editTarifPajak').submit();">Edit</button>
-                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusTarifPajak').submit();">Delete</button>
-                    <form id="editTarifPajak" action="{{URL('admin/tarif/editTarifPajak')}}" method="post">
+                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editTarifPajak.{{$ini->id}}').submit();">Edit</button>
+                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusTarifPajak.{{$ini->id}}').submit();">Delete</button>
+                    <form id="editTarifPajak.{{$ini->id}}" action="{{URL('admin/tarif/editTarifPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
                     </form>
-                    <form id="hapusTarifPajak" action="{{URL('admin/tarif/hapusTarifPajak')}}" method="post">
+                    <form id="hapusTarifPajak.{{$ini->id}}" action="{{URL('admin/tarif/hapusTarifPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
                     </form>
                   </td>

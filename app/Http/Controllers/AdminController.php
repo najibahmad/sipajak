@@ -20,9 +20,9 @@ class AdminController extends Controller
       return view('admin/admin_dashboard');
     }
     public function rekening_penerimaan(){
-      $result['data']=RekeningPenerimaan::get();
-
-      return view('admin/admin_rekening',$result);
+      $data['data']=RekeningPenerimaan::get();
+      //dd($data['data']);
+      return view('admin/admin_rekening',$data);
     }
 
     public function tambahRekening(){
@@ -45,7 +45,9 @@ class AdminController extends Controller
 
     public function editRekening(){
       $request=Input::all();
+      //dd($request);
       $data['id']=$request['id'];
+
       $data['edit']=RekeningPenerimaan::where('id',$request['id'])->first();
       // dd($data['edit']);
       return view('admin/admin_tambah_rekening',$data);

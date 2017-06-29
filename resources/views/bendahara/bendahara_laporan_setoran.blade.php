@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Laporan Pembayaran Pajak
+                Laporan Setoran Bank
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <form class="form-horizontal" action="{{URL('bendahara/laporan/filter')}}" role="form" method="post">
+    <form class="form-horizontal" action="{{URL('bendahara/laporan_setoran/filter')}}" role="form" method="post">
 
       <div class="form-group">
         <label class="control-label col-sm-2" for="kecamatan">Kecamatan</label>
@@ -56,61 +56,95 @@
 
     @if(isset($filter))
     <div id="demo" style="text-align:center;padding-top:10px;">
-<h1>Laporan Bulanan Pajak</h1>
+<h3>Pemerintah Kabupaten Kerinci</h3>
+<h1>BUKU BESAR PEMBANTU</h1>
 <h2>Dari tanggal {{$tgl_awal1}} sampai tanggal {{$tgl_akhir1}}</h2>
 
 <!-- Responsive table starts here -->
 <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
 <div class="table-responsive-vertical shadow-z-1">
 <!-- Table starts here -->
+<table id="table" border="0" class="table table-hover table-mc-light-blue" style="td:left">
+  <tr align="left">
+    <td>Urusan Pemerintahan</td>
+    <td>:</td>
+    <td>1</td>
+    <td>Urusan Wajib</td>
+  </tr>
+  <tr align="left">
+    <td>Bidang Pemerintahan</td>
+    <td>:</td>
+    <td>1.20</td>
+    <td>Otonomi Daerah, Pemerintahan Umum, Adm KeuDa, Perangkat Daerah, Kepegawaian</td>
+  </tr>
+  <tr align="left">
+    <td>Unit Organisasi</td>
+    <td>:</td>
+    <td>1.20.05</td>
+    <td>Dinas Pendapatan, Pengelolaan Keuangan dan Aset</td>
+  </tr>
+  <tr align="left">
+    <td>Sub Unit Organisasi</td>
+    <td>:</td>
+    <td>1.20.05.01</td>
+    <td>Dinas Pendapatan, Pengelolaan Keuangan dan Aset</td>
+  </tr>
+  <tr align="left">
+    <td colspan="2">Kode rekening Buku Besar Pembantu</td>
+    <td>:</td>
+    <td>4.1.2.02.01</td>
+
+  </tr>
+  <tr align="left">
+    <td colspan="2">Nama rekening Buku Besar Pembantu</td>
+    <td>:</td>
+    <td>Restribusi Pemakaian Kekayaan Daerah - Penyewaan Tanah dan Bangunan</td>
+
+  </tr>
+  <tr align="left">
+    <td colspan="2">Pagu APBD</td>
+    <td>:</td>
+    <td>105.000.000,-</td>
+
+  </tr>
+  <tr align="left">
+    <td colspan="2">Pagu Perubahan APBD</td>
+    <td>:</td>
+    <td>130.000.000,-</td>
+
+  </tr>
+</table>
+
+
 <table id="table" class="table table-bordered table-hover table-mc-light-blue">
     <thead>
+
       <tr>
-        <th rowspan="2" >NO</th>
-        <th rowspan="2">URAIAN</th>
-        <th colspan="3">SKP</th>
-        <th colspan="3">STBP</th>
-        <th rowspan="2">SELISIH</th>
-        <th rowspan="2">KET</th>
-      </tr>
-      <tr>
-        <th>NOMOR</th>
+        <th>NO.</th>
         <th>TANGGAL</th>
-        <th>JUMLAH</th>
+        <th>NO. BUKTI</th>
 
-        <th>NOMOR</th>
-        <th>TANGGAL PEMBAYARAN</th>
-        <th>JUMLAH</th>
+        <th>URAIAN</th>
+        <th>DEBET</th>
+        <th>KREDIT</th>
+        <th>SALDO</th>
       </tr>
-      <tr>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
 
-        <th>4</th>
-        <th>5</th>
-        <th>6</th>
-        <th>7</th>
-        <th>8</th>
-        <th>9</th>
-        <th>10</th>
-
-      </tr>
     </thead>
     <tbody>
-      <?php foreach ($laporan as $key => $value): ?>
+      <?php
+      $sum = 0;
+      foreach ($laporan as $key => $value):
+        $sum = $sum + $value->jumlah_dibayar;
+        ?>
         <tr>
           <td>{{$key+1}}</td>
-          <td align="left">{{$value->nama_pekerjaan}}</td>
-          <td>{{$value->nomor_skp}}</td>
-
-          <td>{{$value->jatuh_tempo}}</td>
-          <td  align="right">{{ number_format($value->jumlah,0)}}</td>
-          <td>{{$value->nomor_pembayaran}}</td>
           <td>{{$value->tgl_pembayaran}}</td>
-          <td  align="right">{{ number_format($value->jumlah_dibayar,0) }}</td>
-          <td  align="right">{{ number_format($value->jumlah - $value->jumlah_dibayar,0)}}</td>
           <td></td>
+          <td align="left">{{$value->nama_pekerjaan}}</td>
+          <td></td>
+          <td align="right">{{ number_format($value->jumlah_dibayar,0) }}</td>
+          <td align="right">{{ number_format($sum,0) }}</td>
         </tr>
       <?php endforeach; ?>
 

@@ -1,7 +1,7 @@
-@extends('layouts/dashboard_penanggung_jawab')
+@extends('layouts/horizontal_penanggung_jawab')
 @section('pegawai-active','class=active')
 @section('content')
-  <div class="container-fluid">
+  <div class="container">
 
     <div class="row">
         <div class="col-lg-12">

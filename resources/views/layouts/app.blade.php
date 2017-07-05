@@ -22,7 +22,6 @@
   <!-- Fonts -->
   <link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 
-
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([

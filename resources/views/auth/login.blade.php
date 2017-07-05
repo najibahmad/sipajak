@@ -5,7 +5,7 @@
 <div class="banner">
 
 <div class="agileinfo-dot" style="
-    background: url(images/background.jpg);">
+    background: url(images/background.jpg);background-size:cover;">
 
 	<div class="container" style="margin-top:50px;">
 	<div class="pull-left">

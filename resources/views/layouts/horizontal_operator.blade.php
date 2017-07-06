@@ -9,21 +9,27 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
     <title>ADMIN CPANEL</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="{{URL($default_url.'css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <link rel="stylesheet" href="{{url($default_url.'css/bootstrap-datepicker.min.css')}}">
 
-    <!-- MetisMenu CSS -->
-    <link href="{{URL($default_url.'metisMenu/metisMenu.css')}}" rel="stylesheet">
+    <!-- Bootstrap datepicker -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="{{URL($default_url.'css/sb-admin-2.css')}}" rel="stylesheet">
+    <!-- JQueryUI CSS -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!-- w3 css -->
+    <link rel="stylesheet" type="text/css" href="{{URL($default_url.'css/w3.css')}}">
 
     <!-- Custom Fonts -->
     <link href="{{URL($default_url.'font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+
+    <!-- Jquery UI -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
     <!-- CUSTOM STYLE  -->
     <link href="{{url('css/style.css')}}" rel="stylesheet" />
@@ -88,11 +94,26 @@
     </section>
       <!-- FOOTER SECTION END-->
     <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
-    <!-- jQuery -->
-    <script src="{{URL($default_url.'js/jquery.min.js')}}"></script>
+    <!-- jQuery library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- JQuery UI -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{URL($default_url.'js/bootstrap.min.js')}}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script src="{{url($default_url.'js/bootstrap-datepicker.js')}}" charset="utf-8"></script>
+    <script src="{{url($default_url.'locales/bootstrap-datepicker.id.min.js')}}" charset="utf-8"></script>
+    <script>
+        $(document).ready(function(){
+          $('.datepicker').datepicker({
+              language: 'id',
+              format:'yyyy-mm-dd'
+          });
+        });
+    </script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{{URL($default_url.'metisMenu/metisMenu.min.js')}}"></script>

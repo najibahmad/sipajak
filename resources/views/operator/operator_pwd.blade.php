@@ -1,4 +1,4 @@
-@extends('layouts/dashboard_operator')
+@extends('layouts/horizontal_operator')
 @section('title','Control Panel')
 @section('dashboard-active',"class=active")
 @section('content')

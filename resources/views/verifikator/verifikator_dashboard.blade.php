@@ -1,10 +1,8 @@
-@extends('layouts/dashboard_verifikator')
+@extends('layouts/horizontal_verifikator')
 @section('css')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 <style media="screen">
 .carousel-inner,.carousel,.item,.container,.fill {
- height:100%;
- width:100%;
  background-position:center center;
  background-size:cover;
 }
@@ -95,7 +93,7 @@ animation-duration:2s; -webkit-animation-duration:2s; -moz-animation-duration:2s
 </style>
 @endsection
 @section('content')
-  <div class="container-fluid">
+  <div class="container">
 
     <div class="row">
         <div class="col-lg-12">

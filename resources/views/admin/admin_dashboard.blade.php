@@ -1,12 +1,10 @@
-@extends('layouts/dashboard_admin')
+@extends('layouts/horizontal_admin')
 @section('title','Control Panel')
 @section('dashboard-active',"class=active")
 @section('css')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 <style media="screen">
 .carousel-inner,.carousel,.item,.container,.fill {
- height:100%;
- width:100%;
  background-position:center center;
  background-size:cover;
 }

@@ -1,8 +1,8 @@
-@extends('layouts/dashboard_operator')
+@extends('layouts/horizontal_operator')
 @section('title','Control Panel')
 @section('dashboard-active',"class=active")
 @section('content')
-  <div class="container-fluid">
+  <div class="container">
 
     <div class="row">
         <div class="col-lg-12">

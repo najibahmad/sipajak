@@ -1,4 +1,4 @@
-@extends('layouts/dashboard_admin')
+@extends('layouts/horizontal_admin')
 @section('title','Control Panel')
 @section('pajak-active',"class=active")
 @section('content')

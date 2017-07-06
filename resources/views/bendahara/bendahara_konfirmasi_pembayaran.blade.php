@@ -1,6 +1,6 @@
-@extends('layouts/dashboard_bendahara')
+@extends('layouts/horizontal_bendahara')
 @section('content')
-  <div class="container-fluid">
+  <div class="container">
 
     <div class="row">
         <div class="col-lg-12">

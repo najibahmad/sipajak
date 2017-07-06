@@ -1,6 +1,6 @@
-@extends('layouts/dashboard_verifikator')
+@extends('layouts/horizontal_verifikator')
 @section('content')
-  <div class="container-fluid">
+  <div class="container">
 
     <div class="row">
         <div class="col-lg-12">

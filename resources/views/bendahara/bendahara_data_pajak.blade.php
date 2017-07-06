@@ -68,7 +68,7 @@
                     @if($ini->status_pembayaran==0)
                       <h4>Belum bisa Cetak</h4>
                     @elseif($ini->status_pembayaran==1)
-                    <a type="button" href="{{ route('cetak_stbp',['download'=>'pdf', 'id'=>$ini->id_ketetapan] ) }}" class="btn btn-warning"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Cetak</a>
+                    <a type="button" href="{{ route('cetak_stbp',['download'=>'pdf', 'id'=>$ini->id_ketetapan] ) }}" class="btn"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Cetak</a>
                     @endif
                   </td>
                   <td>
@@ -76,7 +76,7 @@
                     @if($ini->status_pembayaran==0)
                       <h4>Belum bisa Cetak</h4>
                     @elseif($ini->status_pembayaran==1)
-                    <a type="button" href="{{ route('cetak_setoranbank',['download'=>'pdf', 'id'=>$ini->id_ketetapan] ) }}" class="btn btn-warning"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Cetak</a>
+                    <a type="button" href="{{ route('cetak_setoranbank',['download'=>'pdf', 'id'=>$ini->id_ketetapan] ) }}" class="btn"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Cetak</a>
                     @endif
                   </td>
                 </tr>

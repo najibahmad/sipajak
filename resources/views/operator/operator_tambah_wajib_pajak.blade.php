@@ -31,8 +31,9 @@
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="NPWP">NPWP:</label>
+
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="NPWP" placeholder="NPWP" @if (isset($edit))
+          <input type="text" id="NPWP" class="NPWP form-control" name="NPWP" placeholder="NPWP" @if (isset($edit))
             value="{{$edit->npwp}}"
           @endif>
         </div>
@@ -76,7 +77,7 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="kecamatan">Jatuh Tempo:</label>
         <div class="col-sm-10">
-          <input type="text" class="datepicker form-control" data-provide="datepicker" name="jatuhTempo" placeholder="jatuh tempo" @if (isset($edit))
+          <input type="text" data-date-format='yyyy-mm-dd' class="datepicker form-control" data-provide="datepicker" name="jatuhTempo" placeholder="jatuh tempo" @if (isset($edit))
             value="{{$edit->jatuh_tempo}}"
           @endif>
         </div>
@@ -96,7 +97,12 @@
 
 @section('script')
   <script type="text/javascript">
+
     $(document).ready(function(){
+      jQuery(function($){
+       $("#NPWP").mask("99.999.999.9-999.999");
+      });
+
       $('#kecamatan').change(function(){
         var kecamatan=$('#kecamatan').val();
         $.post("{{url('operator/wajibPajak/getDesa')}}",{id:kecamatan},function(data){
@@ -136,5 +142,7 @@
       @endif
 
     });
+
   </script>
+
 @endsection

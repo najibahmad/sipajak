@@ -47,10 +47,11 @@ class OperatorController extends Controller
     }
     public function insertWajibPajak(){
       $request=Input::all();
+      $NPWP = preg_replace("/[^0-9]/", "", $request['NPWP'] );
 
       $query=[
         "nama"=>$request['nama'],
-        "npwp"=>$request['NPWP'],
+        "npwp"=> $NPWP,
         "alamat"=>$request['alamat'],
         "jatuh_tempo"=>$request['jatuhTempo'],
         "desa_id"=>$request['desa']

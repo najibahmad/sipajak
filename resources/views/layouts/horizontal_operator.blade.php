@@ -95,6 +95,8 @@
       <!-- FOOTER SECTION END-->
     <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- jQuery library -->
+
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     <!-- Latest compiled JavaScript -->
@@ -106,6 +108,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     <script src="{{url($default_url.'js/bootstrap-datepicker.js')}}" charset="utf-8"></script>
     <script src="{{url($default_url.'locales/bootstrap-datepicker.id.min.js')}}" charset="utf-8"></script>
+
     <script>
         $(document).ready(function(){
           $('.datepicker').datepicker({
@@ -119,6 +122,9 @@
     <script src="{{URL($default_url.'metisMenu/metisMenu.min.js')}}"></script>
       <!-- CUSTOM SCRIPTS  -->
     <script src="{{url('js/custom.js')}}"></script>
+    <script src="{{url($default_url.'js/jquery.js')}}" type="text/javascript"></script>
+    <script src="{{url($default_url.'js/jquery.maskedinput.js')}}" type="text/javascript"></script>
+
     @yield('script')
 </body>
 </html>

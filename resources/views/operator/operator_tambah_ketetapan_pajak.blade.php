@@ -71,7 +71,7 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="NPWP">NPWP</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="NPWP" id="livesearch" list="datalist" placeholder="search here"@if (isset($edit))
+            <input type="text" class="form-control NPWP" name="NPWP" id="livesearch" list="datalist" placeholder="search here"@if (isset($edit))
               value="{{$edit->npwp}}"
             @endif>
             <datalist id="datalist"></datalist>
@@ -95,7 +95,7 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="jatuhTempo">Jatuh Tempo</label>
           <div class="col-sm-10">
-            <input type="text" class="datepicker form-control" id="jatuhTempo" data-provide="datepicker" name="jatuhTempo" placeholder="Jatuh Tempo" @if (isset($edit))
+            <input type="text" data-date-format='yyyy-mm-dd'  class="datepicker form-control" id="jatuhTempo" data-provide="datepicker" name="jatuhTempo" placeholder="Jatuh Tempo" @if (isset($edit))
               value="{{$edit->jatuh_tempo}}"
             @endif>
           </div>
@@ -207,7 +207,12 @@
 
 @section('script')
   <script type="text/javascript">
+
     $(document).ready(function(){
+
+      jQuery(function($){
+       $("#").mask("99.999.999.9-999.999");
+      });
 
       var i=1;
       $("#totalItem").html(

@@ -43,13 +43,16 @@
             <tbody id="dataKetetapanPajak">
               <?php $id=0; ?>
               @foreach ($itemKetetapanPajak as $no => $ini)
+              <?php
+              $npwp = substr($ini->npwp, 0, 2).".".substr($ini->npwp, 2, 3).".".substr($ini->npwp, 5, 3).".".substr($ini->npwp, 8, 1)."-".substr($ini->npwp, 9, 3).".".substr($ini->npwp, 12, 3);
+              ?>
 
                 <input type="hidden" name="jenisPajakId" value="{{$ini->jenis_pajak_id}}" id="jenisPajakId">
                 <tr>
                   <td>{{$no+1}}</td>
                   <td>{{$ini->nama_pekerjaan}}</td>
                   <td>{{$ini->nama_item}}</td>
-                  <td>{{$ini->npwp}}</td>
+                  <td>{{$npwp}}</td>
                   <td>{{$ini->jenis}}</td>
                   <td>{{$ini->volume}}</td>
                   <td>{{$ini->created_at}}</td>
@@ -114,6 +117,7 @@
             "<h3>Request Sent</h3>";
           }
           console.log(html);
+          
           $('#dataKetetapanPajak').append(
             "<tr>\
             <td>"+i+"</td>\

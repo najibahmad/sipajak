@@ -37,10 +37,14 @@
             </thead>
             <tbody>
               @foreach ($data as $no => $ini)
+              <?php
+              $npwp = substr($ini->npwp, 0, 2).".".substr($ini->npwp, 2, 3).".".substr($ini->npwp, 5, 3).".".substr($ini->npwp, 8, 1)."-".substr($ini->npwp, 9, 3).".".substr($ini->npwp, 12, 3);
+
+              ?>
                 <tr>
                   <td>{{$no+1}}</td>
                   <td>{{$ini->nama}}</td>
-                  <td>{{$ini->npwp}}</td>
+                  <td>{{$npwp}}</td>
                   <td>{{$ini->kecamatan}}</td>
                   <td>{{$ini->desa}}</td>
                   <td>{{$ini->alamat}}</td>

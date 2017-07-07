@@ -187,7 +187,9 @@ class OperatorController extends Controller
     public function getNPWP(){
       $request=Input::all();
 
-      $data=WajibPajak::where('npwp','like','%'.$request['npwp'].'%')->get();
+      $NPWP = preg_replace("/[^0-9]/", "", $request['npwp'] );
+
+      $data=WajibPajak::where('npwp','like','%'.$NPWP.'%')->get();
       //dd("masuk");
 
       return Response::json($data);

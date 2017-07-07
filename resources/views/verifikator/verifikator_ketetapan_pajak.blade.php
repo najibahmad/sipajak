@@ -15,8 +15,14 @@
         </div>
     </div>
       <div class="form-group">
-        <label for="cariNPWP">Search NPWP</label>
+        <div class="col-md-1">
+        <label for="cariNPWP"> NPWP</label>
+        </div>
+
+        <div class="col-md-4">
           <input type="text" class="form-control" name="npwp" placeholder="Search NPWP" id="livesearch" list="datalist">
+        </div>
+        <br>
           <datalist id="datalist"></datalist>
       </div>
     <hr>

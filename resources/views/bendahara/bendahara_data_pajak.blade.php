@@ -41,11 +41,15 @@
             </thead>
             <tbody id="dataKetetapanPajak">
               @foreach ($ketetapanPajak as $no => $ini)
+              <?php
+              $npwp = substr($ini->npwp, 0, 2).".".substr($ini->npwp, 2, 3).".".substr($ini->npwp, 5, 3).".".substr($ini->npwp, 8, 1)."-".substr($ini->npwp, 9, 3).".".substr($ini->npwp, 12, 3);
+
+              ?>
                 <input type="hidden" name="jenisPajakId" value="{{$ini->jenis_pajak_id}}" id="jenisPajakId">
                 <tr>
                   <td>{{$no+1}}</td>
                   <td>{{$ini->nama}}</td>
-                  <td>{{$ini->npwp}}</td>
+                  <td style="min-width:170px;">{{$npwp}}</td>
                   <td>{{$ini->nama_pekerjaan}}</td>
                   <td>{{$ini->jenis}}</td>
                   <td>{{$ini->jumlah}}</td>
@@ -60,13 +64,13 @@
                           <button type="submit" class="btn btn-warning" name="button">Bayar</button>
                         </form>
                       @elseif($ini->status_pembayaran==1)
-                        <h4>Sudah Membayar</h4>
+                        <h5>Sudah Membayar</h5>
                       @endif
                   </td>
                   <td>
 
                     @if($ini->status_pembayaran==0)
-                      <h4>Belum bisa Cetak</h4>
+                      <h5>Belum bisa Cetak</h5>
                     @elseif($ini->status_pembayaran==1)
                     <a type="button" href="{{ route('cetak_stbp',['download'=>'pdf', 'id'=>$ini->id_ketetapan] ) }}" class="btn"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Cetak</a>
                     @endif
@@ -74,7 +78,7 @@
                   <td>
 
                     @if($ini->status_pembayaran==0)
-                      <h4>Belum bisa Cetak</h4>
+                      <h5>Belum bisa Cetak</h5>
                     @elseif($ini->status_pembayaran==1)
                     <a type="button" href="{{ route('cetak_setoranbank',['download'=>'pdf', 'id'=>$ini->id_ketetapan] ) }}" class="btn"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Cetak</a>
                     @endif
@@ -122,11 +126,11 @@
             </form>";
           } else if(this.status_pembayaran==1) {
             var html =
-            "<h4>Sudah membayar</h4>";
+            "<h5>Sudah membayar</h5>";
           }
           if(this.status_pembayaran==0){
             var stbp =
-            "<h4>Belum bisa cetak</h4>";
+            "<h5>Belum bisa cetak</h5>";
           } else if(this.status_pembayaran==1){
             var stbp =
             "<button type=button class='btn btn-info'>Cetak</button>";

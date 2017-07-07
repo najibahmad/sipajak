@@ -83,6 +83,31 @@ Route::group(['middleware'=>'role:1'],function(){
         Route::post('editJenisPajak','AdminController@editJenisPajak');
         Route::post('hapusJenisPajak','AdminController@hapusJenisPajak');
       });
+
+      Route::get('/kecamatan','AdminController@kecamatan');
+        Route::group(['prefix'=>'/kecamatan'],function(){
+          Route::post('tambahKecamatan','AdminController@tambahKecamatan');
+          Route::post('insertKecamatan','AdminController@insertKecamatan');
+          Route::post('editKecamatan','AdminController@editKecamatan');
+          Route::post('hapusKecamatan','AdminController@hapusKecamatan');
+        });
+
+        Route::get('/tahun','AdminController@tahun');
+          Route::group(['prefix'=>'/tahun'],function(){
+            Route::post('tambahTahun','AdminController@tambahTahun');
+            Route::post('insertTahun','AdminController@insertTahun');
+            Route::post('editTahun','AdminController@editTahun');
+            Route::post('hapusTahun','AdminController@hapusTahun');
+          });
+
+        Route::get('/desa','AdminController@desa');
+          Route::group(['prefix'=>'/desa'],function(){
+            Route::post('tambahDesa','AdminController@tambahDesa');
+            Route::post('insertDesa','AdminController@insertDesa');
+            Route::post('editDesa','AdminController@editDesa');
+            Route::post('hapusDesa','AdminController@hapusDesa');
+          });
+
     Route::get('/pwd','AdminController@pwd');
     Route::group(['prefix'=>'pwd'],function(){
       Route::post('updatePwd','AdminController@updatePwd');

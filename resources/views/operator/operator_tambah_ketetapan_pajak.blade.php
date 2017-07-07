@@ -27,7 +27,7 @@
           <div class="col-sm-10">
             <select class="form-control" id="sel1" name="bulan">
               @if (isset($edit))
-              @for ($i = 0; $i < 10; $i++)
+              @for ($i = 0; $i < count($bulan); $i++)
                   @if($bulan[$i]==$edit->bulan)
                     <option value="{{$bulan[$i]}}" selected>{{$bulan[$i]}}</option>
                   @else
@@ -48,7 +48,7 @@
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="tahun">Tahun</label>
-          <div class="col-sm-10">
+          <div class="col-sm-2">
             <select class="form-control" id="sel1" name="tahun">
               @if (isset($edit))
                 @for ($i = 0; $i < count($tahun); $i++)
@@ -59,7 +59,9 @@
                     @endif
                 @endfor
               @else
-                <option value="{{$tahun[$i]}}">{{$tahun[$i]}}</option>
+                @for ($i = 0; $i < count($tahun); $i++)
+                  <option value="{{$tahun[$i]}}">{{$tahun[$i]}}</option>
+                @endfor
               @endif
 
             </select>

@@ -12,6 +12,9 @@ use App\RekeningPenerimaan;
 use App\StandarTarif;
 use App\JenisPajak;
 use App\User;
+use App\Kecamatan;
+use App\Desa;
+use App\Tahun;
 
 class AdminController extends Controller
 {
@@ -117,9 +120,43 @@ class AdminController extends Controller
 
       return view('admin/admin_pajak',$data);
     }
+
+    public function kecamatan(){
+      $data['data']=Kecamatan::get();
+
+      return view('admin/admin_kecamatan',$data);
+    }
+
+    public function tahun(){
+      $data['data']=Tahun::get();
+
+      return view('admin/admin_tahun',$data);
+    }
+
+    public function desa(){
+      $data['data']=Desa::get();
+
+      return view('admin/admin_desa',$data);
+    }
+
+
     public function tambahJenisPajak(){
       return view('admin/admin_tambah_jenis_pajak');
     }
+
+    public function tambahKecamatan(){
+      return view('admin/admin_tambah_kecamatan');
+    }
+
+    public function tambahTahun(){
+      return view('admin/admin_tambah_tahun');
+    }
+
+    public function tambahDesa(){
+      $data['kecamatan']=Kecamatan::get();
+      return view('admin/admin_tambah_desa',$data);
+    }
+
     public function insertJenisPajak(){
       $request=Input::all();
       $query=[
@@ -130,17 +167,92 @@ class AdminController extends Controller
       return redirect('admin/pajak');
 
     }
+
+    public function insertKecamatan(){
+      $request=Input::all();
+      $query=[
+        "kecamatan"=>$request['namaKecamatan']
+      ];
+      (!isset($request['id'])) ? Kecamatan::create($query) : Kecamatan::where('id',$request['id'])->update($query);
+
+      return redirect('admin/kecamatan');
+
+    }
+
+    public function insertTahun(){
+      $request=Input::all();
+      $query=[
+        "tahun"=>$request['namaTahun']
+      ];
+      (!isset($request['id'])) ? Tahun::create($query) : Tahun::where('id',$request['id'])->update($query);
+
+      return redirect('admin/tahun');
+
+    }
+
+    public function insertDesa(){
+      $request=Input::all();
+      $query=[
+        "desa"=>$request['namaDesa'],
+        "kecamatan_id"=>$request['kecamatan']
+      ];
+      (!isset($request['id'])) ? Desa::create($query) : Desa::where('id',$request['id'])->update($query);
+
+      return redirect('admin/desa');
+
+    }
+
     public function editJenisPajak(){
       $request=Input::all();
       $data['id']=$request['id'];
       $data['edit']=JenisPajak::where('id',$request['id'])->first();
       return view('admin/admin_tambah_jenis_pajak',$data);
     }
+
+    public function editKecamatan(){
+      $request=Input::all();
+      $data['id']=$request['id'];
+      $data['edit']=Kecamatan::where('id',$request['id'])->first();
+      return view('admin/admin_tambah_kecamatan',$data);
+    }
+
+    public function editTahun(){
+      $request=Input::all();
+      $data['id']=$request['id'];
+      $data['edit']=Tahun::where('id',$request['id'])->first();
+      return view('admin/admin_tambah_tahun',$data);
+    }
+
+    public function editDesa(){
+      $request=Input::all();
+      $data['id']=$request['id'];
+      $data['kecamatan']=Kecamatan::get();
+      $data['edit']=Desa::where('id',$request['id'])->first();
+      return view('admin/admin_tambah_desa',$data);
+    }
+
     public function hapusJenisPajak(){
       $request=Input::all();
       $db=JenisPajak::where('id','=',$request['id'])->delete();
       return redirect('admin/pajak');
     }
+
+    public function hapusKecamatan(){
+      $request=Input::all();
+      $db=Kecamatan::where('id','=',$request['id'])->delete();
+      return redirect('admin/kecamatan');
+    }
+    public function hapusTahun(){
+      $request=Input::all();
+      $db=Tahun::where('id','=',$request['id'])->delete();
+      return redirect('admin/tahun');
+    }
+    public function hapusDesa(){
+      $request=Input::all();
+      $db=Desa::where('id','=',$request['id'])->delete();
+      return redirect('admin/desa');
+    }
+
     public function pwd(){
 
       return view('admin/admin_pwd');

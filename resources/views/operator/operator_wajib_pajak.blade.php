@@ -7,11 +7,11 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Beranda
+                Wajib Pajak
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <i class="fa fa-dashboard"></i> <a href="{{url('admin/dashboard')}}">Beranda</a>
+                    <i class="fa fa-dashboard"></i> <a href="{{url('admin/operator')}}">Beranda</a>
                 </li>
             </ol>
         </div>
@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-lg-12">
         <form action="{{URL('operator/wajibPajak/tambahWajibPajak')}}" method="post">
-          <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Jenis Pajak</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Wajib Pajak</button>
         </form><hr>
         <table class="table table-striped">
             <thead>

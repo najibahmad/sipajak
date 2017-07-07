@@ -19,7 +19,7 @@
     <!-- /.row -->
 
     <form class="" action="{{url('admin/pwd/updatePwd')}}" method="post">
-      <div class="form-group">
+      <div class="form-group ">
         <label for="">Ganti Password Akun Anda</label>
         <input type="password" class="form-control" name="pwd" value="">
       </div>

@@ -25,7 +25,7 @@
     <form class="form-horizontal" action="{{URL('admin/rekening/insertRekening')}}" role="form" method="post">
       <div class="form-group">
         <label class="control-label col-sm-2" for="nomorRekening">Nomor Rekening</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
           <input type="text" class="form-control" name="nomorRekening" placeholder="Nomor rekening" @if (isset($edit))
             value="{{$edit->nomor_rekening}}"
           @endif>
@@ -33,7 +33,7 @@
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="uraian">Uraian</label>
-        <div class="col-sm-10">
+        <div class="col-sm-8">
           <input type="text" class="form-control" name="uraian" placeholder="Uraian" @if (isset($edit))
             value="{{$edit->uraian}}"
           @endif>

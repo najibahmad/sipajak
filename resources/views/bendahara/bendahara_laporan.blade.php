@@ -19,7 +19,7 @@
 
       <div class="form-group">
         <label class="control-label col-sm-2" for="kecamatan">Kecamatan</label>
-        <div class="col-sm-10">
+        <div class="col-sm-4">
           <select class="form-control" id="kecamatan" name="kecamatan">
             <option value="0">Semua Kecamatan</option>
 
@@ -34,14 +34,14 @@
 
       <div class="form-group">
         <label class="control-label col-sm-2" for="kecamatan">Dari Tanggal:</label>
-        <div class="col-sm-10">
+        <div class="col-sm-3">
           <input value="@if(isset($tgl_awal)) {{$tgl_awal}} @endif" type="text" class="datepicker form-control" data-provide="datepicker" name="tgl_awal" placeholder="Tanggal Awal"
           >
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="kecamatan">Dari Tanggal:</label>
-        <div class="col-sm-10">
+        <div class="col-sm-3">
           <input value="@if(isset($tgl_akhir)) {{$tgl_akhir}} @endif"  type="text" class="datepicker form-control" data-provide="datepicker" name="tgl_akhir" placeholder="Tanggal Akhir">
         </div>
       </div>

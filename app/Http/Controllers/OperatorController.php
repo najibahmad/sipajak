@@ -16,6 +16,7 @@ use App\RekeningPenerimaan;
 use App\JenisPajak;
 use App\ItemKetetapanPajak;
 use App\User;
+use App\Tahun;
 
 class OperatorController extends Controller
 {
@@ -87,6 +88,8 @@ class OperatorController extends Controller
       $data['desa']=Desa::get();
       $data['rekening']=RekeningPenerimaan::get();
       $data['jenisPajak']=JenisPajak::get();
+      //$data['tahun']=Tahun::get();
+      //dd($data);
 
       // return $data['rekening'];
       return view('operator/operator_tambah_ketetapan_pajak',$data);

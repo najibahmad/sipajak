@@ -18,14 +18,14 @@
     </div>
     <hr>
     <form class="" action="index.html" method="post">
-      <div class="form-group">
+      <div class="form-group col-md-3">
         <label for="sel1">Standar Tarif Pajak Tahun:</label>
         <select class="form-control" id="tahun">
           <option value="">Select Year</option>
-          <option value="2017">2017</option>
-          <option value="2016">2016</option>
-          <option value="2015">2015</option>
-          <option value="2014">2014</option>
+          @for ($i = 0; $i < count($tahun); $i++)
+            <option value="{{$tahun[$i]}}">{{$tahun[$i]}}</option>
+          @endfor
+          
         </select>
       </div>
     </form>

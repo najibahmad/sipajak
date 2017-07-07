@@ -8,7 +8,7 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>ADMIN CPANEL</title>
+    <title>ADMINISTRATOR</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{URL($default_url.'css/bootstrap.min.css')}}" rel="stylesheet">
 
@@ -64,6 +64,14 @@
                             <li><a href="{{url('admin/rekening')}}">REKENING PENERIMAAN</a></li>
                             <li><a href="{{url('admin/tarif')}}">STANDAR TARIF</a></li>
                             <li><a href="{{url('admin/pajak')}}">JENIS PAJAK</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">DATA POKOK <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('admin/kecamatan')}}">KECAMATAN</a></li>
+                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('admin/desa')}}">DESA</a></li>
+                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('admin/tahun')}}">TAHUN</a></li>
+                                </ul>
+                            </li>
                             <li><a href="{{url('admin/pwd')}}">PASSWORD</a></li>
                         </ul>
                     </div>
@@ -81,7 +89,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                   &copy; 2014 Yourdomain.com |<a href="http://www.binarytheme.com/" target="_blank"  > Designed by : binarytheme.com</a>
+                   &copy; 2017 Sistem Informasi Pajak | Dinas Pendapatan, Pengelolaan Keuangan dan Aset Kabupaten Kerinci
                 </div>
 
             </div>

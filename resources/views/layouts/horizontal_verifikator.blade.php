@@ -8,7 +8,7 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>ADMIN CPANEL</title>
+    <title>VERIFIKATOR</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{URL($default_url.'css/bootstrap.min.css')}}" rel="stylesheet">
 
@@ -79,7 +79,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                   &copy; 2014 Yourdomain.com |<a href="http://www.binarytheme.com/" target="_blank"  > Designed by : binarytheme.com</a>
+                   &copy; 2017 Sistem Informasi Pajak | Dinas Pendapatan, Pengelolaan Keuangan dan Aset Kabupaten Kerinci
                 </div>
 
             </div>

@@ -69,8 +69,15 @@
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a href="{{url('bendahara')}}" >DASHBOARD</a></li>
                             <li><a href="{{url('bendahara/dataPajak')}}">DATA PAJAK</a></li>
-                            <li><a href="{{url('bendahara/laporan')}}">LAPORAN PEMBAYARAN PAJAK</a></li>
-                            <li><a href="{{url('bendahara/laporan_setoran')}}">LAPORAN SETORAN BANK</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">LAPORAN <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('bendahara/laporan')}}">LAPORAN PEMBAYARAN PAJAK</a></li>
+                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('bendahara/laporan_setoran')}}">LAPORAN SETORAN BANK</a></li>
+
+                                </ul>
+                            </li>
+                            
                             <li><a href="{{url('bendahara/pwd')}}">PASSWORD</a></li>
                         </ul>
                     </div>
@@ -88,7 +95,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                   &copy; 2014 Yourdomain.com |<a href="http://www.binarytheme.com/" target="_blank"  > Designed by : binarytheme.com</a>
+                   &copy; 2017 Sistem Informasi Pajak | Dinas Pendapatan, Pengelolaan Keuangan dan Aset Kabupaten Kerinci
                 </div>
 
             </div>

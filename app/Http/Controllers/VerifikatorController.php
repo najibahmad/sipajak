@@ -35,8 +35,15 @@ class VerifikatorController extends Controller
     public function statusVerifikasi(){
       $request=Input::all();
 
+      $max = DB::table('ketetapan_pajak')->max('nomor_skp');
+      $max = $max + 1;
+
       ItemKetetapanPajak::where('ketetapan_pajak_id',$request['id'])->update([
-        "status_verifikasi"=>2
+        "status_verifikasi"=>2,
+      ]);
+
+      KetetapanPajak::where('id',$request['id'])->update([
+        "nomor_skp"=>$max,
       ]);
 
       return redirect('verifikator/verifikasiKetetapanPajak');

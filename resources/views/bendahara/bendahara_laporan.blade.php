@@ -102,11 +102,11 @@
         <tr>
           <td>{{$key+1}}</td>
           <td align="left">{{$value->nama_pekerjaan}}</td>
-          <td>{{$value->nomor_skp}}</td>
+          <td>{{ sprintf('%04d', $value->nomor_skp)}}</td>
 
           <td>{{$value->jatuh_tempo}}</td>
           <td  align="right">{{ number_format($value->jumlah,0)}}</td>
-          <td>{{$value->nomor_pembayaran}}</td>
+          <td>{{ sprintf('%04d', $value->nomor_pembayaran)}}</td>
           <td>{{$value->tgl_pembayaran}}</td>
           <td  align="right">{{ number_format($value->jumlah_dibayar,0) }}</td>
           <td  align="right">{{ number_format($value->jumlah - $value->jumlah_dibayar,0)}}</td>

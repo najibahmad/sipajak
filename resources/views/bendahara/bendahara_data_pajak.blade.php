@@ -33,7 +33,8 @@
                 <th>Jumlah</th>
 
 
-                <th>Tanggal</th>
+                <th style="min-width:100px">Jatuh Tempo</th>
+                <th>Pembayaran</th>
                 <th>Status Pembayaran</th>
                 <th>Cetak STBP</th>
                 <th>Cetak Setoran Bank</th>
@@ -57,6 +58,7 @@
 
 
                   <td>{{$ini->jatuh_tempo}}</td>
+                  <td>{{$ini->tgl_pembayaran}}</td>
                   <td>
                       @if ($ini->status_pembayaran==0)
                         <form  action="{{url('bendahara/dataPajak/statusPembayaran')}}" method="post">

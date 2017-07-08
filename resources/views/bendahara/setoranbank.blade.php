@@ -240,7 +240,7 @@ margin-bottom:50px;
       dalam bulan .................................... <br>
       tahun .............................................. <br>
     </td>
-    <td style="font-size:12px;padding:10px;">Nomor : ........................ <br></td>
+    <td style="font-size:12px;padding:10px;">Nomor : {{$ketetapanPajak->nomor_bukti}} <br></td>
     <td style="font-size:12px;padding:10px;">
       Setoran seperti ini yang terakhir telah dilakukan pada:<br>
       Tanggal : ........................ <br>
@@ -264,7 +264,7 @@ margin-bottom:50px;
 <tr>
 <td>(dengan huruf)</td>
 <td>:</td>
-<td><strong> <i>{{$terbilang}} </i> </strong></td>
+<td><strong> <i>{{$terbilang}} Rupiah </i> </strong></td>
 </tr>
 <tr>
 <td>Dari</td>

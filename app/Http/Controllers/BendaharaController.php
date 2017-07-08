@@ -37,11 +37,11 @@ class BendaharaController extends Controller
         join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
         ->join('item_ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
         ->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')
-        ->select('ketetapan_pajak.id','ketetapan_pajak.jatuh_tempo','ketetapan_pajak.nama_pekerjaan','wajib_pajak.nama','wajib_pajak.npwp','jenis_pajak.jenis',
+        ->select('ketetapan_pajak.id','ketetapan_pajak.jatuh_tempo','ketetapan_pajak.nama_pekerjaan','wajib_pajak.nama','wajib_pajak.npwp','jenis_pajak.jenis','ketetapan_pajak.tgl_pembayaran',
                 'ketetapan_pajak.id as id_ketetapan',DB::raw('SUM(harga) as jumlah'),'item_ketetapan_pajak.status_pembayaran')
         ->groupBy('ketetapan_pajak.id','wajib_pajak.nama',
                   'wajib_pajak.npwp','jenis_pajak.jenis','ketetapan_pajak.nama_pekerjaan',
-                  'ketetapan_pajak.jatuh_tempo','item_ketetapan_pajak.status_pembayaran')
+                  'ketetapan_pajak.jatuh_tempo','item_ketetapan_pajak.status_pembayaran','ketetapan_pajak.tgl_pembayaran')
         ->where('item_ketetapan_pajak.status_verifikasi',2)->get();
 
         //dd($data['ketetapanPajak']);
@@ -55,6 +55,13 @@ class BendaharaController extends Controller
       //sisipkan form konfirmasi pembayaran untuk item apa saja
       $data['ketetapanPajak']=ketetapanPajak::findOrFail($request['id']);
       $data['itemKetetapanPajak']=ItemKetetapanPajak::where('ketetapan_pajak_id','=',$request['id'])->get();
+
+      $max = DB::table('ketetapan_pajak')->max('nomor_pembayaran');
+      $data['nomor'] = $max + 1;
+
+      //nomor_bukti
+      $data['nomor_bukti']=$data['nomor']."/DPKKA/".date('y');
+      //dd($data);
 
       return view('bendahara/bendahara_konfirmasi_pembayaran',$data);
 
@@ -74,6 +81,8 @@ class BendaharaController extends Controller
 
       ketetapanPajak::where('id',$request['id'])->update([
         "jumlah_dibayar"=>$request['jumlah_dibayar'],
+        "nomor_pembayaran"=>$request['nomor'],
+        "nomor_bukti"=>$request['nomor_bukti'],
         "tgl_pembayaran" => date("Y-m-d")
       ]);
 
@@ -225,8 +234,8 @@ class BendaharaController extends Controller
       $data['laporan']=KetetapanPajak::
         join('item_ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
         ->select('nama_pekerjaan','jatuh_tempo',DB::raw('SUM(harga) as jumlah'),'ketetapan_pajak.tgl_pembayaran','ketetapan_pajak.jumlah_dibayar','ketetapan_pajak.nomor_skp','ketetapan_pajak.nomor_pembayaran')
-        ->whereRaw("jatuh_tempo > '".$request['tgl_awal']."'")
-        ->whereRaw("jatuh_tempo < '".$request['tgl_akhir']."'")
+        ->whereRaw("ketetapan_pajak.tgl_pembayaran > '".$request['tgl_awal']."'")
+        ->whereRaw("ketetapan_pajak.tgl_pembayaran < '".$request['tgl_akhir']."'")
 
         ->groupBy('ketetapan_pajak.id','ketetapan_pajak.jatuh_tempo','ketetapan_pajak.nama_pekerjaan',
                   'ketetapan_pajak.tgl_pembayaran','ketetapan_pajak.jumlah_dibayar','ketetapan_pajak.nomor_skp','ketetapan_pajak.nomor_pembayaran')
@@ -252,12 +261,12 @@ class BendaharaController extends Controller
       //dd($request);
       $data['laporan']=KetetapanPajak::
         join('item_ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
-        ->select('nama_pekerjaan','jatuh_tempo',DB::raw('SUM(harga) as jumlah'),'ketetapan_pajak.tgl_pembayaran','ketetapan_pajak.jumlah_dibayar','ketetapan_pajak.nomor_skp','ketetapan_pajak.nomor_pembayaran')
-        ->whereRaw("jatuh_tempo > '".$request['tgl_awal']."'")
-        ->whereRaw("jatuh_tempo < '".$request['tgl_akhir']."'")
+        ->select('nama_pekerjaan','nomor_bukti','jatuh_tempo',DB::raw('SUM(harga) as jumlah'),'ketetapan_pajak.tgl_pembayaran','ketetapan_pajak.jumlah_dibayar','ketetapan_pajak.nomor_skp','ketetapan_pajak.nomor_pembayaran')
+        ->whereRaw("ketetapan_pajak.tgl_pembayaran > '".$request['tgl_awal']."'")
+        ->whereRaw("ketetapan_pajak.tgl_pembayaran < '".$request['tgl_akhir']."'")
 
         ->groupBy('ketetapan_pajak.id','ketetapan_pajak.jatuh_tempo','ketetapan_pajak.nama_pekerjaan',
-                  'ketetapan_pajak.tgl_pembayaran','ketetapan_pajak.jumlah_dibayar','ketetapan_pajak.nomor_skp','ketetapan_pajak.nomor_pembayaran')
+                  'ketetapan_pajak.tgl_pembayaran','ketetapan_pajak.jumlah_dibayar','ketetapan_pajak.nomor_skp','ketetapan_pajak.nomor_pembayaran','ketetapan_pajak.nomor_bukti')
         ->get();
 
         //isset data

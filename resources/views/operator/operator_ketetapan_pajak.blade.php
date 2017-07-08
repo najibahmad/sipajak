@@ -78,7 +78,7 @@
                           <button type="submit" class="btn btn-success" name="button">Kirim</button>
                         </form>
                       @elseif($ini->status_verifikasi==1)
-                        <h3>Request Sent</h3>
+                        <h5>Request Sent</h5>
                       @endif
                   </td>
                   <?php }
@@ -117,7 +117,7 @@
             "<h3>Request Sent</h3>";
           }
           console.log(html);
-          
+
           $('#dataKetetapanPajak').append(
             "<tr>\
             <td>"+i+"</td>\

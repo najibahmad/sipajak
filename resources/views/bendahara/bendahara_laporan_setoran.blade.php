@@ -104,13 +104,13 @@
   <tr align="left">
     <td colspan="2">Pagu APBD</td>
     <td>:</td>
-    <td>105.000.000,-</td>
+    <td></td>
 
   </tr>
   <tr align="left">
     <td colspan="2">Pagu Perubahan APBD</td>
     <td>:</td>
-    <td>130.000.000,-</td>
+    <td></td>
 
   </tr>
 </table>
@@ -140,7 +140,7 @@
         <tr>
           <td>{{$key+1}}</td>
           <td>{{$value->tgl_pembayaran}}</td>
-          <td></td>
+          <td>{{$value->nomor_bukti}}</td>
           <td align="left">{{$value->nama_pekerjaan}}</td>
           <td></td>
           <td align="right">{{ number_format($value->jumlah_dibayar,0) }}</td>

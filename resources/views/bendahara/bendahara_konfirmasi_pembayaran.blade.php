@@ -28,6 +28,17 @@
 <div class="table-responsive-vertical shadow-z-1">
 <!-- Table starts here -->
 <table id="table" border="0" class="table table-hover table-mc-light-blue" style="td:left">
+  <?php
+  $temp = $ketetapanPajak->wajib_pajak->npwp;
+  $npwp = substr($temp, 0, 2).".".substr($temp, 2, 3).".".substr($temp, 5, 3).".".substr($temp, 8, 1)."-".substr($temp, 9, 3).".".substr($temp, 12, 3);
+
+  ?>
+  <tr align="left">
+    <td>Nomor Pembayaran</td>
+    <td>:</td>
+    <td>{{ sprintf('%04d', $nomor) }}</td>
+
+  </tr>
   <tr align="left">
     <td>Wajib Pajak</td>
     <td>:</td>
@@ -37,7 +48,7 @@
   <tr align="left">
     <td>NPWP</td>
     <td>:</td>
-    <td>{{ $ketetapanPajak->wajib_pajak->npwp }}</td>
+    <td>{{ $npwp }}</td>
 
   </tr>
   <tr align="left">
@@ -93,6 +104,8 @@
 
   <form  action="{{url('bendahara/dataPajak/prosesPembayaran')}}" method="post">
     <input type="hidden" name="id" value="{{$ketetapanPajak->id}}">
+    <input type="hidden" name="nomor" value="{{$nomor}}">
+    <input type="hidden" name="nomor_bukti" value="{{$nomor_bukti}}">
     <input type="text" name="jumlah_dibayar"><br><br>
     <button type="submit" class="btn btn-warning" name="button">Bayar</button>
   </form>

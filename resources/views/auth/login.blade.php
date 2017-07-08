@@ -5,12 +5,19 @@
 <div class="banner">
 
 <div class="agileinfo-dot" style="
-    background: url(images/background.jpg);background-size:cover;">
+    background: background-size:cover;
+    background-color: lightseagreen;
+    ">
 
 	<div class="container" style="margin-top:50px;">
 	<div class="pull-left">
 		<img src="{{asset('images/logo2.png')}}" width="100" class="img-responsive">
-		<span class="yellow font-small">Kabupaten Kerinci</span>
+		<span class=" font-small">Kabupaten Kerinci</span>
+	</div>
+
+  <div class="pull-right">
+		<img src="{{asset('img/logo.png')}}" width="200" class="img-responsive">
+		<span class=" font-small">Kabupaten Kerinci</span>
 	</div>
 
 
@@ -47,7 +54,8 @@
 
 
 	<div class="w3footeragile">
-		<p class="yellow"> &copy; 2017 Sistem Informasi Pajak | Dinas Pendapatan, Pengelolaan Keuangan dan Aset Kabupaten Kerinci</p>
+    <span class=" font-big">&copy; 2017 Sistem Informasi Pajak | Dinas Pendapatan, Pengelolaan Keuangan dan Aset Kabupaten Kerinci</span>
+		<p class="blue"> </p>
 	</div>
 	</div>
 </div>

@@ -23,7 +23,12 @@ class VerifikatorController extends Controller
       return view('verifikator/verifikator_dashboard');
     }
     public function verifikasiKetetapanPajak(){
-      $data['itemKetetapanPajak']=ItemKetetapanPajak::join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')->whereIn('status_verifikasi',[1,2])->get();
+      $data['itemKetetapanPajak']=ItemKetetapanPajak::
+      join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
+      ->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
+      ->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')
+      ->whereIn('status_verifikasi',[1,2])->orderBy('ketetapan_pajak.id', 'desc')
+                ->get();
 
       $data['arr_id'] = array();
       foreach ($data['itemKetetapanPajak'] as $key => $value) {

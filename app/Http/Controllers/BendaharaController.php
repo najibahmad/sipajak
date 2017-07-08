@@ -42,7 +42,8 @@ class BendaharaController extends Controller
         ->groupBy('ketetapan_pajak.id','wajib_pajak.nama',
                   'wajib_pajak.npwp','jenis_pajak.jenis','ketetapan_pajak.nama_pekerjaan',
                   'ketetapan_pajak.jatuh_tempo','item_ketetapan_pajak.status_pembayaran','ketetapan_pajak.tgl_pembayaran')
-        ->where('item_ketetapan_pajak.status_verifikasi',2)->get();
+        ->where('item_ketetapan_pajak.status_verifikasi',2)->orderBy('ketetapan_pajak.id', 'desc')
+                  ->get();
 
         //dd($data['ketetapanPajak']);
 
@@ -146,11 +147,9 @@ class BendaharaController extends Controller
       $data['ketetapanPajak']=KetetapanPajak::findOrFail($data['id']);
       $data['terbilang']=$this->terbilang($data['jumlah']->jumlah);
       $data['tgl_hari_ini'] = $this->tgl_hari_ini();
-      $data['tgl_pembayaran'] = KetetapanPajak::
-        join('item_ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
-        ->select('item_ketetapan_pajak.tgl_pembayaran')
+      $data['tgl_pembayaran'] = KetetapanPajak::select('tgl_pembayaran')
         ->where('ketetapan_pajak.id',$data['id'])->first();
-      $data['tgl_pembayaran'] = $this->tgl_indo($data['tgl_pembayaran']->tgl_pembayaran);
+      $data['tgl_pembayaran'] = $this->tgl_indo2($data['tgl_pembayaran']->tgl_pembayaran);
       //dd($data['ketetapanPajak']->item_ketetapan_pajak);
       //untuk pdf
 

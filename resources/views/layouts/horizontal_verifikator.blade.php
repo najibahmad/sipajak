@@ -22,6 +22,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
+    <!-- DATATABLE STYLE  -->
+    <link href="{{url($default_url.'js/dataTables/dataTables.bootstrap.css')}}" rel="stylesheet" />
+
     <!-- Custom Fonts -->
     <link href="{{URL($default_url.'font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
@@ -86,13 +89,13 @@
         </div>
     </section>
       <!-- FOOTER SECTION END-->
-    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- jQuery -->
-    <script src="{{URL($default_url.'js/jquery.min.js')}}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{URL($default_url.'js/bootstrap.min.js')}}"></script>
-
+    <script src="{{url($default_url.'js/dataTables/jquery.dataTables.js')}}"></script>
+    <script src="{{url($default_url.'js/dataTables/dataTables.bootstrap.js')}}"></script>
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{{URL($default_url.'metisMenu/metisMenu.min.js')}}"></script>
       <!-- CUSTOM SCRIPTS  -->

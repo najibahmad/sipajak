@@ -23,7 +23,7 @@
         <form action="{{URL('admin/rekening/tambahRekening')}}" method="post">
           <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Rekening Penerimaan</button>
         </form><hr>
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
             <thead>
               <tr>
                 <th>No.</th>

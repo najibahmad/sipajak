@@ -22,7 +22,7 @@
         <form action="{{URL('operator/wajibPajak/tambahWajibPajak')}}" method="post">
           <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Wajib Pajak</button>
         </form><hr>
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
             <thead>
               <tr>
                 <th>No.</th>

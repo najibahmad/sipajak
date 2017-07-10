@@ -22,7 +22,7 @@
         <form action="{{URL('admin/pajak/tambahJenisPajak')}}" method="post">
           <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Jenis Pajak</button>
         </form><hr>
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
             <thead>
               <tr>
                 <th>No.</th>

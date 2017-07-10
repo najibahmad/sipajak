@@ -25,6 +25,9 @@
     <!-- w3 css -->
     <link rel="stylesheet" type="text/css" href="{{URL($default_url.'css/w3.css')}}">
 
+    <!-- DATATABLE STYLE  -->
+    <link href="{{url($default_url.'js/dataTables/dataTables.bootstrap.css')}}" rel="stylesheet" />
+
     <!-- Custom Fonts -->
     <link href="{{URL($default_url.'font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
@@ -118,12 +121,15 @@
         });
     </script>
 
+    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+
+    <script src="{{url($default_url.'js/dataTables/jquery.dataTables.js')}}"></script>
+    <script src="{{url($default_url.'js/dataTables/dataTables.bootstrap.js')}}"></script>
+
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{{URL($default_url.'metisMenu/metisMenu.min.js')}}"></script>
       <!-- CUSTOM SCRIPTS  -->
     <script src="{{url('js/custom.js')}}"></script>
-    <script src="{{url($default_url.'js/jquery.js')}}" type="text/javascript"></script>
-    <script src="{{url($default_url.'js/jquery.maskedinput.js')}}" type="text/javascript"></script>
 
     @yield('script')
 </body>

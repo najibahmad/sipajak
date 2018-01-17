@@ -26,17 +26,22 @@
     <hr>
     <div class="row">
       <div class="col-lg-12">
-        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+        <table id="example" class="display" width="100%">
+        </table>
+
+
+        <table class="table table-striped table-bordered table-hover" id="">
             <thead>
               <tr>
                 <th>No.</th>
                 <th>Nama Pekerjaan</th>
                 <th>Nama Item</th>
-                <th>No NPWP</th>
+                <th style="min-width:180px;">No NPWP</th>
                 <th>Jenis Pajak</th>
                 <th>Jumlah</th>
                 <th>Tanggal</th>
-                <th>Action</th>
+                <th style="min-width:150px;">Action</th>
                 <th>Kirim ke Verifikator</th>
               </tr>
             </thead>
@@ -89,6 +94,8 @@
               @endforeach
             </tbody>
           </table>
+
+          {{ $itemKetetapanPajak->links() }}
       </div>
     </div>
 

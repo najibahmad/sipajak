@@ -71,17 +71,22 @@ class OperatorController extends Controller
     }
     public function ketetapanPajak(){
       // $data['ketetapanPajak']=WajibPajak::join('ketetapan_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')->get();
+
       $data['itemKetetapanPajak']=
           ItemKetetapanPajak::join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
                 ->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
                 ->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')
                 ->whereIn('status_verifikasi',[1,0])
-                ->select('ketetapan_pajak.*','wajib_pajak.*','jenis_pajak.*','item_ketetapan_pajak.*','item_ketetapan_pajak.id as idikp')->get();
+                ->select('ketetapan_pajak.*','wajib_pajak.*','jenis_pajak.*','item_ketetapan_pajak.*','item_ketetapan_pajak.id as idikp')
+                ->orderBy('item_ketetapan_pajak.id','desc')
+                ->paginate(10);
                               //dd($data);
       $data['arr_id'] = array();
       foreach ($data['itemKetetapanPajak'] as $key => $value) {
         $data['arr_id'][] = $value->ketetapan_pajak_id;
       }
+
+
       return view('operator/operator_ketetapan_pajak',$data);
     }
     public function tambahKetetapanPajak(){

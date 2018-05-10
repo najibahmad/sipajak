@@ -75,6 +75,10 @@
                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('admin/tahun')}}">TAHUN</a></li>
                                 </ul>
                             </li>
+
+                            <li><a href="{{url('admin/wajibPajak')}}"> WAJIB PAJAK</a></li>
+                            <li><a href="{{url('admin/ketetapanPajak')}}"> KETETAPAN PAJAK</a></li>
+
                             <li><a href="{{url('admin/pwd')}}">PASSWORD</a></li>
                         </ul>
                     </div>
@@ -92,7 +96,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                   &copy; 2017 Sistem Informasi Pajak | Dinas Pendapatan, Pengelolaan Keuangan dan Aset Kabupaten Kerinci
+                   &copy; 2017 Sistem Informasi Pajak | Badan Pengelola Pajak dan Retribusi Daerah Kabupaten Kerinci
                 </div>
 
             </div>
@@ -113,6 +117,17 @@
     <script src="{{URL($default_url.'metisMenu/metisMenu.min.js')}}"></script>
       <!-- CUSTOM SCRIPTS  -->
     <script src="{{url('js/custom.js')}}"></script>
+    <script src="{{url($default_url.'js/bootstrap-datepicker.js')}}" charset="utf-8"></script>
+    <script src="{{url($default_url.'locales/bootstrap-datepicker.id.min.js')}}" charset="utf-8"></script>
+
+    <script>
+        $(document).ready(function(){
+          $('.datepicker').datepicker({
+              language: 'id',
+              format:'yyyy-mm-dd'
+          });
+        });
+    </script>
     @yield('script')
 </body>
 </html>

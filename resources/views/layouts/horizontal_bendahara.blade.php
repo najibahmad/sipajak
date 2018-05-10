@@ -71,6 +71,8 @@
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a href="{{url('bendahara')}}" >DASHBOARD</a></li>
+                            
+                            <!-- BENDAHARA -->
                             <li><a href="{{url('bendahara/dataPajak')}}">DATA PAJAK</a></li>
                             <li>
                                 <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">LAPORAN <i class="fa fa-angle-down"></i></a>
@@ -80,6 +82,16 @@
 
                                 </ul>
                             </li>
+                            <!-- BENDAHARA -->
+
+                            <!-- VERIFIKATOR -->
+                            <li><a href="{{url('bendahara/verifikasiKetetapanPajak')}}">VERIFIKASI DATA </a></li>
+                            <!-- VERIFIKATOR -->
+
+                            <!-- OPERATOR -->
+                            <li><a href="{{url('bendahara/wajibPajak')}}"> WAJIB PAJAK</a></li>
+                            <li><a href="{{url('bendahara/ketetapanPajak')}}"> KETETAPAN PAJAK</a></li>
+                            <!-- OPERATOR -->
                             
                             <li><a href="{{url('bendahara/pwd')}}">PASSWORD</a></li>
                         </ul>
@@ -98,7 +110,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                   &copy; 2017 Sistem Informasi Pajak | Dinas Pendapatan, Pengelolaan Keuangan dan Aset Kabupaten Kerinci
+                   &copy; 2017 Sistem Informasi Pajak | Badan Pengelola Pajak dan Retribusi Daerah Kabupaten Kerinci
                 </div>
 
             </div>

@@ -1,4 +1,4 @@
-@extends('layouts/horizontal_operator')
+@extends('layouts/horizontal_bendahara')
 @section('title','Control Panel')
 @section('dashboard-active',"class=active")
 @section('content')
@@ -7,22 +7,22 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Ketetapan Pajak
+                Data Ketetapan Pajak
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <i class="fa fa-dashboard"></i> <a href="{{url('admin/dashboard')}}">Beranda</a>
+                    <i class="fa fa-dashboard"></i> <a href="{{url('/')}}">Beranda</a>
                 </li>
             </ol>
         </div>
     </div>
-    <form action="{{URL('operator/ketetapanPajak/tambahKetetapanPajak')}}" method="post">
+    <!-- <form action="{{URL('operator/ketetapanPajak/tambahKetetapanPajak')}}" method="post">
       <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Ketetapan Pajak</button>
-    </form><hr>
-      <div class="form-group">
-        <label for="cariNPWP">Search NPWD</label>
-          <input type="text" class="form-control" name="npwp" placeholder="Search NPWD" id="getDataKetetapanPajak">
-      </div>
+    </form> -->
+      <!-- <div class="form-group">
+        <label for="cariNPWP">Search NPWP</label>
+          <input type="text" class="form-control" name="npwp" placeholder="Search NPWP" id="getDataKetetapanPajak">
+      </div> -->
     <hr>
     <div class="row">
       <div class="col-lg-12">
@@ -62,14 +62,14 @@
                   <td>{{$ini->volume}}</td>
                   <td>{{$ini->created_at}}</td>
                   <td>
-                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editKetetapanPajak.{{$ini->id}}').submit();">Edit</button>
-                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusKetetapanPajak.{{$ini->id}}').submit();">Delete</button>
-                    <form id="editKetetapanPajak.{{$ini->id}}" action="{{URL('operator/ketetapanPajak/editKetetapanPajak')}}" method="post">
+                    <!-- <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editKetetapanPajak').submit();">Edit</button>
+                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusKetetapanPajak').submit();">Delete</button>
+                    <form id="editKetetapanPajak" action="{{URL('operator/ketetapanPajak/editKetetapanPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
                     </form>
-                    <form id="hapusKetetapanPajak.{{$ini->id}}" action="{{URL('operator/ketetapanPajak/hapusKetetapanPajak')}}" method="post">
+                    <form id="hapusKetetapanPajak" action="{{URL('operator/ketetapanPajak/hapusKetetapanPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
-                    </form>
+                    </form> -->
                   </td>
                   <?php if($id != $ini->ketetapan_pajak->id){
 
@@ -78,12 +78,9 @@
                     ?>
                   <td style="vertical-align:middle;text-align:center;"  rowspan="{{$rows}}">
                       @if ($ini->status_verifikasi==0)
-                        <form class="" action="{{url('operator/ketetapanPajak/statusVerifikasi')}}" method="post">
-                          <input type="hidden" name="id" value="{{$ini->ketetapan_pajak->id}}">
-                          <button type="submit" class="btn btn-success" name="button">Kirim</button>
-                        </form>
+                        <h5 style="color: red;">Request unsent</h5>
                       @elseif($ini->status_verifikasi==1)
-                        <h5>Request Sent</h5>
+                        <h5 style="color: green;">Request Sent</h5>
                       @endif
                   </td>
                   <?php }

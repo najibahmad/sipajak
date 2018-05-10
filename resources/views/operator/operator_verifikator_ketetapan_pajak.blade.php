@@ -1,4 +1,4 @@
-@extends('layouts/horizontal_verifikator')
+@extends('layouts/horizontal_operator')
 @section('content')
   <div class="container">
 
@@ -14,17 +14,17 @@
             </ol>
         </div>
     </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <div class="col-md-1">
-        <label for="cariNPWP"> NPWD</label>
+        <label for="cariNPWP"> NPWP</label>
         </div>
 
         <div class="col-md-4">
-          <input type="text" class="form-control" name="npwp" placeholder="Search NPWD" id="livesearch" list="datalist">
+          <input type="text" class="form-control" name="npwp" placeholder="Search NPWP" id="livesearch" list="datalist">
         </div>
         <br>
           <datalist id="datalist"></datalist>
-      </div>
+      </div> -->
     <hr>
     <div class="row">
       <div class="col-lg-12">
@@ -33,7 +33,7 @@
               <tr>
                 <th>No.</th>
                 <th>Nama</th>
-                <th>No NPWD</th>
+                <th>No NPWP</th>
                 <th>Jenis Pajak</th>
                 <th>Jumlah</th>
                 <th>Tanggal</th>
@@ -58,12 +58,9 @@
                     ?> -->
                   <td style="vertical-align:middle;text-align:center;" >
                       @if ($ini->status_verifikasi==1)
-                        <form class="" action="{{url('verifikator/verifikasiKetetapanPajak/statusVerifikasi')}}" method="post">
-                          <input type="hidden" name="id" value="{{$ini->ketetapan_pajak_id}}">
-                          <button type="submit" class="btn btn-success" name="button">Verify</button>
-                        </form>
+                        <h5 style="color: red">Belum Diverifikasi</h5>
                       @elseif($ini->status_verifikasi==2)
-                        <h3>Verified</h3>
+                        <h5 style="color: green">Sudah Diverifikasi</h5>
                       @endif
                   </td>
                   <?php }

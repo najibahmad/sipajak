@@ -362,4 +362,48 @@ class BendaharaController extends Controller
 
     }
 
+    public function verifikasiKetetapanPajak(){
+      $data['itemKetetapanPajak']=ItemKetetapanPajak::
+      join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
+      ->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
+      ->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')
+      ->whereIn('status_verifikasi',[1,2])->orderBy('ketetapan_pajak.id', 'desc')
+                ->get();
+
+      $data['arr_id'] = array();
+      foreach ($data['itemKetetapanPajak'] as $key => $value) {
+        $data['arr_id'][] = $value->ketetapan_pajak_id;
+      }
+
+      return view('bendahara/bendahara_ketetapan_pajak',$data);
+    }
+
+    public function wajibPajak(){
+      $data['data']=WajibPajak::join('desa','desa.id','=','wajib_pajak.desa_id')->join('kecamatan','desa.kecamatan_id','=','kecamatan.id')->select('wajib_pajak.*','kecamatan.*','desa.*','wajib_pajak.id as id')->get();
+
+      // return $data;
+      return view('bendahara/bendahara_operator_wajib_pajak',$data);
+    }
+
+     public function ketetapanPajak(){
+      // $data['ketetapanPajak']=WajibPajak::join('ketetapan_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')->get();
+
+      $data['itemKetetapanPajak']=
+          ItemKetetapanPajak::join('ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
+                ->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
+                ->join('jenis_pajak','ketetapan_pajak.jenis_pajak_id','jenis_pajak.id')
+                ->whereIn('status_verifikasi',[1,0])
+                ->select('ketetapan_pajak.*','wajib_pajak.*','jenis_pajak.*','item_ketetapan_pajak.*','item_ketetapan_pajak.id as idikp')
+                ->orderBy('item_ketetapan_pajak.id','desc')
+                ->paginate(10);
+                              //dd($data);
+      $data['arr_id'] = array();
+      foreach ($data['itemKetetapanPajak'] as $key => $value) {
+        $data['arr_id'][] = $value->ketetapan_pajak_id;
+      }
+
+
+      return view('bendahara/bendahara_operator_ketetapan_pajak',$data);
+    }
+
 }

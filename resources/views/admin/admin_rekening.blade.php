@@ -29,6 +29,7 @@
                 <th>No.</th>
                 <th>Nomor Rekening</th>
                 <th>Uraian</th>
+                <th>Jenis Pekerjaan</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -39,6 +40,7 @@
                   <td>{{$no+1}}</td>
                   <td>{{$ini->nomor_rekening}}</td>
                   <td>{{$ini->uraian}}</td>
+                  <td>{{$ini->jenis_pajak->jenis}}</td>
                   <td>
                     <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editRekening.{{$ini->id}}').submit();">Edit</button>
                     <button type="submit" name="button" class="btn btn-danger" ck="event.preventDefault();document.getElementById('hapusRekening.{{$ini->id}}').submit();">Delete</button>

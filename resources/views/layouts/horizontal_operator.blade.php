@@ -72,6 +72,23 @@
                             <li><a href="{{url('operator')}}" >DASHBOARD</a></li>
                             <li><a href="{{url('operator/wajibPajak')}}">INPUT WAJIB PAJAK</a></li>
                             <li><a href="{{url('operator/ketetapanPajak')}}">INPUT KETETAPAN PAJAK</a></li>
+
+                            <!-- BENDAHARA -->
+                            <li><a href="{{url('operator/dataPajak')}}">DATA PAJAK</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">LAPORAN <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('operator/laporan')}}">LAPORAN PEMBAYARAN PAJAK</a></li>
+                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('operator/laporan_setoran')}}">LAPORAN SETORAN BANK</a></li>
+
+                                </ul>
+                            </li>
+                            <!-- BENDAHARA -->
+
+                            <!-- VERIFIKATOR -->
+                            <li><a href="{{url('operator/verifikasiKetetapanPajak')}}">VERIFIKASI DATA </a></li>
+                            <!-- VERIFIKATOR -->
+
                             <li><a href="{{url('operator/pwd')}}">PASSWORD</a></li>
                         </ul>
                     </div>
@@ -89,7 +106,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                   &copy; 2017 Sistem Informasi Pajak | Dinas Pendapatan, Pengelolaan Keuangan dan Aset Kabupaten Kerinci
+                   &copy; 2017 Sistem Informasi Pajak | Badan Pengelola Pajak dan Retribusi Daerah Kabupaten Kerinci
                 </div>
 
             </div>

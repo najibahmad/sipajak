@@ -1,4 +1,4 @@
-@extends('layouts/horizontal_operator')
+@extends('layouts/horizontal_admin')
 @section('title','Control Panel')
 @section('dashboard-active',"class=active")
 @section('content')
@@ -16,13 +16,13 @@
             </ol>
         </div>
     </div>
-    <form action="{{URL('operator/ketetapanPajak/tambahKetetapanPajak')}}" method="post">
+    <form action="{{URL('admin/ketetapanPajak/tambahKetetapanPajak')}}" method="post">
       <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Ketetapan Pajak</button>
     </form><hr>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="cariNPWP">Search NPWD</label>
           <input type="text" class="form-control" name="npwp" placeholder="Search NPWD" id="getDataKetetapanPajak">
-      </div>
+      </div> -->
     <hr>
     <div class="row">
       <div class="col-lg-12">
@@ -64,10 +64,10 @@
                   <td>
                     <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editKetetapanPajak.{{$ini->id}}').submit();">Edit</button>
                     <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusKetetapanPajak.{{$ini->id}}').submit();">Delete</button>
-                    <form id="editKetetapanPajak.{{$ini->id}}" action="{{URL('operator/ketetapanPajak/editKetetapanPajak')}}" method="post">
+                    <form id="editKetetapanPajak.{{$ini->id}}" action="{{URL('admin/ketetapanPajak/editKetetapanPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
                     </form>
-                    <form id="hapusKetetapanPajak.{{$ini->id}}" action="{{URL('operator/ketetapanPajak/hapusKetetapanPajak')}}" method="post">
+                    <form id="hapusKetetapanPajak.{{$ini->id}}" action="{{URL('admin/ketetapanPajak/hapusKetetapanPajak')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->id}}">
                     </form>
                   </td>
@@ -78,7 +78,7 @@
                     ?>
                   <td style="vertical-align:middle;text-align:center;"  rowspan="{{$rows}}">
                       @if ($ini->status_verifikasi==0)
-                        <form class="" action="{{url('operator/ketetapanPajak/statusVerifikasi')}}" method="post">
+                        <form class="" action="{{url('admin/ketetapanPajak/statusVerifikasi')}}" method="post">
                           <input type="hidden" name="id" value="{{$ini->ketetapan_pajak->id}}">
                           <button type="submit" class="btn btn-success" name="button">Kirim</button>
                         </form>
@@ -108,14 +108,14 @@
       $('#getDataKetetapanPajak').keyup(function(){
         var data = $(this).val();
         // console.log(data);
-        $.post("{{url('operator/ketetapanPajak/getDataKetetapanPajak')}}",{npwp:data},function(result){
+        $.post("{{url('admin/ketetapanPajak/getDataKetetapanPajak')}}",{npwp:data},function(result){
         console.log(result);
         $('#dataKetetapanPajak').html("");
         $.each(result,function(i,item){
           i=i+1;
           if (this.status_verifikasi==0) {
             var html =
-            "<form method=post action={{url('operator/ketetapanPajak/statusVerifikasi')}}>\
+            "<form method=post action={{url('admin/ketetapanPajak/statusVerifikasi')}}>\
             <input type=hidden name=id value="+this.ketetapan_pajak_id+">\
             <button type=submit class='btn btn-success'>Verify</button>\
             </form>";
@@ -137,10 +137,10 @@
             <td>\
             <button type=submit class='btn btn-warning' onclick=event.preventDefault();document.getElementById('editKetetapanPajak').submit(); >Edit</button>\
             <button type=submit class='btn btn-danger' onclick=event.preventDefault();document.getElementById('hapusKetetapanPajak').submit(); >Delete</button>\
-            <form id=editKetetapanPajak action={{url('operator/ketetapanPajak/editKetetapanPajak')}} method=post>\
+            <form id=editKetetapanPajak action={{url('admin/ketetapanPajak/editKetetapanPajak')}} method=post>\
               <input type=hidden name=id value="+this.id+">\
             </form>\
-            <form id=hapusKetetapanPajak action={{url('operator/ketetapanPajak/hapusKetetapanPajak')}} method=post>\
+            <form id=hapusKetetapanPajak action={{url('admin/ketetapanPajak/hapusKetetapanPajak')}} method=post>\
               <input type=hidden name=id value="+this.id+">\
             </form>\
             </td>\

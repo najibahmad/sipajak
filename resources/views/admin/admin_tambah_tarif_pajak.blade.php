@@ -61,10 +61,13 @@
         <label class="control-label col-sm-2" for="tahun">Tahun</label>
         <div class="col-sm-1">
             <select class="form-control" name="tahun">
-              <option>2017</option>
-              <option>2016</option>
-              <option>2015</option>
-              <option>2014</option>
+              @for ($i = 0; $i < count($tahun); $i++)
+                @if (isset($edit) && $edit->tahun == $tahun[$i])
+                  <option value="{{$tahun[$i]}}" selected>{{$tahun[$i]}}</option>  
+                @endif
+                <option value="{{$tahun[$i]}}">{{$tahun[$i]}}</option>
+              @endfor
+              
             </select>
         </div>
       </div>

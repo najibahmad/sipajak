@@ -114,11 +114,7 @@ animation-duration:2s; -webkit-animation-duration:2s; -moz-animation-duration:2s
         <div class="container">
             <div id="myCarousel" class="carousel slide">
                 <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                 </ol>
+                
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
@@ -126,53 +122,21 @@ animation-duration:2s; -webkit-animation-duration:2s; -moz-animation-duration:2s
                         <div class="fill" style=" background-color:#48c3af;">
                             <div class="inner-content">
                                 <div class="carousel-img">
-                                    <img src="{{url('images/logo_1.png')}}" alt="sofa" class="img img-responsive" />
+                                  <br><br>
+                                    <img src="{{url('img/logo.png')}}" alt="sofa" class="img img-responsive" />
                                 </div>
-                                <div class="carousel-desc">
+                                <div class="carousel-desc" style="padding: 100px;">
 
                                     <h2>Selamat Datang di halaman Administrator</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis elit ipsum, scelerisque non semper eu, aliquet vel odio. Sed auctor id purus nec tristique. Donec euismod, urna vel dapibus tristique, dolor arcu ultrices lectus, nec pulvinar est turpis sit amet felis. Duis interdum purus quam, vitae cursus erat ornare at. Donec congue mi a ipsum tincidunt, imperdiet vehicula odio rutrum. Nam porta vulputate magna, id pretium lectus iaculis eu. Ut ut viverra libero.</p>
+                                    <p>Badan Pengelola Pajak dan Retribusi Daerah <br>Kabupaten Kerinci </p>
+                                    <br><br>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="item item2">
-                        <div class="fill" style="background-color:#b33f4a;">
-                            <div class="inner-content">
-                                <div class="carousel-img">
-                                    <img src="{{url('images/logo_1.png')}}" alt="white-sofa" class="img img-responsive" />
-                                </div>
-                                <div class="carousel-desc">
-
-                                    <h2>Tentang Administrator</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis elit ipsum, scelerisque non semper eu, aliquet vel odio. Sed auctor id purus nec tristique. Donec euismod, urna vel dapibus tristique, dolor arcu ultrices lectus, nec pulvinar est turpis sit amet felis. Duis interdum purus quam, vitae cursus erat ornare at. Donec congue mi a ipsum tincidunt, imperdiet vehicula odio rutrum. Nam porta vulputate magna, id pretium lectus iaculis eu. Ut ut viverra libero.</p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item item3">
-                        <div class="fill" style="background-color:#7fc2f4;">
-                            <div class="inner-content">
-                                <div class="col-md-6">
-
-                                    <div class="carousel-img">
-                                        <img src="{{url('images/logo_1.png')}}" alt="sofa" class="img img-responsive" />
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 text-left">
-                                    <div class="carousel-desc">
-
-                                        <h2>How to ?</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis elit ipsum, scelerisque non semper eu, aliquet vel odio. Sed auctor id purus nec tristique. Donec euismod, urna vel dapibus tristique, dolor arcu ultrices lectus, nec pulvinar est turpis sit amet felis. Duis interdum purus quam, vitae cursus erat ornare at. Donec congue mi a ipsum tincidunt, imperdiet vehicula odio rutrum. Nam porta vulputate magna, id pretium lectus iaculis eu. Ut ut viverra libero.</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    
 
                 </div>
             </div>

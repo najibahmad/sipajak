@@ -1,4 +1,4 @@
-@extends('layouts/horizontal_bendahara')
+@extends('layouts/horizontal_operator')
 @section('content')
   <div class="container">
 
@@ -14,11 +14,11 @@
             </ol>
         </div>
     </div>
-      <div class="form-group">
-        <label for="cariNPWP">Search NPWD</label>
+      <!-- <div class="form-group">
+        <label for="cariNPWP">Search NPWP</label>
           <input type="text" class="form-control" name="npwp" id="livesearch" list="datalist">
           <datalist id="datalist"></datalist>
-      </div>
+      </div> -->
     <hr>
     <div class="row">
       <div class="col-lg-12">
@@ -61,10 +61,7 @@
                   <td>{{$ini->tgl_pembayaran}}</td>
                   <td>
                       @if ($ini->status_pembayaran==0)
-                        <form  action="{{url('bendahara/dataPajak/statusPembayaran')}}" method="post">
-                          <input type="hidden" name="id" value="{{$ini->id_ketetapan}}">
-                          <button type="submit" class="btn btn-warning" name="button">Bayar</button>
-                        </form>
+                        <h5>Belum Membayar</h5>
                       @elseif($ini->status_pembayaran==1)
                         <h5>Sudah Membayar</h5>
                       @endif

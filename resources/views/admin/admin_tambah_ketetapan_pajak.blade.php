@@ -1,4 +1,4 @@
-@extends('layouts/horizontal_operator')
+@extends('layouts/horizontal_admin')
 @section('title','Control Panel')
 @section('dashboard-active',"class=active")
 @section('content')
@@ -17,10 +17,10 @@
         </div>
     </div>
 
-    <a href="{{URL('operator/ketetapanPajak')}}"><button type="button" class="btn btn-default" name="button">Back</button></a>
+    <a href="{{URL('admin/ketetapanPajak')}}"><button type="button" class="btn btn-default" name="button">Back</button></a>
     <hr>
     <!-- /.row -->
-    <form action="{{URL('operator/ketetapanPajak/insertKetetapanPajak')}}" role="form" method="post">
+    <form action="{{URL('admin/ketetapanPajak/insertKetetapanPajak')}}" role="form" method="post">
       <div class="form-horizontal">
         <div class="form-group">
           <label class="control-label col-sm-2" for="bulan">Bulan</label>
@@ -120,7 +120,6 @@
                 <option value="{{$ini->id}}">{{$ini->nomor_rekening}} - {{$ini->uraian}} - {{$ini->jenis_pajak->jenis}}</option>
                 @endforeach
               @endif
-
 
             </select>
           </div>
@@ -222,7 +221,7 @@
 
       $('#livesearch').keyup(function(){
         var data=$(this).val();
-        $.post("{{url('operator/wajibPajak/getNPWP')}}",{npwp:data},function(result){
+        $.post("{{url('admin/wajibPajak/getNPWP')}}",{npwp:data},function(result){
           console.log(result);
           $('#datalist').html("");
           $.each(result,function(i, item){
@@ -235,7 +234,7 @@
 
       @if (isset($id))
       var data = {{$edit->npwp}};
-      $.post("{{url('operator/wajibPajak/getDataWajibPajak')}}",{npwp:data},function(result){
+      $.post("{{url('admin/wajibPajak/getDataWajibPajak')}}",{npwp:data},function(result){
         console.log(result);
         $("#nama").attr("value",result.nama);
         $("#alamat").attr("value",result.alamat);
@@ -243,10 +242,10 @@
         $("#wajibPajakId").attr("value",result.id);
       },"json");
 
-          $.post("{{url('operator/ketetapanPajak/getEditData')}}",{id:$("#updateId").val()},function(data){
+          $.post("{{url('admin/ketetapanPajak/getEditData')}}",{id:$("#updateId").val()},function(data){
             console.log(data);
             $('#itemKetetapanPajak').html(
-               '<tr>\
+              '<tr>\
               <td>1</td>\
               <td><input type=text class=form-control name=namaItem value="'+data.nama_item+'"></td>\
               <td><input type=text class=form-control name=volume value="'+data.volume+'"></td>\
@@ -260,7 +259,7 @@
       $('#livesearch').change(function(){
 
         var data=$(this).val();
-        $.post("{{url('operator/wajibPajak/getDataWajibPajak')}}",{npwp:data},function(result){
+        $.post("{{url('admin/wajibPajak/getDataWajibPajak')}}",{npwp:data},function(result){
           console.log(result);
           $("#nama").attr("value",result.nama);
           $("#alamat").attr("value",result.alamat);
@@ -270,7 +269,7 @@
 
         if(($("#updateId").length > 0)){
           console.log('ada id');
-          $.post("{{url('operator/ketetapanPajak/getEditData')}}",{id:$("#updateId").val()},function(data){
+          $.post("{{url('admin/ketetapanPajak/getEditData')}}",{id:$("#updateId").val()},function(data){
             console.log(data);
             $('#itemKetetapanPajak').html(
               '<tr>\

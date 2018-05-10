@@ -65,6 +65,25 @@
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a href="{{url('verifikator')}}" >DASHBOARD</a></li>
                             <li><a href="{{url('verifikator/verifikasiKetetapanPajak')}}">VERIFIKASI DATA KETETAPAN PAJAK</a></li>
+
+                            <!-- OPERATOR -->
+                            <li><a href="{{url('verifikator/wajibPajak')}}">WAJIB PAJAK</a></li>
+                            <li><a href="{{url('verifikator/ketetapanPajak')}}">KETETAPAN PAJAK</a></li>
+                            <!-- OPERATOR -->
+
+                            <!-- BENDAHARA -->
+                            <li><a href="{{url('verifikator/dataPajak')}}">DATA PAJAK</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">LAPORAN <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('verifikator/laporan')}}">LAPORAN PEMBAYARAN PAJAK</a></li>
+                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('verifikator/laporan_setoran')}}">LAPORAN SETORAN BANK</a></li>
+
+                                </ul>
+                            </li>
+                            <!-- BENDAHARA -->
+
+
                             <li><a href="{{url('verifikator/pwd')}}">PASSWORD</a></li>
                         </ul>
                     </div>
@@ -82,7 +101,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                   &copy; 2017 Sistem Informasi Pajak | Dinas Pendapatan, Pengelolaan Keuangan dan Aset Kabupaten Kerinci
+                   &copy; 2017 Sistem Informasi Pajak | Badan Pengelola Pajak dan Retribusi Daerah Kabupaten Kerinci
                 </div>
 
             </div>
@@ -100,6 +119,16 @@
     <script src="{{URL($default_url.'metisMenu/metisMenu.min.js')}}"></script>
       <!-- CUSTOM SCRIPTS  -->
     <script src="{{url('js/custom.js')}}"></script>
+    <script src="{{url($default_url.'js/bootstrap-datepicker.js')}}" charset="utf-8"></script>
+      <script src="{{url($default_url.'locales/bootstrap-datepicker.id.min.js')}}" charset="utf-8"></script>
+      <script>
+          $(document).ready(function(){
+            $('.datepicker').datepicker({
+                language: 'id',
+                format:'yyyy-mm-dd'
+            });
+          });
+      </script>
     @yield('script')
 </body>
 </html>

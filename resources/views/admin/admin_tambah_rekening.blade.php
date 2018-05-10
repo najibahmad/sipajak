@@ -40,6 +40,28 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="control-label col-sm-2" for="jenis_pajak">Jenis Pajak</label>
+        <div class="col-sm-4">
+          <select class="form-control" id="jenis_pajak" name="jenis_pajak_id">
+            <option>Silahkan pilih Jenis Pajak</option>
+
+            @if (isset($edit))
+            @foreach ($jenis_pajak as $no => $ini)
+              @if($ini->id == $edit->jenis_pajak_id)
+                <option value="{{$ini->id}}" selected>{{$ini->jenis}}</option>
+              @else
+                <option value="{{$ini->id}}">{{$ini->jenis}}</option>
+              @endif
+            @endforeach
+            @else
+            @foreach ($jenis_pajak as $no => $ini)
+                <option value="{{$ini->id}}">{{$ini->jenis}}</option>
+            @endforeach
+            @endif
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         @if (isset($id))
           <input type="hidden" name="id" value="{{$id}}" class="form-control">

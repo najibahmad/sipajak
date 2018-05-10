@@ -82,7 +82,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                   &copy; 2017 Sistem Informasi Pajak | Dinas Pendapatan, Pengelolaan Keuangan dan Aset Kabupaten Kerinci
+                   &copy; 2017 Sistem Informasi Pajak | Badan Pengelola Pajak dan Retribusi Daerah Kabupaten Kerinci
                 </div>
 
             </div>

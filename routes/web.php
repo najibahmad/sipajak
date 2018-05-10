@@ -112,6 +112,30 @@ Route::group(['middleware'=>'role:1'],function(){
     Route::group(['prefix'=>'pwd'],function(){
       Route::post('updatePwd','AdminController@updatePwd');
     });
+
+
+    Route::get('wajibPajak','AdminController@wajibPajak');
+      Route::group(['prefix'=>'/wajibPajak'],function(){
+        Route::post('tambahWajibPajak','AdminController@tambahWajibPajak');
+        Route::post('insertWajibPajak','AdminController@insertWajibPajak');
+        Route::post('editWajibPajak','AdminController@editWajibPajak');
+        Route::post('hapusWajibPajak','AdminController@hapusWajibPajak');
+        Route::post('getDesa','AdminController@getDesa');
+        Route::post('getNPWP','AdminController@getNPWP');
+        Route::post('getDataWajibPajak','AdminController@getDataWajibPajak');
+      });
+    Route::get('ketetapanPajak','AdminController@ketetapanPajak');
+      Route::group(['prefix'=>'ketetapanPajak'],function(){
+        Route::post('tambahKetetapanPajak','AdminController@tambahKetetapanPajak');
+        Route::post('insertKetetapanPajak','AdminController@insertKetetapanPajak');
+        Route::post('editKetetapanPajak','AdminController@editKetetapanPajak');
+        Route::post('hapusKetetapanPajak','AdminController@hapusKetetapanPajak');
+        Route::post('statusVerifikasi','AdminController@statusVerifikasi');
+        Route::post('getDataKetetapanPajak','AdminController@getDataKetetapanPajak');
+        Route::post('getEditData','AdminController@getEditData');
+      });
+
+
   });
 });
 
@@ -154,13 +178,23 @@ Route::group(['middleware'=>'role:3'],function(){
       Route::post('updatePwd','PjController@updatePwd');
     });
     Route::post('cetak_stbp','BendaharaController@cetak_stbp');
-
     Route::get('cetak_stbp',array('as'=>'cetak_stbp','uses'=>'BendaharaController@cetak_stbp_pdf'));
+
+
     Route::get('cetak_setoranbank',array('as'=>'cetak_setoranbank','uses'=>'BendaharaController@cetak_setoranbank_pdf'));
 
     //laporan
       Route::post('/laporan/filter','BendaharaController@filterLaporan');
       Route::post('/laporan_setoran/filter','BendaharaController@filterLaporanSetoran');
+
+    //VERIFIKATOR
+      Route::get('verifikasiKetetapanPajak','BendaharaController@verifikasiKetetapanPajak');
+
+
+    //OPERATOR
+      Route::get('wajibPajak','BendaharaController@wajibPajak');
+      Route::get('ketetapanPajak','BendaharaController@ketetapanPajak');
+
   });
 });
 
@@ -195,6 +229,19 @@ Route::group(['middleware'=>'role:4'],function(){
     Route::group(['prefix'=>'pwd'],function(){
       Route::post('updatePwd','OperatorController@updatePwd');
     });
+
+
+    Route::get('dataPajak','OperatorController@dataPajak');
+
+    
+
+    Route::get('laporan','OperatorController@laporan');
+    Route::get('laporan_setoran','OperatorController@laporanSetoran');
+    Route::post('/laporan/filter','OperatorController@filterLaporan');
+    Route::post('/laporan_setoran/filter','OperatorController@filterLaporanSetoran');
+
+    Route::get('verifikasiKetetapanPajak','OperatorController@verifikasiKetetapanPajak');
+
   });
 });
 
@@ -202,6 +249,7 @@ Route::group(['middleware'=>'role:4'],function(){
 Route::group(['middleware'=>'role:5'],function(){
   //jika hak akses verifikator
   Route::get('/verifikator','VerifikatorController@index');
+
   Route::group(['prefix'=>'/verifikator'],function(){
     Route::get('verifikasiKetetapanPajak','VerifikatorController@verifikasiKetetapanPajak');
     Route::group(['prefix'=>'verifikasiKetetapanPajak'],function(){
@@ -213,5 +261,21 @@ Route::group(['middleware'=>'role:5'],function(){
     Route::group(['prefix'=>'pwd'],function(){
       Route::post('updatePwd','VerifikatorController@updatePwd');
     });
+
+    //bendahara
+    Route::get('laporan','VerifikatorController@laporan');
+    Route::get('laporan_setoran','VerifikatorController@laporanSetoran');
+    Route::get('dataPajak','VerifikatorController@dataPajak');
+
+    Route::post('/laporan/filter','VerifikatorController@filterLaporan');
+    Route::post('/laporan_setoran/filter','VerifikatorController@filterLaporanSetoran');
+
+
+    Route::get('wajibPajak','VerifikatorController@wajibPajak');
+    Route::get('ketetapanPajak','VerifikatorController@ketetapanPajak');
+
+    
+
+
   });
 });

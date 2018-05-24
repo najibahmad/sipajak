@@ -11,7 +11,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <i class="fa fa-dashboard"></i> <a href="{{url('admin/dashboard')}}">List Tarif Pajak</a>
+                    <i class="fa fa-dashboard"></i> <a href="{{url('/')}}">List Tarif Pajak</a>
                 </li>
             </ol>
         </div>

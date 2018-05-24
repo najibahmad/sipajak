@@ -102,7 +102,7 @@ animation-duration:2s; -webkit-animation-duration:2s; -moz-animation-duration:2s
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <i class="fa fa-dashboard"></i> <a href="{{url('admin/dashboard')}}">Beranda</a>
+                    <i class="fa fa-dashboard"></i> <a href="{{url('/')}}">Beranda</a>
                 </li>
             </ol>
         </div>

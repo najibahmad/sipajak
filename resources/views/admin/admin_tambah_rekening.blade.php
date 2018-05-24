@@ -11,7 +11,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i> <a href="{{url('admin/dashboard')}}">List Rekening</a>
+                    <i class="fa fa-dashboard"></i> <a href="{{url('/')}}">List Rekening</a>
                 </li>
                 <li class="active">
                     <i class="fa fa-table"></i> <a href="#"> Tambah Rekening</a>

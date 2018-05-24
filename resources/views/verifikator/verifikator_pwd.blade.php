@@ -9,7 +9,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <i class="fa fa-dashboard"></i> <a href="{{url('admin/dashboard')}}">Beranda</a>
+                    <i class="fa fa-dashboard"></i> <a href="{{url('/')}}">Beranda</a>
                 </li>
             </ol>
         </div>

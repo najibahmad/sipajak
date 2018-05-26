@@ -82,7 +82,7 @@
           <div class="col-sm-10">
             <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" @if (isset($edit))
               value="{{$edit->nama}}"
-            @endif>
+            @endif readonly="true" required>
           </div>
         </div>
         <div class="form-group">

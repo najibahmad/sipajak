@@ -1,6 +1,22 @@
-@extends('layouts/horizontal_operator')
+@extends('layouts/horizontal_admin')
 @section('title','Control Panel')
 @section('dashboard-active',"class=active")
+@section('css')
+<script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
+<style type="text/css">
+  input[list]
+{
+  
+    background: #D2E9FF;
+    padding: 20px 20px 20px 20px;
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #666;
+}
+.error {
+  color: red;
+}
+</style>
+@endsection
 @section('content')
   <div class="container">
 
@@ -17,10 +33,10 @@
         </div>
     </div>
 
-    <a href="{{URL('operator/ketetapanPajak')}}"><button type="button" class="btn btn-default" name="button">Back</button></a>
+    <a href="{{URL('admin/ketetapanPajak')}}"><button type="button" class="btn btn-default" name="button">Back</button></a>
     <hr>
     <!-- /.row -->
-    <form action="{{URL('operator/ketetapanPajak/insertKetetapanPajak')}}" role="form" method="post">
+    <form id="myform" action="{{URL('admin/ketetapanPajak/insertKetetapanPajak')}}" role="form" method="post">
       <div class="form-horizontal">
         <div class="form-group">
           <label class="control-label col-sm-2" for="bulan">Bulan</label>
@@ -48,7 +64,7 @@
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="tahun">Tahun</label>
-          <div class="col-sm-2">
+          <div class="col-sm-1">
             <select class="form-control" id="sel1" name="tahun">
               @if (isset($edit))
                 @for ($i = 0; $i < count($tahun); $i++)
@@ -70,39 +86,40 @@
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="NPWP">NPWD</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control NPWP" name="NPWP" id="livesearch" list="datalist" placeholder="search here"@if (isset($edit))
+          <div class="col-sm-6">
+            <input type="text" class="form-control NPWP" name="NPWP" id="livesearch" list="datalist" placeholder="Cari Wajib Pajak"@if (isset($edit))
               value="{{$edit->npwp}}"
-            @endif>
-            <datalist id="datalist"></datalist>
+            @endif 
+             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+            <datalist id="datalist">
+              
+            </datalist>
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-2" for="nama">Nama</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" @if (isset($edit))
-              value="{{$edit->nama}}"
-            @endif readonly="true" required>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" @if (isset($edit)) value="{{$edit->nama}}" @endif readonly="true" required/>
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-2" for="alamat">Alamat</label>
-          <div class="col-sm-10">
-            <textarea type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat">@if (isset($edit)){{$edit->alamat}}
+          <div class="col-sm-8">
+            <textarea readonly="true" type="text" class="form-control alamat" name="alamat" id="alamat" placeholder="Alamat">@if (isset($edit)){{$edit->alamat}}
             @endif</textarea>
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-2" for="jatuhTempo">Jatuh Tempo</label>
-          <div class="col-sm-10">
-            <input type="text" data-date-format='yyyy-mm-dd'  class="datepicker form-control" id="jatuhTempo" data-provide="datepicker" name="jatuhTempo" placeholder="Jatuh Tempo" @if (isset($edit))
+          <div class="col-sm-3">
+            <input readonly="true" type="text" data-date-format='yyyy-mm-dd'  class="datepicker form-control" id="jatuhTempo" data-provide="datepicker" name="jatuhTempo" placeholder="Jatuh Tempo" @if (isset($edit))
               value="{{$edit->jatuh_tempo}}"
             @endif>
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-2" for="kodeRekening">Kode Rekening</label>
-          <div class="col-sm-10">
+          <div class="col-sm-5">
             <select class="form-control" id="sel1" name="kodeRekening">
               <option>pilih kode rekening</option>
 
@@ -121,7 +138,6 @@
                 @endforeach
               @endif
 
-
             </select>
           </div>
         </div>
@@ -133,7 +149,7 @@
         </div>
         <div class="form-group">
           <label class="control-label col-sm-2" for="keteranganKegiatan">Keterangan Kegiatan</label>
-          <div class="col-sm-10">
+          <div class="col-sm-8">
             <input type="text" class="form-control" name="keteranganKegiatan" placeholder="keterangan" @if (isset($edit))
               value="{{$edit->keterangan_pekerjaan}}"
             @endif)>
@@ -142,7 +158,7 @@
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="jenisPajak">Jenis Pajak</label>
-          <div class="col-sm-10">
+          <div class="col-sm-2">
             <select class="form-control" id="sel1" name="jenisPajak">
 
 
@@ -207,12 +223,58 @@
 @endsection
 
 @section('script')
+<script src="{{URL($default_url.'js/jquery.validate.min.js')}}"></script>
+<script src="{{URL($default_url.'js/additional-methods.js')}}"></script>
   <script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+      $('#myform').validate({ // initialize the plugin
+          rules: {
+              npwp: {
+                  required: true,
+              },
+              nama: {
+                  required: true,
+              },
+              alamat: {
+                  required: true,
+              },
+              kodeRekening: {
+                  required: true,
+              },
+              namaKegiatan: {
+                  required: true,
+              },
+              keteranganKegiatan: {
+                  required: true,
+              },
+              jenisPajak: {
+                  required: true,
+              },
+              namaItem: {
+                  required: true,
+              },
+              satuan: {
+                  required: true,
+              },
+              harga: {
+                  required: true,
+              },
+              volume: {
+                  required: true,
+              },
+          }
+          
+      });
+
+  });
 
     $(document).ready(function(){
 
       jQuery(function($){
-       $("#").mask("99.999.999.9-999.999");
+       //$("#npwp").mask("99.999.999.9-999.999");
       });
 
       var i=1;
@@ -222,7 +284,7 @@
 
       $('#livesearch').keyup(function(){
         var data=$(this).val();
-        $.post("{{url('operator/wajibPajak/getNPWP')}}",{npwp:data},function(result){
+        $.post("{{url('admin/wajibPajak/getNPWP')}}",{npwp:data},function(result){
           console.log(result);
           $('#datalist').html("");
           $.each(result,function(i, item){
@@ -235,7 +297,7 @@
 
       @if (isset($id))
       var data = {{$edit->npwp}};
-      $.post("{{url('operator/wajibPajak/getDataWajibPajak')}}",{npwp:data},function(result){
+      $.post("{{url('admin/wajibPajak/getDataWajibPajak')}}",{npwp:data},function(result){
         console.log(result);
         $("#nama").attr("value",result.nama);
         $("#alamat").attr("value",result.alamat);
@@ -243,10 +305,10 @@
         $("#wajibPajakId").attr("value",result.id);
       },"json");
 
-          $.post("{{url('operator/ketetapanPajak/getEditData')}}",{id:$("#updateId").val()},function(data){
+          $.post("{{url('admin/ketetapanPajak/getEditData')}}",{id:$("#updateId").val()},function(data){
             console.log(data);
             $('#itemKetetapanPajak').html(
-               '<tr>\
+              '<tr>\
               <td>1</td>\
               <td><input type=text class=form-control name=namaItem value="'+data.nama_item+'"></td>\
               <td><input type=text class=form-control name=volume value="'+data.volume+'"></td>\
@@ -260,17 +322,18 @@
       $('#livesearch').change(function(){
 
         var data=$(this).val();
-        $.post("{{url('operator/wajibPajak/getDataWajibPajak')}}",{npwp:data},function(result){
+        $.post("{{url('admin/wajibPajak/getDataWajibPajak')}}",{npwp:data},function(result){
           console.log(result);
           $("#nama").attr("value",result.nama);
-          $("#alamat").attr("value",result.alamat);
+          //$("#alamat").attr("value",result.alamat);
+          $("#alamat").text(result.alamat); 
           $("#jatuhTempo").attr("value",result.jatuh_tempo);
           $("#wajibPajakId").attr("value",result.id);
         },"json");
 
         if(($("#updateId").length > 0)){
           console.log('ada id');
-          $.post("{{url('operator/ketetapanPajak/getEditData')}}",{id:$("#updateId").val()},function(data){
+          $.post("{{url('admin/ketetapanPajak/getEditData')}}",{id:$("#updateId").val()},function(data){
             console.log(data);
             $('#itemKetetapanPajak').html(
               '<tr>\
@@ -293,10 +356,10 @@
           $('#itemKetetapanPajak').html(
             "<tr>\
             <td>1</td>\
-            <td><input type=text class=form-control name=namaItem1></td>\
-            <td><input type=text class=form-control name=volume1></td>\
-            <td><input type=text class=form-control name=satuan1></td>\
-            <td><input type=text class=form-control name=harga1></td>\
+            <td><input type=text class=form-control name=namaItem1 required></td>\
+            <td><input type=text class=form-control name=volume1 required></td>\
+            <td><input type=text class=form-control name=satuan1 required></td>\
+            <td><input type=text class=form-control name=harga1 required></td>\
             </tr>"
           );
         }
@@ -308,10 +371,10 @@
         $('#itemKetetapanPajak').append(
           "<tr id=item"+i+">\
           <td>"+i+"</td>\
-          <td><input type=text class=form-control name=namaItem"+i+"></td>\
-          <td><input type=text class=form-control name=volume"+i+"></td>\
-          <td><input type=text class=form-control name=satuan"+i+"></td>\
-          <td><input type=text class=form-control name=harga"+i+"></td>\
+          <td><input type=text class=form-control name=namaItem"+i+"  required></td>\
+          <td><input type=text class=form-control name=volume"+i+"  required></td>\
+          <td><input type=text class=form-control name=satuan"+i+"  required></td>\
+          <td><input type=text class=form-control name=harga"+i+"  required></td>\
           </tr>"
         );
         $("#totalItem").html(
@@ -327,4 +390,6 @@
 
     });
   </script>
+
+
 @endsection

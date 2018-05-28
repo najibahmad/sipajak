@@ -33,7 +33,8 @@ class PjController extends Controller
         "role_id"=>$request['grup'],
         "name"=>$request['name'],
         "email"=>$request['email'],
-        "password"=>bcrypt($request['name'])
+        //"password"=>bcrypt($request['name'])
+        "password"=>bcrypt('654321')
       ]);
 
       $lastUser=User::orderBy('id','desc')->first();

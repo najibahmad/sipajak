@@ -27,37 +27,37 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">Nama: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Nama anda" name="name">
+          <input type="text" class="form-control" placeholder="Nama anda" name="name" required>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">NIP: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="NIP" name="NIP">
+          <input type="text" class="form-control" placeholder="NIP" name="NIP"  required>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">Alamat: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Alamat" name="alamat">
+          <input type="text" class="form-control" placeholder="Alamat" name="alamat" required>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">E-mail: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="E-mail" name="email">
+          <input type="email" class="form-control" placeholder="E-mail" name="email" required>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">Password: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Password" name="password">
+          <input type="text" class="form-control" placeholder="Password" name="password" required>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">HP: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Nomor yang dapat dihubungi" name="HP">
+          <input type="text" class="form-control" placeholder="Nomor yang dapat dihubungi" name="HP" required>
         </div>
       </div>
       <div class="form-group">
@@ -82,7 +82,7 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">Nomor SK: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Nomor SK" name="nomorSK">
+          <input type="text" class="form-control" placeholder="Nomor SK" name="nomorSK" required>
         </div>
       </div>
 

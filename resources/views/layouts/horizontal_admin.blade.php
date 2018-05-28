@@ -86,7 +86,20 @@
                             <li><a href="{{url('admin/ketetapanPajak')}}"> KETETAPAN PAJAK</a></li>
 
 
-                            
+
+                            <!-- VERIFIKATOR -->
+                            <li><a href="{{url('admin/verifikasiKetetapanPajak')}}">VERIFIKASI</a></li>
+                            <!-- BENDAHARA -->
+                            <li><a href="{{url('admin/dataPajak')}}">DATA PAJAK</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">LAPORAN <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('admin/laporan')}}">LAPORAN PEMBAYARAN PAJAK</a></li>
+                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('admin/laporan_setoran')}}">LAPORAN SETORAN BANK</a></li>
+
+                                </ul>
+                            </li>
+
 
                             <li><a href="{{url('admin/pwd')}}">PASSWORD</a></li>
                         </ul>

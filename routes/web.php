@@ -136,6 +136,35 @@ Route::group(['middleware'=>'role:1'],function(){
       });
 
 
+    //verifikator
+    Route::get('verifikasiKetetapanPajak','AdminController@verifikasiKetetapanPajak');
+    Route::group(['prefix'=>'verifikasiKetetapanPajak'],function(){
+      Route::post('statusVerifikasi','AdminController@adminVerifikasi');
+      Route::post('getDataKetetapanPajak','AdminController@getDataKetetapanPajak');
+      Route::post('getNPWP','OperatorController@getNPWP');
+    });
+
+
+    //bendahara
+    Route::get('dataPajak','AdminController@dataPajak');
+    Route::group(['prefix'=>'dataPajak'],function(){
+      Route::post('statusPembayaran','AdminController@statusPembayaran');
+      Route::post('prosesPembayaran','AdminController@prosesPembayaran');
+      Route::post('getDataKetetapanPajak','AdminController@getDataKetetapanPajak');
+    });
+
+    Route::get('admincetak_stbp',array('as'=>'admincetak_stbp','uses'=>'BendaharaController@cetak_stbp_pdf'));
+
+
+    Route::get('admincetak_setoranbank',array('as'=>'admincetak_setoranbank','uses'=>'BendaharaController@cetak_setoranbank_pdf'));
+
+    Route::get('laporan','AdminController@laporan');
+    Route::get('laporan_setoran','AdminController@laporanSetoran');
+    Route::post('/laporan/filter','AdminController@filterLaporan');
+    Route::post('/laporan_setoran/filter','AdminController@filterLaporanSetoran');
+
+
+
   });
 });
 

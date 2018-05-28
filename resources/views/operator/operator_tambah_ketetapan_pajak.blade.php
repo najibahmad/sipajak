@@ -1,4 +1,4 @@
-@extends('layouts/horizontal_admin')
+@extends('layouts/horizontal_operator')
 @section('title','Control Panel')
 @section('dashboard-active',"class=active")
 @section('css')

@@ -135,18 +135,6 @@ Route::group(['middleware'=>'role:1'],function(){
         Route::post('getEditData','AdminController@getEditData');
       });
 
-    
-    //PEGAWAI  
-
-    Route::get('pegawai','AdminController@pegawai');
-      Route::group(['prefix'=>'/pegawai'],function(){
-        Route::post('tambahPegawai','AdminController@tambahPegawai');
-        Route::post('insertPegawai','AdminController@insertPegawai');
-        Route::post('hapusPegawai','AdminController@hapusPegawai');
-        Route::post('editPegawai','AdminController@editPegawai');
-        Route::post('insertEditedPegawai','AdminController@insertEditedPegawai');
-      });  
-
 
   });
 });

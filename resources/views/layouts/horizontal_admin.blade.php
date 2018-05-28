@@ -64,9 +64,15 @@
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a href="{{url('admin')}}" >DASHBOARD</a></li>
-                            <li><a href="{{url('admin/rekening')}}">REKENING PENERIMAAN</a></li>
-                            <li><a href="{{url('admin/tarif')}}">STANDAR TARIF</a></li>
-                            <li><a href="{{url('admin/pajak')}}">JENIS PAJAK</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">DATA AWAL <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                    <li><a href="{{url('admin/rekening')}}">REKENING PENERIMAAN</a></li>
+                                    <li><a href="{{url('admin/tarif')}}">STANDAR TARIF</a></li>
+                                    <li><a href="{{url('admin/pajak')}}">JENIS PAJAK</a></li>        
+                                </ul>
+                            </li>
+                            
                             <li>
                                 <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">DATA POKOK <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
@@ -78,6 +84,9 @@
 
                             <li><a href="{{url('admin/wajibPajak')}}"> WAJIB PAJAK</a></li>
                             <li><a href="{{url('admin/ketetapanPajak')}}"> KETETAPAN PAJAK</a></li>
+
+
+                            
 
                             <li><a href="{{url('admin/pwd')}}">PASSWORD</a></li>
                         </ul>

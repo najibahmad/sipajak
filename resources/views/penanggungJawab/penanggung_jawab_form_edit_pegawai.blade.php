@@ -48,6 +48,15 @@
           <input type="text" class="form-control" placeholder="E-mail" name="email" value="{{$edit->email}}">
         </div>
       </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="bulan">Reset Password: </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" placeholder="Reset Password (Kosongkan Jika tidak diubah)" name="password">
+        </div>
+      </div>
+
+
       <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">HP: </label>
         <div class="col-sm-10">
@@ -69,7 +78,11 @@
           <select class="form-control" name="grup">
             <option>Select Grup</option>
             @foreach ($roles as $id => $ini)
+              @if($edit->role_id == $ini->id)
+              <option value="{{$ini->id}}" selected>{{$ini->description}}</option>
+              @else
               <option value="{{$ini->id}}">{{$ini->description}}</option>
+              @endif
             @endforeach
           </select>
         </div>

@@ -49,12 +49,12 @@
                   <td>{{$ini->status}}</td>
                   <td>{{$ini->nomor_sk}}</td>
                   <td>
-                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editPegawai').submit();">Edit</button>
-                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusPegawai').submit();">Delete</button>
-                    <form id="editPegawai" action="{{URL('penanggungJawab/pegawai/editPegawai')}}" method="post">
+                    <button type="submit" name="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('editPegawai.{{$ini->user_id}}').submit();">Edit</button>
+                    <button type="submit" name="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('hapusPegawai.{{$ini->user_id}}').submit();">Delete</button>
+                    <form id="editPegawai.{{$ini->user_id}}" action="{{URL('penanggungJawab/pegawai/editPegawai')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->user_id}}">
                     </form>
-                    <form id="hapusPegawai" action="{{URL('penanggungJawab/pegawai/hapusPegawai')}}" method="post">
+                    <form id="hapusPegawai.{{$ini->user_id}}" action="{{URL('penanggungJawab/pegawai/hapusPegawai')}}" method="post">
                         <input type="hidden" name="id" value="{{$ini->user_id}}">
                     </form>
                   </td>

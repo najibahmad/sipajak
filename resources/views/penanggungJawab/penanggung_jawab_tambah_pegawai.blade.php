@@ -49,6 +49,12 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="control-label col-sm-2" for="bulan">Password: </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" placeholder="Password" name="password">
+        </div>
+      </div>
+      <div class="form-group">
         <label class="control-label col-sm-2" for="bulan">HP: </label>
         <div class="col-sm-10">
           <input type="text" class="form-control" placeholder="Nomor yang dapat dihubungi" name="HP">

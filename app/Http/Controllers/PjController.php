@@ -33,8 +33,8 @@ class PjController extends Controller
         "role_id"=>$request['grup'],
         "name"=>$request['name'],
         "email"=>$request['email'],
-        //"password"=>bcrypt($request['name'])
-        "password"=>bcrypt('654321')
+        "password"=>bcrypt($request['password'])
+        //"password"=>bcrypt('654321')
       ]);
 
       $lastUser=User::orderBy('id','desc')->first();
@@ -73,12 +73,23 @@ class PjController extends Controller
     }
     public function insertEditedPegawai(){
       $request=Input::all();
+      
 
-      $user=User::where('id','=',$request['user_id'])->update([
-        "role_id"=>$request['grup'],
-        "name"=>$request['name'],
-        "email"=>$request['email']
-      ]);
+      if($request['password']!=""){
+        $user=User::where('id','=',$request['user_id'])->update([
+          "role_id"=>$request['grup'],
+          "name"=>$request['name'],
+          "email"=>$request['email'],
+          "password"=>bcrypt($request['password'])
+        ]);  
+      }else{
+        $user=User::where('id','=',$request['user_id'])->update([
+          "role_id"=>$request['grup'],
+          "name"=>$request['name'],
+          "email"=>$request['email']
+        ]);
+      }
+      
 
       $pegawai=Pegawai::where('user_id','=',$request['user_id'])->update([
         "nama"=>$request['name'],

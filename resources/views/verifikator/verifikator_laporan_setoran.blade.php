@@ -81,13 +81,13 @@
     <td>Unit Organisasi</td>
     <td>:</td>
     <td>1.20.05</td>
-    <td>Dinas Pendapatan, Pengelolaan Keuangan dan Aset</td>
+    <td>Badan Pengelola Pajak dan Retribusi Daerah</td>
   </tr>
   <tr align="left">
     <td>Sub Unit Organisasi</td>
     <td>:</td>
     <td>1.20.05.01</td>
-    <td>Dinas Pendapatan, Pengelolaan Keuangan dan Aset</td>
+    <td>Badan Pengelola Pajak dan Retribusi Daerah</td>
   </tr>
   <tr align="left">
     <td colspan="2">Kode rekening Buku Besar Pembantu</td>

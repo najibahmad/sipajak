@@ -163,6 +163,10 @@ Route::group(['middleware'=>'role:1'],function(){
     Route::post('/laporan/filter','AdminController@filterLaporan');
     Route::post('/laporan_setoran/filter','AdminController@filterLaporanSetoran');
 
+    Route::get('buku_besar','AdminController@buku_besar');
+    Route::post('/buku_besar/filter','AdminController@filterbuku_besar');
+
+
 
 
   });
@@ -223,6 +227,10 @@ Route::group(['middleware'=>'role:3'],function(){
     //OPERATOR
       Route::get('wajibPajak','BendaharaController@wajibPajak');
       Route::get('ketetapanPajak','BendaharaController@ketetapanPajak');
+
+
+      Route::get('buku_besar','BendaharaController@buku_besar');
+    Route::post('/buku_besar/filter','BendaharaController@filterbuku_besar');
 
   });
 });

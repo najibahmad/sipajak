@@ -97,6 +97,8 @@
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('admin/laporan')}}">LAPORAN PEMBAYARAN PAJAK</a></li>
                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('admin/laporan_setoran')}}">LAPORAN SETORAN BANK</a></li>
 
+                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('admin/buku_besar')}}">BUKU BESAR</a></li>
+
                                 </ul>
                             </li>
 

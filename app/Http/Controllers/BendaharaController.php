@@ -406,4 +406,57 @@ class BendaharaController extends Controller
       return view('bendahara/bendahara_operator_ketetapan_pajak',$data);
     }
 
+
+    public function buku_besar(){
+      $data['kecamatan']=Kecamatan::get();
+      $data['desa']=Desa::get();
+      $data['jenis_pajak']=JenisPajak::get();
+      return view('bendahara/bendahara_buku_besar',$data);
+
+    }
+
+    public function filterbuku_besar(){
+      $request=Input::all();
+      $data['filter'] = 1;
+      $data['kecamatan']=Kecamatan::get();
+      $data['desa']=Desa::get();
+      
+      // return $currentId=Auth::user()->id;
+      //dd($request);
+      $query=KetetapanPajak::
+        join('item_ketetapan_pajak','item_ketetapan_pajak.ketetapan_pajak_id','ketetapan_pajak.id')
+        ->join('wajib_pajak','wajib_pajak.id','ketetapan_pajak.wajib_pajak_id')
+        ->join('desa','wajib_pajak.desa_id','desa.id')
+        ->join('kecamatan','desa.kecamatan_id','kecamatan.id')
+
+        ->select('npwp','nomor_bukti','nama_pekerjaan','nomor_bukti','ketetapan_pajak.jatuh_tempo',DB::raw('SUM(harga) as jumlah'),'ketetapan_pajak.tgl_pembayaran','ketetapan_pajak.jumlah_dibayar','ketetapan_pajak.nomor_skp','ketetapan_pajak.nomor_pembayaran')
+        ->whereRaw("ketetapan_pajak.tgl_pembayaran > '".$request['tgl_awal']."'")
+        ->whereRaw("ketetapan_pajak.tgl_pembayaran < '".$request['tgl_akhir']."'")
+        ->where("ketetapan_pajak.jenis_pajak_id", $request['jenis_pajak_id']);
+
+        if($request['kecamatan_id'] != 0 )
+          $query = $query->where("kecamatan.id", $request['kecamatan_id']);
+
+
+        $data['laporan'] = $query
+        ->groupBy('ketetapan_pajak.id','ketetapan_pajak.jatuh_tempo','ketetapan_pajak.nama_pekerjaan',
+                  'ketetapan_pajak.tgl_pembayaran','ketetapan_pajak.jumlah_dibayar','ketetapan_pajak.nomor_skp','ketetapan_pajak.nomor_pembayaran','ketetapan_pajak.nomor_bukti','wajib_pajak.npwp')
+        ->get();
+
+        //isset data
+        $data['tgl_awal'] = $request['tgl_awal'];
+        $data['tgl_akhir'] = $request['tgl_akhir'];
+        $data['kecamatan_id'] = $request['kecamatan_id'];
+        $data['jenis_pajak_id'] = $request['jenis_pajak_id'];
+        $data['jenis_pajak']=JenisPajak::get();
+        $data['buku_besar']=JenisPajak::where('id',$request['jenis_pajak_id'])->value('jenis');
+        $data['nomor_rekening']=RekeningPenerimaan::where('jenis_pajak_id',$request['jenis_pajak_id'])->value('nomor_rekening');
+
+        $data['tgl_awal1'] = $this->tgl_indo2($request['tgl_awal']);
+        $data['tgl_akhir1'] = $this->tgl_indo2($request['tgl_akhir']);
+
+      //dd($data['laporan']);
+      return view('bendahara/bendahara_buku_besar',$data);
+    }
+
 }

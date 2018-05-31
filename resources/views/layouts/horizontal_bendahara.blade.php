@@ -79,7 +79,7 @@
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('bendahara/laporan')}}">LAPORAN PEMBAYARAN PAJAK</a></li>
                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('bendahara/laporan_setoran')}}">LAPORAN SETORAN BANK</a></li>
-
+                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('bendahara/buku_besar')}}">BUKU BESAR</a></li>
                                 </ul>
                             </li>
                             <!-- BENDAHARA -->
